@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Auralys AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2D5016 100%);
+            color: #F5F1E8;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* Navigation */
+        nav {
+            padding: 30px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #D4AF37 0%, #F5F1E8 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 50px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #F5F1E8;
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links a:hover {
+            color: #D4AF37;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 180px 0 80px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-size: 64px;
+            margin-bottom: 25px;
+            background: linear-gradient(135deg, #D4AF37 0%, #F5F1E8 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto;
+            color: rgba(245, 241, 232, 0.7);
+            font-weight: 300;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 80px 0 120px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        /* Contact Info */
+        .contact-info {
+            position: sticky;
+            top: 150px;
+        }
+
+        .contact-info h2 {
+            font-size: 42px;
+            margin-bottom: 30px;
+            color: #D4AF37;
+        }
+
+        .contact-info p {
+            font-size: 18px;
+            color: rgba(245, 241, 232, 0.7);
+            margin-bottom: 50px;
+            line-height: 1.8;
+        }
+
+        .info-item {
+            margin-bottom: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(58, 58, 58, 0.4) 0%, rgba(45, 80, 22, 0.2) 100%);
+            border-radius: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .info-item:hover {
+            border-color: rgba(212, 175, 55, 0.4);
+            transform: translateX(5px);
+        }
+
+        .info-item h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #D4AF37;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .info-item p {
+            margin: 0;
+            font-size: 16px;
+            color: rgba(245, 241, 232, 0.8);
+        }
+
+        .info-item a {
+            color: #F5F1E8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .info-item a:hover {
+            color: #D4AF37;
+        }
+
+        .icon {
+            font-size: 24px;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: linear-gradient(135deg, rgba(58, 58, 58, 0.6) 0%, rgba(45, 80, 22, 0.3) 100%);
+            padding: 60px;
+            border-radius: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #D4AF37;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 16px 20px;
+            background: rgba(26, 26, 26, 0.6);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 10px;
+            color: #F5F1E8;
+            font-size: 16px;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #D4AF37;
+            background: rgba(26, 26, 26, 0.8);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        select {
+            cursor: pointer;
+        }
+
+        option {
+            background: #1a1a1a;
+            color: #F5F1E8;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px 40px;
+            background: linear-gradient(135deg, #D4AF37 0%, #B8941F 100%);
+            color: #1a1a1a;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 16px;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+            margin-top: 20px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.5);
+        }
+
+        .submit-btn:active {
+            transform: translateY(-1px);
+        }
+
+        /* Office Locations */
+        .locations {
+            padding: 100px 0;
+            background: rgba(45, 80, 22, 0.1);
+        }
+
+        .locations h2 {
+            text-align: center;
+            font-size: 48px;
+            margin-bottom: 70px;
+            color: #D4AF37;
+        }
+
+        .locations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .location-card {
+            background: linear-gradient(135deg, rgba(58, 58, 58, 0.4) 0%, rgba(45, 80, 22, 0.2) 100%);
+            padding: 40px;
+            border-radius: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .location-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(212, 175, 55, 0.5);
+        }
+
+        .location-card h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #F5F1E8;
+        }
+
+        .location-card p {
+            color: rgba(245, 241, 232, 0.7);
+            line-height: 1.8;
+            margin-bottom: 5px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 80px 0 40px;
+            background: rgba(26, 26, 26, 0.8);
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-brand h3 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #D4AF37 0%, #F5F1E8 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .footer-brand p {
+            color: rgba(245, 241, 232, 0.6);
+            line-height: 1.8;
+        }
+
+        .footer-links h4 {
+            font-size: 18px;
+            margin-bottom: 25px;
+            color: #D4AF37;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: rgba(245, 241, 232, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #D4AF37;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            color: rgba(245, 241, 232, 0.5);
+        }
+
+        @media (max-width: 968px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .contact-info {
+                position: static;
+            }
+
+            .contact-form {
+                padding: 40px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .locations-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 48px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 20px;
+            }
+
+            .contact-form {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">AURALYS AI</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="index.html#solutions">Solutions</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Let's Start a Conversation</h1>
+            <p>Ready to transform your business analytics? Our team is here to understand your unique challenges and demonstrate how Auralys can deliver the insights you need.</p>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h2>Get in Touch</h2>
+                    <p>Whether you're looking to schedule a demo, discuss enterprise solutions, or explore partnership opportunities, we're here to help.</p>
+
+                    <div class="info-item">
+                        <h3><span class="icon">📧</span> Email</h3>
+                        <p><a href="mailto:sumantrules@gmail.com">sumantrules@gmail.com</a></p>
+                    </div>
+
+                    <div class="info-item">
+                        <h3><span class="icon">📞</span> Phone</h3>
+                        <p>IND: +91 8420 240-360</p>
+                    </div>
+
+                    <div class="info-item">
+                        <h3><span class="icon">⏰</span> Business Hours</h3>
+                        <p>Monday - Friday: 9:00 AM - 6:00 PM IST</p>
+                        <p>Response within 24 hours</p>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" id="firstName" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" id="lastName" name="lastName" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="company">Company Name</label>
+                        <input type="text" id="company" name="company" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="role">Your Role</label>
+                            <select id="role" name="role" required>
+                                <option value="">Select your role</option>
+                                <option value="finance">Finance Team</option>
+                                <option value="marketing">Marketing Leader</option>
+                                <option value="analyst">Business Analyst</option>
+                                <option value="executive">C-Level Executive</option>
+                                <option value="it">IT/Technical Lead</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="companySize">Company Size</label>
+                            <select id="companySize" name="companySize" required>
+                                <option value="">Select company size</option>
+                                <option value="1-50">1-50 employees</option>
+                                <option value="51-200">51-200 employees</option>
+                                <option value="201-1000">201-1000 employees</option>
+                                <option value="1001+">1001+ employees</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="interest">What are you interested in?</label>
+                        <select id="interest" name="interest" required>
+                            <option value="">Select your interest</option>
+                            <option value="demo">Schedule a Demo</option>
+                            <option value="pricing">Pricing Information</option>
+                            <option value="enterprise">Enterprise Solutions</option>
+                            <option value="partnership">Partnership Opportunities</option>
+                            <option value="support">Technical Support</option>
+                            <option value="other">Other Inquiry</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" placeholder="Tell us about your business challenges and how we can help..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>AURALYS AI</h3>
+                    <p>Premium AI analytics platform designed for enterprise teams who demand actionable insights and intelligent automation.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="#">Features</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Case Studies</a></li>
+                        <li><a href="#">Documentation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="contact_us.html">Contact</a></li>
+                    </ul>
+                </div>
+                <!-- <div class="footer-links">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">API Docs</a></li>
+                        <li><a href="#">Security</a></li>
+                        <li><a href="#">Privacy</a></li>
+                    </ul>
+                </div> -->
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Auralys AI. All rights reserved. Built for real business challenges.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
