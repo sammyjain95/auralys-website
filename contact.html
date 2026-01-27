@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - Auralys AI</title>
-    <link rel="icon" href="assets/auralys_logo_v2.png" type="image/x-icon">
+    <link rel="icon" href="assets/auralys_logo.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         * {
@@ -51,13 +51,21 @@
         }
 
         .logo {
-            font-size: 32px;
-            font-weight: 700;
+            font-size: 24px;
+            font-weight: 500;
             background: linear-gradient(135deg, #D4AF37 0%, #F5F1E8 100%);
             background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
+            gap: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 36px;
+            width: auto;
         }
 
         .nav-links {
@@ -425,7 +433,7 @@
 <body>
     <nav>
         <div class="container">
-            <div class="logo">AURALYS AI</div>
+            <div class="logo"><img src="assets/auralys_logo.png" alt="Auralys">AURALYS</div>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="index.html#features">Features</a></li>
@@ -455,7 +463,7 @@
 
                     <div class="info-item">
                         <h3><span class="icon">📞</span> Phone</h3>
-                        <p>IND: +91 8420 240-360</p>
+                        <a href="tel:8420-240-360">IND: +91 8420240360</a>
                     </div>
 
                     <div class="info-item">
@@ -465,7 +473,7 @@
                     </div>
                 </div>
 
-                <div class="contact-form">
+                <form class="contact-form" target="_blank" action="https://formsubmit.co/cb0cd8cec3121f07421e692832f86053" method="POST">
                     <div class="form-row">
                         <div class="form-group">
                             <label for="firstName">First Name</label>
@@ -520,7 +528,7 @@
 
                     <div class="form-group">
                         <label for="interest">What are you interested in?</label>
-                        <select id="interest" name="interest" required>
+                        <select id="interest" name="interest">
                             <option value="">Select your interest</option>
                             <option value="demo">Schedule a Demo</option>
                             <option value="pricing">Pricing Information</option>
@@ -537,7 +545,7 @@
                     </div>
 
                     <button type="submit" class="submit-btn">Send Message</button>
-                </div>
+                </form>
             </div>
         </div>
     </section>
