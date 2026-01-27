@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - Auralys AI</title>
-    <link rel="icon" href="assets/auralys_logo_v2.png" type="image/x-icon">
+    <link rel="icon" href="assets/auralys_logo.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         * {
@@ -51,13 +51,21 @@
         }
 
         .logo {
-            font-size: 32px;
-            font-weight: 700;
+            font-size: 24px;
+            font-weight: 500;
             background: linear-gradient(135deg, #D4AF37 0%, #F5F1E8 100%);
             background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
+            gap: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 36px;
+            width: auto;
         }
 
         .nav-links {
@@ -425,7 +433,7 @@
 <body>
     <nav>
         <div class="container">
-            <div class="logo">AURALYS AI</div>
+            <div class="logo"><img src="assets/auralys_logo.png" alt="Auralys">AURALYS</div>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="index.html#features">Features</a></li>
