@@ -1,0 +1,109 @@
+# robots.txt for auralys.ai
+# Last updated: 2026-05-29
+
+# -----------------------------------------------
+# Default: allow all crawlers
+# -----------------------------------------------
+User-agent: *
+Allow: /
+
+# -----------------------------------------------
+# Google
+# -----------------------------------------------
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+# -----------------------------------------------
+# Microsoft / Bing / Copilot
+# -----------------------------------------------
+User-agent: Bingbot
+Allow: /
+
+User-agent: msnbot
+Allow: /
+
+# -----------------------------------------------
+# OpenAI / ChatGPT
+# -----------------------------------------------
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+# -----------------------------------------------
+# Anthropic / Claude
+# -----------------------------------------------
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+# -----------------------------------------------
+# Perplexity
+# -----------------------------------------------
+User-agent: PerplexityBot
+Allow: /
+
+# -----------------------------------------------
+# Google AI / Gemini
+# -----------------------------------------------
+User-agent: Google-Extended
+Allow: /
+
+# -----------------------------------------------
+# Apple
+# -----------------------------------------------
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# -----------------------------------------------
+# Meta AI
+# -----------------------------------------------
+User-agent: FacebookBot
+Allow: /
+
+# -----------------------------------------------
+# Common SEO crawlers (Ahrefs, Semrush, Moz)
+# -----------------------------------------------
+User-agent: AhrefsBot
+Allow: /
+
+User-agent: SemrushBot
+Allow: /
+
+User-agent: MJ12bot
+Allow: /
+
+User-agent: DotBot
+Allow: /
+
+# -----------------------------------------------
+# Block bad bots and scrapers
+# -----------------------------------------------
+User-agent: MauiBot
+Disallow: /
+
+User-agent: SplitSignalBot
+Disallow: /
+
+User-agent: BLEXBot
+Disallow: /
+
+# -----------------------------------------------
+# Sitemap location
+# -----------------------------------------------
+Sitemap: https://auralys.ai/sitemap.xml
