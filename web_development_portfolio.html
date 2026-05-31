@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Development Portfolio | Auralys AI</title>
+    <link rel="icon" href="assets/auralys_logo.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Figtree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ── TOKENS ── */
+        :root {
+            --gold:        oklch(72% 0.12 82);
+            --gold-dim:    oklch(58% 0.09 82);
+            --gold-faint:  oklch(72% 0.04 82);
+            --bg:          oklch(13% 0.008 82);
+            --bg-raised:   oklch(16% 0.008 82);
+            --bg-surface:  oklch(19% 0.007 82);
+            --text:        oklch(93% 0.005 82);
+            --text-mid:    oklch(72% 0.006 82);
+            --text-low:    oklch(52% 0.005 82);
+            --border:      oklch(28% 0.006 82);
+            --border-gold: oklch(72% 0.09 82 / 0.22);
+            --green:       oklch(65% 0.18 145);
+            --nav-h:       72px;
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Figtree', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.65;
+            overflow-x: hidden;
+        }
+
+        /* ── NAV ── */
+        nav {
+            position: fixed;
+            inset: 0 0 auto;
+            z-index: 900;
+            padding: 0 clamp(20px, 5vw, 64px);
+            height: var(--nav-h);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: oklch(13% 0.008 82 / 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-gold);
+        }
+
+        .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .nav-logo img { height: 32px; width: auto; }
+        .nav-logo span {
+            font-family: 'Figtree', sans-serif;
+            font-weight: 700; font-size: 16px; letter-spacing: 3px;
+            text-transform: uppercase; color: var(--gold);
+        }
+
+        /* Desktop nav links */
+        .nav-links {
+            display: flex; align-items: center; gap: 36px; list-style: none;
+        }
+        .nav-links a {
+            color: var(--text-mid); text-decoration: none; font-size: 14px;
+            font-weight: 500; letter-spacing: 0.4px; transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--text); }
+
+        /* Hamburger button */
+        .nav-hamburger {
+            display: none;
+            flex-direction: column; justify-content: center; gap: 5px;
+            width: 44px; height: 44px; cursor: pointer;
+            background: none; border: none; padding: 8px;
+            border-radius: 8px;
+            transition: background 0.2s;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .nav-hamburger:hover { background: oklch(100% 0 0 / 0.05); }
+        .nav-hamburger span {
+            display: block; width: 22px; height: 1.5px;
+            background: var(--text-mid); border-radius: 2px;
+            transition: transform 0.3s ease, opacity 0.2s;
+            transform-origin: center;
+        }
+        .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+        .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+        .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+        /* Mobile drawer */
+        .nav-drawer {
+            display: none;
+            position: fixed;
+            inset: var(--nav-h) 0 0;
+            background: oklch(13% 0.008 82 / 0.97);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 800;
+            flex-direction: column;
+            padding: 32px 28px 48px;
+            gap: 0;
+            overflow-y: auto;
+            transform: translateY(-12px);
+            opacity: 0;
+            visibility: hidden;
+            transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s;
+        }
+        .nav-drawer.open {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .drawer-link {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 18px 0;
+            border-bottom: 1px solid var(--border);
+            color: var(--text); text-decoration: none;
+            font-size: 22px; font-weight: 600;
+            font-family: 'Libre Baskerville', serif;
+            letter-spacing: -0.5px;
+            transition: color 0.2s;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .drawer-link:hover, .drawer-link:active { color: var(--gold); }
+        .drawer-link-arrow { font-size: 16px; color: var(--text-low); }
+
+        .drawer-sub {
+            display: flex; flex-direction: column; gap: 0;
+            padding: 8px 0 0 0;
+            margin-bottom: 4px;
+        }
+        .drawer-sub-link {
+            display: flex; align-items: center; gap: 12px;
+            padding: 14px 0;
+            border-bottom: 1px solid oklch(28% 0.006 82 / 0.5);
+            color: var(--text-mid); text-decoration: none;
+            font-size: 15px; font-weight: 500;
+            transition: color 0.2s;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .drawer-sub-link:last-child { border-bottom: none; }
+        .drawer-sub-link:hover, .drawer-sub-link:active { color: var(--text); }
+        .drawer-sub-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); opacity: 0.5; flex-shrink: 0; }
+
+        .drawer-cta {
+            margin-top: 36px;
+        }
+        .drawer-cta .btn-primary {
+            width: 100%; justify-content: center;
+            padding: 15px 28px; font-size: 15px;
+        }
+
+        /* Buttons */
+        .btn-primary {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 9px 22px; background: var(--gold);
+            color: oklch(13% 0.008 82); border-radius: 6px;
+            font-weight: 600; font-size: 14px; letter-spacing: 0.5px;
+            text-decoration: none; transition: background 0.2s, transform 0.2s;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .btn-primary:hover { background: oklch(78% 0.13 82); transform: translateY(-1px); }
+        .btn-ghost {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 13px 26px; border: 1px solid var(--border-gold);
+            border-radius: 7px; color: var(--text-mid); font-size: 14px;
+            font-weight: 500; text-decoration: none; transition: border-color 0.25s, color 0.25s;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .btn-ghost:hover { border-color: var(--gold); color: var(--text); }
+
+        /* ── SOLUTIONS DROPDOWN (desktop only) ── */
+        .nav-dropdown { position: relative; }
+        .dropdown-menu {
+            position: absolute;
+            top: calc(100% + 12px);
+            left: 50%;
+            transform: translateX(-50%) translateY(-6px);
+            background: #000;
+            border: 1px solid #222;
+            border-radius: 10px;
+            box-shadow: 0 16px 40px rgba(0,0,0,0.6);
+            min-width: 220px;
+            padding: 6px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+            z-index: 1000;
+        }
+        .nav-dropdown:hover .dropdown-menu,
+        .nav-dropdown:focus-within .dropdown-menu {
+            opacity: 1; visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+        .dropdown-menu li { list-style: none; }
+        .dropdown-menu a {
+            display: flex; align-items: center; gap: 12px;
+            padding: 10px 14px; border-radius: 7px;
+            color: #fff; text-decoration: none;
+            font-size: 13px; font-weight: 500; letter-spacing: 0.2px;
+            transition: background 0.15s, box-shadow 0.15s, transform 0.1s;
+        }
+        .dropdown-menu a:hover {
+            background: #1a1a1a;
+            box-shadow: inset 0 2px 6px rgba(0,0,0,0.6), inset 0 1px 2px rgba(0,0,0,0.4);
+            transform: scale(0.98); color: #e5e5e5;
+        }
+        .dropdown-item-label { font-weight: 600; color: #fff; display: block; line-height: 1.2; font-size: 13px; }
+
+        /* ── HERO ── */
+        .hero {
+            min-height: 100svh;
+            padding-top: var(--nav-h);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding-bottom: clamp(60px, 8vw, 100px);
+            padding-left: clamp(24px, 7vw, 100px);
+            padding-right: clamp(24px, 7vw, 100px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-grid {
+            position: absolute; inset: 0;
+            background-image:
+                linear-gradient(oklch(28% 0.006 82 / 0.25) 1px, transparent 1px),
+                linear-gradient(90deg, oklch(28% 0.006 82 / 0.25) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: radial-gradient(ellipse 80% 70% at 50% 100%, black 30%, transparent 100%);
+        }
+
+        .hero-orb {
+            position: absolute; top: 15%; right: 12%;
+            width: clamp(200px, 35vw, 520px);
+            aspect-ratio: 1; border-radius: 50%;
+            background: radial-gradient(circle at 40% 40%,
+                oklch(72% 0.12 82 / 0.12) 0%,
+                oklch(72% 0.12 82 / 0.04) 50%,
+                transparent 75%);
+            animation: orbPulse 6s ease-in-out infinite;
+        }
+
+        @keyframes orbPulse {
+            0%, 100% { transform: scale(1) translate(0,0); opacity: 0.8; }
+            50% { transform: scale(1.08) translate(-10px, 15px); opacity: 1; }
+        }
+
+        .hero-counter {
+            position: absolute;
+            top: clamp(90px, 16vh, 200px);
+            right: clamp(24px, 7vw, 100px);
+            opacity: 0; animation: fadeSlideIn 1s ease-out 0.8s forwards;
+        }
+
+        @keyframes fadeSlideIn {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .counter-num {
+            font-family: 'Libre Baskerville', serif;
+            font-size: clamp(48px, 10vw, 96px);
+            font-weight: 700; color: var(--gold);
+            line-height: 1; opacity: 0.18; letter-spacing: -3px;
+        }
+
+        .hero-content { position: relative; max-width: 780px; }
+
+        .hero-kicker {
+            font-size: 11px; font-weight: 600; letter-spacing: 3.5px;
+            text-transform: uppercase; color: var(--gold); margin-bottom: 24px;
+            display: flex; align-items: center; gap: 12px;
+            opacity: 0; animation: fadeSlideIn 0.8s ease-out 0.2s forwards;
+        }
+        .hero-kicker::before { content: ''; display: block; width: 28px; height: 1px; background: var(--gold); }
+
+        .hero h1 {
+            font-family: 'Libre Baskerville', Georgia, serif;
+            font-size: clamp(40px, 8vw, 88px);
+            line-height: 1.05; font-weight: 700; color: var(--text);
+            letter-spacing: -2px;
+            opacity: 0; animation: fadeSlideIn 0.8s ease-out 0.35s forwards;
+        }
+        .hero h1 em { font-style: italic; color: var(--gold); }
+
+        .hero-sub {
+            font-size: clamp(14px, 2vw, 18px); color: var(--text-mid);
+            font-weight: 300; max-width: 540px; margin-top: 20px;
+            line-height: 1.75;
+            opacity: 0; animation: fadeSlideIn 0.8s ease-out 0.5s forwards;
+        }
+
+        .hero-actions {
+            display: flex; align-items: center; gap: 16px; margin-top: 40px; flex-wrap: wrap;
+            opacity: 0; animation: fadeSlideIn 0.8s ease-out 0.65s forwards;
+        }
+
+        /* Mobile: stack actions */
+        @media (max-width: 480px) {
+            .hero-actions { flex-direction: column; align-items: stretch; }
+            .hero-actions .btn-primary,
+            .hero-actions .btn-ghost { text-align: center; justify-content: center; padding: 15px 24px; font-size: 15px; }
+        }
+
+        .hero-scroll {
+            position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+            display: flex; flex-direction: column; align-items: center; gap: 8px;
+            color: var(--text-low); font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+            opacity: 0; animation: fadeSlideIn 1s ease-out 1.2s forwards;
+        }
+        .hero-scroll-line {
+            width: 1px; height: 36px;
+            background: linear-gradient(to bottom, var(--gold), transparent);
+            animation: scrollPulse 2s ease-in-out infinite;
+        }
+        @keyframes scrollPulse {
+            0%, 100% { opacity: 0.4; transform: scaleY(1); }
+            50% { opacity: 1; transform: scaleY(1.1); }
+        }
+
+        /* ── MARQUEE ── */
+        .marquee-band {
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 0; overflow: hidden;
+            background: var(--bg-raised);
+        }
+        .marquee-track {
+            display: flex; gap: 0; white-space: nowrap;
+            animation: marquee 28s linear infinite;
+        }
+        @keyframes marquee {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+        .marquee-item {
+            padding: 0 32px; font-size: 11px; font-weight: 600;
+            letter-spacing: 2.5px; text-transform: uppercase;
+            color: var(--text-low);
+            display: flex; align-items: center; gap: 14px; flex-shrink: 0;
+        }
+        .marquee-item::after {
+            content: ''; display: block; width: 4px; height: 4px;
+            border-radius: 50%; background: var(--gold); opacity: 0.5;
+        }
+
+        /* ── FEATURED SECTION ── */
+        .featured-section {
+            padding: clamp(60px, 8vw, 130px) clamp(24px, 7vw, 100px);
+        }
+
+        .section-label {
+            font-size: 11px; font-weight: 600;
+            letter-spacing: 3px; text-transform: uppercase;
+            color: var(--gold); margin-bottom: 20px;
+            display: flex; align-items: center; gap: 12px;
+        }
+        .section-label::before { content: ''; display: block; width: 24px; height: 1px; background: var(--gold); }
+
+        .featured-project {
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: 1fr 420px;
+            gap: 0;
+            border: 1px solid var(--border);
+            border-radius: 16px; overflow: hidden;
+            transition: border-color 0.4s;
+            align-items: stretch;
+        }
+        .featured-project:hover { border-color: var(--border-gold); }
+
+        /* ── SLIDESHOW ── */
+        .featured-slideshow {
+            position: relative; overflow: hidden;
+            background: var(--bg-surface);
+            /* Stretch to fill grid cell height — no min-height needed */
+            display: flex; flex-direction: column;
+        }
+        .slideshow-track {
+            display: flex; width: 300%;
+            flex: 1; /* fill the slideshow height */
+            transition: transform 0.6s cubic-bezier(0.4,0,0.2,1);
+        }
+        .slide { width: calc(100% / 3); flex-shrink: 0; }
+        .slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+        .slide-counter {
+            position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%);
+            display: flex; gap: 7px; z-index: 10;
+        }
+        .slide-dot {
+            width: 8px; height: 8px; border-radius: 50%;
+            background: rgba(255,255,255,0.3); cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+            border: none; padding: 0;
+            /* Larger invisible hit area for touch */
+            position: relative;
+        }
+        .slide-dot::before {
+            content: ''; position: absolute;
+            inset: -8px; border-radius: 50%;
+        }
+        .slide-dot.active { background: var(--gold); transform: scale(1.3); }
+
+        .slide-btn {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            z-index: 10; width: 44px; height: 44px; border-radius: 50%;
+            background: oklch(13% 0.008 82 / 0.75);
+            border: 1px solid var(--border-gold);
+            color: var(--gold); font-size: 16px;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; transition: background 0.2s, transform 0.2s;
+            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+            -webkit-tap-highlight-color: transparent;
+        }
+        .slide-btn:hover { background: oklch(13% 0.008 82 / 0.95); transform: translateY(-50%) scale(1.08); }
+        .slide-btn.prev { left: 14px; }
+        .slide-btn.next { right: 14px; }
+
+        /* ── FEATURED INFO ── */
+        .featured-info {
+            border-left: 1px solid var(--border);
+            padding: clamp(32px, 5vw, 48px) clamp(24px, 4vw, 40px);
+            display: flex; flex-direction: column; gap: 0;
+            background: var(--bg-raised);
+        }
+
+        .feat-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 18px; }
+        .feat-tag {
+            padding: 3px 11px; border-radius: 20px;
+            border: 1px solid var(--border-gold);
+            font-size: 10px; font-weight: 600;
+            color: var(--gold); letter-spacing: 0.5px;
+            background: oklch(72% 0.12 82 / 0.06);
+        }
+        .feat-tag.live {
+            background: oklch(65% 0.18 145 / 0.1);
+            border-color: oklch(65% 0.18 145 / 0.4);
+            color: var(--green);
+            display: flex; align-items: center; gap: 5px;
+        }
+        .feat-tag.live::before {
+            content: ''; display: block; width: 5px; height: 5px;
+            border-radius: 50%; background: var(--green);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
+
+        .feat-title {
+            font-family: 'Libre Baskerville', serif;
+            font-size: clamp(22px, 3vw, 30px); font-weight: 700;
+            color: var(--text); line-height: 1.15; margin-bottom: 14px;
+        }
+        .feat-desc { font-size: 14px; color: var(--text-mid); line-height: 1.75; margin-bottom: 22px; }
+        .feat-deliverables { list-style: none; margin-bottom: 28px; display: flex; flex-direction: column; gap: 10px; }
+        .feat-deliverables li {
+            font-size: 13px; color: var(--text-mid);
+            display: flex; align-items: flex-start; gap: 10px; line-height: 1.5;
+        }
+        .feat-deliverables li::before { content: '→'; color: var(--gold); font-size: 11px; margin-top: 2px; flex-shrink: 0; }
+        .feat-link {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-size: 13px; font-weight: 600; color: var(--gold);
+            text-decoration: none; letter-spacing: 0.5px;
+            padding: 14px 0;
+            border-top: 1px solid var(--border);
+            margin-top: auto;
+            transition: gap 0.2s;
+            /* Ensure full-width tap target */
+            width: 100%;
+        }
+        .feat-link:hover { gap: 14px; }
+
+        /* ── PROJECT GRID ── */
+        .grid-section {
+            padding: 0 clamp(24px, 7vw, 100px) clamp(60px, 10vw, 130px);
+        }
+        .grid-header {
+            display: flex; justify-content: space-between;
+            align-items: flex-end; margin-bottom: 40px; gap: 20px;
+        }
+        .grid-header h2 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: clamp(28px, 3.5vw, 48px);
+            font-weight: 700; line-height: 1.1; letter-spacing: -1px;
+        }
+        .grid-header h2 em { font-style: italic; color: var(--gold); }
+
+        .filter-row { display: flex; gap: 8px; flex-wrap: wrap; flex-shrink: 0; }
+        .filter-pill {
+            padding: 8px 16px; border-radius: 40px;
+            border: 1px solid var(--border);
+            background: transparent; color: var(--text-low);
+            font-family: 'Figtree', sans-serif;
+            font-size: 12px; font-weight: 500; cursor: pointer;
+            letter-spacing: 0.3px; transition: all 0.2s;
+            /* Minimum touch target */
+            min-height: 36px; display: flex; align-items: center;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .filter-pill:hover { border-color: var(--border-gold); color: var(--text-mid); }
+        .filter-pill.active {
+            background: var(--gold); border-color: var(--gold);
+            color: oklch(13% 0.008 82); font-weight: 600;
+        }
+
+        .project-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 1px; background: var(--border);
+            border-radius: 12px; overflow: hidden;
+        }
+
+        .project-card {
+            background: var(--bg-raised);
+            display: flex; flex-direction: column;
+            text-decoration: none; transition: background 0.3s;
+            position: relative;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .project-card:hover { background: var(--bg-surface); }
+        .project-card:hover .pc-arrow { transform: translate(3px,-3px); }
+
+        .pc-window {
+            width: 100%; aspect-ratio: 3010 / 1632;
+            background: var(--bg-surface);
+            border-bottom: 1px solid var(--border);
+            position: relative; overflow: hidden;
+        }
+        .pc-bar {
+            height: 24px; background: oklch(21% 0.007 82);
+            border-bottom: 1px solid var(--border);
+            display: flex; align-items: center; padding: 0 10px; gap: 5px;
+            position: absolute; top: 0; left: 0; right: 0; z-index: 2;
+        }
+        .pc-dot { width: 7px; height: 7px; border-radius: 50%; }
+        .pc-dot-r { background: oklch(58% 0.18 25 / 0.7); }
+        .pc-dot-y { background: oklch(68% 0.14 80 / 0.7); }
+        .pc-dot-g { background: oklch(58% 0.18 145 / 0.7); }
+        .pc-url {
+            flex: 1; max-width: 160px; height: 13px;
+            background: oklch(16% 0.008 82); border-radius: 3px;
+            margin: 0 8px; display: flex; align-items: center;
+            padding: 0 7px; gap: 4px;
+        }
+        .pc-lock { width: 5px; height: 5px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+        .pc-url-text { font-size: 7px; color: var(--text-low); font-family: 'Figtree', sans-serif; }
+        .pc-inner { position: absolute; inset: 24px 0 0; overflow: hidden; }
+
+        /* Mockup: Finance */
+        .mk-finance { background: #0c0e14; display: flex; flex-direction: column; }
+        .mk-fin-top { height: 28px; background: #13151f; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; padding: 0 12px; gap: 8px; }
+        .mk-fin-logo { font-size: 8px; font-weight: 700; color: #818cf8; font-family: 'Figtree', sans-serif; }
+        .mk-fin-body { flex: 1; display: grid; grid-template-columns: 80px 1fr; gap: 0; }
+        .mk-fin-sidebar { background: #10121c; border-right: 1px solid rgba(255,255,255,0.04); padding: 8px 6px; display: flex; flex-direction: column; gap: 3px; }
+        .mk-fin-item { padding: 4px 7px; border-radius: 3px; font-size: 7px; color: rgba(255,255,255,0.25); font-family: 'Figtree', sans-serif; }
+        .mk-fin-item.a { background: rgba(129,140,248,0.12); color: #818cf8; }
+        .mk-fin-main { padding: 10px; display: flex; flex-direction: column; gap: 8px; }
+        .mk-fin-kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+        .mk-fin-kpi { background: #191b28; border: 1px solid rgba(255,255,255,0.05); border-radius: 5px; padding: 7px 8px; }
+        .mk-kpi-lbl { font-size: 6.5px; color: rgba(255,255,255,0.3); font-family: 'Figtree', sans-serif; margin-bottom: 2px; }
+        .mk-kpi-val { font-size: 13px; font-weight: 700; color: #fff; font-family: 'Libre Baskerville', serif; }
+        .mk-kpi-chg { font-size: 6.5px; font-family: 'Figtree', sans-serif; }
+        .up { color: #4ade80; } .dn { color: #f87171; }
+        .mk-fin-chart { flex: 1; background: #191b28; border: 1px solid rgba(255,255,255,0.05); border-radius: 5px; padding: 8px 10px; }
+        .mk-chart-lbl { font-size: 6.5px; color: rgba(255,255,255,0.3); margin-bottom: 5px; font-family: 'Figtree', sans-serif; }
+        .mk-bars { display: flex; align-items: flex-end; gap: 3px; height: 32px; }
+        .mk-bar { flex: 1; border-radius: 2px 2px 0 0; background: rgba(129,140,248,0.2); }
+        .mk-bar.h { background: #818cf8; }
+
+        /* Mockup: E-commerce */
+        .mk-ecom { background: #f8f7f4; display: flex; flex-direction: column; }
+        .mk-ecom-nav { height: 24px; background: #fff; border-bottom: 1px solid #e8e5df; display: flex; align-items: center; padding: 0 10px; gap: 10px; }
+        .mk-ecom-logo { font-size: 8px; font-weight: 700; color: #111; font-family: 'Figtree', sans-serif; letter-spacing: 1px; }
+        .mk-ecom-search { flex:1; max-width: 80px; height: 12px; background: #f0ede8; border-radius: 3px; }
+        .mk-ecom-body { flex:1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; padding: 8px; align-content: start; }
+        .mk-ecom-card { background: #fff; border: 1px solid #eee; border-radius: 5px; overflow: hidden; }
+        .mk-ecom-img { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; font-size: 18px; background: #f5f3ef; }
+        .mk-ecom-info { padding: 5px 7px 7px; }
+        .mk-ecom-name { font-size: 6.5px; font-weight: 600; color: #333; font-family: 'Figtree', sans-serif; }
+        .mk-ecom-price { font-size: 8px; font-weight: 700; color: #111; font-family: 'Figtree', sans-serif; }
+
+        /* Mockup: Corporate */
+        .mk-corp { background: #060608; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 8px; padding: 16px; }
+        .mk-corp-eye { width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; font-size: 16px; margin-bottom: 4px; }
+        .mk-corp-h { font-size: 11px; font-weight: 700; color: #fff; font-family: 'Libre Baskerville', serif; line-height: 1.2; }
+        .mk-corp-sub { font-size: 7px; color: rgba(255,255,255,0.3); font-family: 'Figtree', sans-serif; }
+        .mk-corp-pill { padding: 3px 10px; border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; font-size: 7px; color: rgba(255,255,255,0.4); font-family: 'Figtree', sans-serif; margin-top: 4px; }
+
+        /* Mockup: SaaS */
+        .mk-saas { background: #f6f2ff; display: flex; flex-direction: column; }
+        .mk-saas-nav { height: 24px; background: #fff; border-bottom: 1px solid #ede8ff; display: flex; align-items: center; padding: 0 10px; gap: 8px; }
+        .mk-saas-logo { font-size: 8px; font-weight: 700; color: #6d3cf7; font-family: 'Figtree', sans-serif; }
+        .mk-saas-btn { padding: 2px 7px; background: #6d3cf7; border-radius: 3px; font-size: 6.5px; color: #fff; font-family: 'Figtree', sans-serif; margin-left: auto; }
+        .mk-saas-body { flex: 1; display: grid; grid-template-columns: 1fr 1fr; padding: 10px; gap: 10px; align-items: center; }
+        .mk-saas-left { display: flex; flex-direction: column; gap: 6px; }
+        .mk-saas-h { font-size: 11px; font-weight: 700; color: #1a0845; font-family: 'Libre Baskerville', serif; line-height: 1.3; }
+        .mk-saas-p { font-size: 7px; color: #6b5a9a; font-family: 'Figtree', sans-serif; line-height: 1.4; }
+        .mk-saas-checks { display: flex; flex-direction: column; gap: 4px; }
+        .mk-saas-check { display: flex; align-items: center; gap: 4px; font-size: 7px; color: #4a3880; font-family: 'Figtree', sans-serif; }
+        .mk-saas-tick { width: 10px; height: 10px; border-radius: 50%; background: #6d3cf7; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 5px; color: #fff; }
+        .mk-saas-right { background: #fff; border-radius: 6px; border: 1px solid #ede8ff; padding: 8px; }
+        .mk-saas-rl { font-size: 6.5px; color: #9a8abc; font-family: 'Figtree', sans-serif; margin-bottom: 3px; }
+        .mk-saas-rv { font-size: 16px; font-weight: 700; color: #6d3cf7; font-family: 'Libre Baskerville', serif; }
+        .mk-saas-mini { display: flex; align-items: flex-end; gap: 2px; height: 24px; margin-top: 6px; }
+        .mk-saas-mb { flex:1; background: #ede8ff; border-radius: 2px 2px 0 0; }
+        .mk-saas-mb.h { background: #6d3cf7; }
+
+        /* Card body */
+        .pc-body { padding: clamp(18px, 3vw, 24px) clamp(20px, 3vw, 28px); display: flex; flex-direction: column; gap: 10px; flex: 1; }
+        .pc-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+        .pc-tag { padding: 2px 9px; border-radius: 20px; border: 1px solid var(--border-gold); font-size: 9px; font-weight: 600; color: var(--gold); letter-spacing: 0.5px; background: oklch(72% 0.12 82 / 0.06); }
+        .pc-tag.region { border-color: var(--border); color: var(--text-low); background: transparent; }
+        .pc-tag.live-tag { background: oklch(65% 0.18 145 / 0.08); border-color: oklch(65% 0.18 145 / 0.35); color: var(--green); display: flex; align-items: center; gap: 4px; }
+        .pc-tag.live-tag::before { content: ''; display: block; width: 4px; height: 4px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
+        .pc-title { font-family: 'Libre Baskerville', serif; font-size: clamp(15px, 2vw, 19px); font-weight: 700; color: var(--text); line-height: 1.2; }
+        .pc-desc { font-size: 13px; color: var(--text-mid); line-height: 1.7; }
+        .pc-footer { margin-top: auto; padding-top: 14px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+        .pc-client { font-size: 11px; color: var(--text-low); letter-spacing: 0.5px; }
+        .pc-arrow { width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border-gold); display: flex; align-items: center; justify-content: center; color: var(--gold); font-size: 13px; transition: transform 0.25s; flex-shrink: 0; }
+
+        /* ── PROCESS ── */
+        .process-section {
+            border-top: 1px solid var(--border);
+            background: var(--bg-raised);
+            padding: clamp(48px, 8vw, 100px) clamp(24px, 7vw, 100px);
+        }
+        .process-inner { display: grid; grid-template-columns: 340px 1fr; gap: clamp(40px, 6vw, 100px); align-items: start; }
+        .process-copy { position: sticky; top: 96px; }
+        .process-h { font-family: 'Libre Baskerville', serif; font-size: clamp(28px, 3.5vw, 46px); font-weight: 700; line-height: 1.1; letter-spacing: -1px; margin-top: 20px; margin-bottom: 16px; }
+        .process-h em { font-style: italic; color: var(--gold); }
+        .process-p { font-size: 15px; color: var(--text-mid); line-height: 1.75; font-weight: 300; }
+        .process-steps { display: flex; flex-direction: column; gap: 0; }
+        .p-step { display: flex; align-items: flex-start; gap: 20px; padding: 26px 0; border-bottom: 1px solid var(--border); }
+        .p-step:first-child { border-top: 1px solid var(--border); }
+        .p-num { font-family: 'Libre Baskerville', serif; font-size: 13px; font-weight: 700; color: var(--gold); width: 28px; flex-shrink: 0; padding-top: 3px; }
+        .p-body { flex: 1; }
+        .p-title { font-size: 17px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+        .p-desc { font-size: 14px; color: var(--text-mid); line-height: 1.7; }
+        .p-time { margin-top: 8px; font-size: 11px; color: var(--text-low); letter-spacing: 1px; text-transform: uppercase; }
+
+        /* ── CTA ── */
+        .cta-band {
+            padding: clamp(64px, 10vw, 130px) clamp(24px, 7vw, 100px);
+            text-align: center; position: relative; overflow: hidden;
+            border-top: 1px solid var(--border);
+        }
+        .cta-band::before {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(ellipse 65% 60% at 50% 50%, oklch(72% 0.12 82 / 0.07) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .cta-h { font-family: 'Libre Baskerville', serif; font-size: clamp(32px, 5vw, 62px); font-weight: 700; line-height: 1.1; letter-spacing: -1.5px; max-width: 720px; margin: 0 auto 18px; }
+        .cta-h em { font-style: italic; color: var(--gold); }
+        .cta-p { font-size: clamp(15px, 2vw, 17px); color: var(--text-mid); max-width: 460px; margin: 0 auto 40px; font-weight: 300; line-height: 1.7; }
+        .cta-actions { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+        .cta-actions .btn-primary { padding: 15px 32px; font-size: 15px; box-shadow: 0 4px 24px oklch(72% 0.12 82 / 0.3); }
+        .cta-actions .btn-primary:hover { box-shadow: 0 8px 32px oklch(72% 0.12 82 / 0.45); transform: translateY(-2px); }
+
+        /* ── FOOTER ── */
+        footer { padding: clamp(48px, 8vw, 100px) clamp(24px, 7vw, 100px) 36px; border-top: 1px solid var(--border); }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px; padding-bottom: 56px; border-bottom: 1px solid var(--border); }
+        .footer-brand { display: flex; flex-direction: column; gap: 16px; }
+        .footer-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .footer-logo img { height: 30px; }
+        .footer-logo span { font-weight: 700; font-size: 15px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); }
+        .footer-brand p { font-size: 14px; color: var(--text-low); line-height: 1.75; max-width: 320px; }
+        .footer-col h4 { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--text-mid); margin-bottom: 18px; }
+        .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+        .footer-col a { font-size: 14px; color: var(--text-low); text-decoration: none; transition: color 0.2s; padding: 2px 0; display: inline-block; }
+        .footer-col a:hover { color: var(--text); }
+        .footer-bottom { padding-top: 28px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--text-low); }
+
+        /* ── REVEAL ── */
+        .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.65s ease, transform 0.65s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .project-card[hidden] { display: none; }
+
+        /* ═══════════════════════════════════════════════════════
+           RESPONSIVE BREAKPOINTS
+        ═══════════════════════════════════════════════════════ */
+
+        /* ── Tablet: 768–1100px ── */
+        @media (max-width: 1100px) {
+            .featured-project { grid-template-columns: 1fr; }
+            .featured-info { border-left: none; border-top: 1px solid var(--border); }
+            /* Stacked layout: slideshow needs its own height via aspect-ratio */
+            .featured-slideshow { aspect-ratio: 16/9; flex: none; }
+            .project-grid { grid-template-columns: repeat(2, 1fr); }
+            .process-inner { grid-template-columns: 1fr; }
+            .process-copy { position: static; }
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+            .footer-brand { grid-column: 1 / -1; }
+            .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+        }
+
+        /* ── Mobile: ≤700px ── */
+        @media (max-width: 700px) {
+            :root { --nav-h: 64px; }
+
+            /* Nav: hide desktop links, show hamburger */
+            .nav-links { display: none; }
+            .nav-hamburger { display: flex; }
+            .nav-drawer { display: flex; }
+
+            /* Hero adjustments */
+            .hero { padding-bottom: 56px; }
+            .hero h1 { letter-spacing: -1.5px; }
+            .hero-counter { display: none; } /* too cramped on small screens */
+
+            /* Section padding tighter */
+            .featured-section { padding-top: 48px; padding-bottom: 48px; }
+
+            /* Featured slideshow: taller on mobile for visual impact */
+            .featured-slideshow { aspect-ratio: 4/3; flex: none; }
+            
+            /* Slightly larger slide arrows on touch */
+            .slide-btn { width: 48px; height: 48px; }
+
+            /* Grid: single column */
+            .project-grid { grid-template-columns: 1fr; }
+
+            /* Grid header: stack on mobile */
+            .grid-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+
+            /* Filter pills: scrollable row */
+            .filter-row {
+                width: 100%;
+                overflow-x: auto;
+                flex-wrap: nowrap;
+                padding-bottom: 4px;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+            }
+            .filter-row::-webkit-scrollbar { display: none; }
+            .filter-pill { flex-shrink: 0; white-space: nowrap; }
+
+            /* Process: tighter */
+            .process-section { padding-top: 48px; padding-bottom: 48px; }
+            .p-step { padding: 20px 0; }
+            .p-title { font-size: 15px; }
+
+            /* Footer: single column */
+            .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+            .footer-brand { grid-column: auto; }
+            .footer-brand p { max-width: 100%; }
+
+            /* CTA: full-width buttons on mobile */
+            .cta-actions { flex-direction: column; align-items: stretch; max-width: 340px; margin-left: auto; margin-right: auto; }
+            .cta-actions a { text-align: center; justify-content: center; }
+        }
+
+        /* ── Small mobile: ≤420px ── */
+        @media (max-width: 420px) {
+            .hero h1 { letter-spacing: -1px; }
+            .feat-title { font-size: 20px; }
+            .pc-title { font-size: 15px; }
+            /* Process: side-by-side number stays visible */
+            .p-num { font-size: 12px; }
+        }
+
+        /* ── Landscape mobile: short & wide ── */
+        @media (max-width: 700px) and (orientation: landscape) {
+            .hero { min-height: auto; padding-top: calc(var(--nav-h) + 40px); padding-bottom: 48px; justify-content: flex-start; }
+            .hero-scroll { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+    <a href="index.html" class="nav-logo">
+        <img src="assets/auralys_logo.png" alt="Auralys AI">
+        <span>Auralys AI</span>
+    </a>
+
+    <!-- Desktop nav -->
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li class="nav-dropdown">
+            <a href="index.html#services">Solutions</a>
+            <ul class="dropdown-menu">
+                <li><a href="https://ppt-creator.streamlit.app" target="_blank"><span class="dropdown-item-label">AI Business Analyst</span></a></li>
+                <li><a href="web_development_portfolio.html"><span class="dropdown-item-label">Website Development</span></a></li>
+                <li><a href="contact.html"><span class="dropdown-item-label">Strategic Consulting</span></a></li>
+            </ul>
+        </li>
+        <li><a href="index.html#global">Our Presence</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+
+    <!-- Desktop CTA (hidden at narrow width via nav-links hiding) -->
+    <a href="contact.html" class="btn-primary" style="display: none;" id="nav-cta-desktop">Start a project</a>
+
+    <!-- Mobile hamburger -->
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+
+<!-- Mobile drawer -->
+<nav class="nav-drawer" id="nav-drawer" aria-label="Mobile menu">
+    <a href="index.html" class="drawer-link">
+        Home
+        <span class="drawer-link-arrow">→</span>
+    </a>
+    <a href="index.html#services" class="drawer-link" style="border-bottom: none; padding-bottom: 4px;">
+        Solutions
+    </a>
+    <div class="drawer-sub">
+        <a href="https://ppt-creator.streamlit.app" target="_blank" class="drawer-sub-link">
+            <span class="drawer-sub-dot"></span>AI Business Analyst
+        </a>
+        <a href="web_development_portfolio.html" class="drawer-sub-link">
+            <span class="drawer-sub-dot"></span>Website Development
+        </a>
+        <a href="contact.html" class="drawer-sub-link">
+            <span class="drawer-sub-dot"></span>Strategic Consulting
+        </a>
+    </div>
+    <a href="index.html#global" class="drawer-link">
+        Our Presence
+        <span class="drawer-link-arrow">→</span>
+    </a>
+    <a href="contact.html" class="drawer-link">
+        Contact
+        <span class="drawer-link-arrow">→</span>
+    </a>
+    <div class="drawer-cta">
+        <a href="contact.html" class="btn-primary">Start a project</a>
+    </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-orb"></div>
+    <div class="hero-counter" aria-hidden="true">
+        <div class="counter-num">10+</div>
+    </div>
+    <div class="hero-content">
+        <div class="hero-kicker">Web Development Portfolio</div>
+        <h1>Sites that sell.<br>Designs that <em>last.</em></h1>
+        <p class="hero-sub">Every project we deliver is built from scratch for its market: the right structure, the right aesthetic, the right outcome. India, South Africa, United Kingdom.</p>
+        <div class="hero-actions">
+            <a href="#featured" class="btn-primary">View work</a>
+            <a href="contact.html" class="btn-ghost">Start a project</a>
+        </div>
+    </div>
+    <div class="hero-scroll" aria-hidden="true">
+        <div class="hero-scroll-line"></div>
+        Scroll
+    </div>
+</section>
+
+<!-- ── MARQUEE ── -->
+<div class="marquee-band" aria-hidden="true">
+    <div class="marquee-track">
+        <span class="marquee-item">E-Commerce</span>
+        <span class="marquee-item">Corporate Sites</span>
+        <span class="marquee-item">SaaS Platforms</span>
+        <span class="marquee-item">India</span>
+        <span class="marquee-item">South Africa</span>
+        <span class="marquee-item">United Kingdom</span>
+        <span class="marquee-item">Conversion Design</span>
+        <span class="marquee-item">Mobile-First</span>
+        <span class="marquee-item">SEO Ready</span>
+        <span class="marquee-item">E-Commerce</span>
+        <span class="marquee-item">Corporate Sites</span>
+        <span class="marquee-item">SaaS Platforms</span>
+        <span class="marquee-item">India</span>
+        <span class="marquee-item">South Africa</span>
+        <span class="marquee-item">United Kingdom</span>
+        <span class="marquee-item">Conversion Design</span>
+        <span class="marquee-item">Mobile-First</span>
+        <span class="marquee-item">SEO Ready</span>
+    </div>
+</div>
+
+<!-- ── FEATURED PROJECT ── -->
+<section class="featured-section" id="featured">
+    <div class="section-label">Featured Client</div>
+
+    <div class="featured-project reveal">
+        <div class="featured-slideshow" id="miifa-slideshow">
+            <div class="slideshow-track" id="slideshow-track">
+                <div class="slide"><img src="assets/Landing_Page.jpg" alt="Landing Page" loading="eager"></div>
+                <div class="slide"><img src="assets/Product_Catalog.jpg" alt="Product Catalog" loading="lazy"></div>
+                <div class="slide"><img src="assets/Product_Modal.jpg" alt="Product Modal" loading="lazy"></div>
+            </div>
+            <button class="slide-btn prev" id="slide-prev" aria-label="Previous slide">&#8592;</button>
+            <button class="slide-btn next" id="slide-next" aria-label="Next slide">&#8594;</button>
+            <div class="slide-counter" role="tablist" aria-label="Slideshow navigation">
+                <button class="slide-dot active" data-index="0" aria-label="Slide 1"></button>
+                <button class="slide-dot" data-index="1" aria-label="Slide 2"></button>
+                <button class="slide-dot" data-index="2" aria-label="Slide 3"></button>
+            </div>
+        </div>
+
+        <div class="featured-info">
+            <div class="feat-tags">
+                <span class="feat-tag live">Live Site</span>
+                <span class="feat-tag">E-Commerce</span>
+                <span class="feat-tag">&#127470;&#127475; India &rarr; &#127487;&#127462; South Africa</span>
+            </div>
+            <div class="feat-title">Made in India for Africa</div>
+            <p class="feat-desc">A cross-border e-commerce platform bridging Indian manufacturers with African consumers. Built to handle the complexity of two markets.</p>
+            <ul class="feat-deliverables">
+                <li>Full product catalogue with inventory management</li>
+                <li>Localised checkout for South African payment gateways</li>
+                <li>SEO and GEO foundations for both markets</li>
+            </ul>
+            <a href="https://www.madeinindiaforafrica.com" target="_blank" class="feat-link">
+                Visit site &rarr;
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ── PROJECT GRID ── -->
+<section class="grid-section">
+    <div class="grid-header">
+        <h2>More <em>projects.</em></h2>
+        <div class="filter-row" role="group" aria-label="Filter projects">
+            <button class="filter-pill active" onclick="filter('all', this)">All</button>
+            <button class="filter-pill" onclick="filter('ecom', this)">E-Commerce</button>
+            <button class="filter-pill" onclick="filter('corporate', this)">Corporate</button>
+            <button class="filter-pill" onclick="filter('saas', this)">SaaS</button>
+        </div>
+    </div>
+
+    <div class="project-grid" id="proj-grid">
+
+        <!-- Card: Finance Dashboard -->
+        <a class="project-card reveal" href="contact.html" data-cat="saas corporate">
+            <div class="pc-window">
+                <div class="pc-bar">
+                    <div class="pc-dot pc-dot-r"></div>
+                    <div class="pc-dot pc-dot-y"></div>
+                    <div class="pc-dot pc-dot-g"></div>
+                    <div class="pc-url"><div class="pc-lock"></div><span class="pc-url-text">analytics.client.co.uk</span></div>
+                </div>
+                <div class="pc-inner mk-finance">
+                    <div class="mk-fin-top"><span class="mk-fin-logo">&#9672; FINVIEW</span></div>
+                    <div class="mk-fin-body">
+                        <div class="mk-fin-sidebar">
+                            <div class="mk-fin-item a">Overview</div>
+                            <div class="mk-fin-item">Revenue</div>
+                            <div class="mk-fin-item">Expenses</div>
+                            <div class="mk-fin-item">Forecasts</div>
+                        </div>
+                        <div class="mk-fin-main">
+                            <div class="mk-fin-kpis">
+                                <div class="mk-fin-kpi"><div class="mk-kpi-lbl">Revenue</div><div class="mk-kpi-val">£2.4M</div><div class="mk-kpi-chg up">+18%</div></div>
+                                <div class="mk-fin-kpi"><div class="mk-kpi-lbl">Margin</div><div class="mk-kpi-val">34%</div><div class="mk-kpi-chg up">+3%</div></div>
+                                <div class="mk-fin-kpi"><div class="mk-kpi-lbl">Burn</div><div class="mk-kpi-val">£89K</div><div class="mk-kpi-chg dn">-12%</div></div>
+                            </div>
+                            <div class="mk-fin-chart">
+                                <div class="mk-chart-lbl">Monthly Revenue 2026</div>
+                                <div class="mk-bars">
+                                    <div class="mk-bar" style="height:55%"></div>
+                                    <div class="mk-bar" style="height:62%"></div>
+                                    <div class="mk-bar" style="height:48%"></div>
+                                    <div class="mk-bar" style="height:71%"></div>
+                                    <div class="mk-bar" style="height:66%"></div>
+                                    <div class="mk-bar h" style="height:88%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pc-body">
+                <div class="pc-tags">
+                    <span class="pc-tag">SaaS Dashboard</span>
+                    <span class="pc-tag region">&#127468;&#127463; UK</span>
+                </div>
+                <div class="pc-title">Finance Analytics Dashboard</div>
+                <p class="pc-desc">Custom web app for financial reporting, real-time KPI tracking, and board-ready exports. Built for a London-based finance team.</p>
+                <div class="pc-footer">
+                    <span class="pc-client">Client project &middot; UK</span>
+                    <span class="pc-arrow">&#8599;</span>
+                </div>
+            </div>
+        </a>
+
+        <!-- Card: E-Commerce Retail -->
+        <a class="project-card reveal" href="contact.html" data-cat="ecom" style="transition-delay:0.08s">
+            <div class="pc-window">
+                <div class="pc-bar">
+                    <div class="pc-dot pc-dot-r"></div>
+                    <div class="pc-dot pc-dot-y"></div>
+                    <div class="pc-dot pc-dot-g"></div>
+                    <div class="pc-url"><div class="pc-lock"></div><span class="pc-url-text">shop.brand.co.za</span></div>
+                </div>
+                <div class="pc-inner mk-ecom">
+                    <div class="mk-ecom-nav">
+                        <span class="mk-ecom-logo">BRAND</span>
+                        <div class="mk-ecom-search"></div>
+                    </div>
+                    <div class="mk-ecom-body">
+                        <div class="mk-ecom-card"><div class="mk-ecom-img">&#128092;</div><div class="mk-ecom-info"><div class="mk-ecom-name">Premium Bag</div><div class="mk-ecom-price">R 1,299</div></div></div>
+                        <div class="mk-ecom-card"><div class="mk-ecom-img">&#128095;</div><div class="mk-ecom-info"><div class="mk-ecom-name">Sneaker</div><div class="mk-ecom-price">R 899</div></div></div>
+                        <div class="mk-ecom-card"><div class="mk-ecom-img">&#129381;</div><div class="mk-ecom-info"><div class="mk-ecom-name">Jacket</div><div class="mk-ecom-price">R 2,499</div></div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="pc-body">
+                <div class="pc-tags">
+                    <span class="pc-tag">E-Commerce</span>
+                    <span class="pc-tag region">&#127487;&#127462; South Africa</span>
+                </div>
+                <div class="pc-title">Retail E-Commerce Store</div>
+                <p class="pc-desc">Full-featured online retail platform with cart, checkout, and South African payment gateway integration. Localised for Rand pricing and local logistics.</p>
+                <div class="pc-footer">
+                    <span class="pc-client">Client project &middot; South Africa</span>
+                    <span class="pc-arrow">&#8599;</span>
+                </div>
+            </div>
+        </a>
+
+        <!-- Card: Corporate Brand -->
+        <a class="project-card reveal" href="contact.html" data-cat="corporate" style="transition-delay:0.16s">
+            <div class="pc-window">
+                <div class="pc-bar">
+                    <div class="pc-dot pc-dot-r"></div>
+                    <div class="pc-dot pc-dot-y"></div>
+                    <div class="pc-dot pc-dot-g"></div>
+                    <div class="pc-url"><div class="pc-lock"></div><span class="pc-url-text">clientstudio.in</span></div>
+                </div>
+                <div class="pc-inner mk-corp">
+                    <div class="mk-corp-eye">&#127970;</div>
+                    <div class="mk-corp-h">We build things<br>that endure.</div>
+                    <div class="mk-corp-sub">Infrastructure &middot; Advisory &middot; India</div>
+                    <div class="mk-corp-pill">Our work &rarr;</div>
+                </div>
+            </div>
+            <div class="pc-body">
+                <div class="pc-tags">
+                    <span class="pc-tag">Corporate</span>
+                    <span class="pc-tag region">&#127470;&#127475; India</span>
+                </div>
+                <div class="pc-title">Corporate Brand Website</div>
+                <p class="pc-desc">High-impact brand presence for an Indian professional services firm. Editorial design, mobile-first, with SEO and lead generation baked in.</p>
+                <div class="pc-footer">
+                    <span class="pc-client">Client project &middot; India</span>
+                    <span class="pc-arrow">&#8599;</span>
+                </div>
+            </div>
+        </a>
+
+        <!-- Card: SaaS Landing -->
+        <a class="project-card reveal" href="contact.html" data-cat="saas" style="transition-delay:0.24s">
+            <div class="pc-window">
+                <div class="pc-bar">
+                    <div class="pc-dot pc-dot-r"></div>
+                    <div class="pc-dot pc-dot-y"></div>
+                    <div class="pc-dot pc-dot-g"></div>
+                    <div class="pc-url"><div class="pc-lock"></div><span class="pc-url-text">app.client.io</span></div>
+                </div>
+                <div class="pc-inner mk-saas">
+                    <div class="mk-saas-nav">
+                        <span class="mk-saas-logo">&#9670; AppName</span>
+                        <span class="mk-saas-btn">Get started</span>
+                    </div>
+                    <div class="mk-saas-body">
+                        <div class="mk-saas-left">
+                            <div class="mk-saas-h">Manage your workflow smarter.</div>
+                            <div class="mk-saas-p">Built for fast-moving teams. Ship more, track everything.</div>
+                            <div class="mk-saas-checks">
+                                <div class="mk-saas-check"><div class="mk-saas-tick">&#10003;</div> Automation</div>
+                                <div class="mk-saas-check"><div class="mk-saas-tick">&#10003;</div> Collaboration</div>
+                                <div class="mk-saas-check"><div class="mk-saas-tick">&#10003;</div> Analytics</div>
+                            </div>
+                        </div>
+                        <div class="mk-saas-right">
+                            <div class="mk-saas-rl">Active users</div>
+                            <div class="mk-saas-rv">2,840</div>
+                            <div class="mk-saas-mini">
+                                <div class="mk-saas-mb" style="height:40%"></div>
+                                <div class="mk-saas-mb" style="height:55%"></div>
+                                <div class="mk-saas-mb" style="height:48%"></div>
+                                <div class="mk-saas-mb" style="height:72%"></div>
+                                <div class="mk-saas-mb h" style="height:90%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pc-body">
+                <div class="pc-tags">
+                    <span class="pc-tag">SaaS</span>
+                    <span class="pc-tag region">&#127468;&#127463; UK &middot; &#127470;&#127475; India</span>
+                </div>
+                <div class="pc-title">SaaS Product Landing Page</div>
+                <p class="pc-desc">Conversion-focused landing and onboarding flow for a B2B SaaS startup. One goal: trial sign-ups. Clear value props, social proof, frictionless CTA.</p>
+                <div class="pc-footer">
+                    <span class="pc-client">Client project &middot; UK &amp; India</span>
+                    <span class="pc-arrow">&#8599;</span>
+                </div>
+            </div>
+        </a>
+
+        <!-- Placeholder -->
+        <a class="project-card reveal" href="contact.html" data-cat="ecom corporate saas" style="transition-delay:0.32s">
+            <div class="pc-window" style="background: oklch(16% 0.008 82); display:flex; align-items:center; justify-content:center; flex-direction:column; gap:12px;">
+                <div style="width:48px; height:48px; border-radius:50%; border:1px dashed var(--border-gold); display:flex; align-items:center; justify-content:center; font-size:20px; color: var(--gold);">+</div>
+                <div style="font-size:11px; color:var(--text-low); letter-spacing:1.5px; text-transform:uppercase;">Your project</div>
+            </div>
+            <div class="pc-body">
+                <div class="pc-tags">
+                    <span class="pc-tag">Any Category</span>
+                    <span class="pc-tag region">&#127470;&#127475; &#127487;&#127462; &#127468;&#127463;</span>
+                </div>
+                <div class="pc-title">Could be yours next</div>
+                <p class="pc-desc">We take on projects across all three markets. Tell us what you're building and we'll put together a proposal within 48 hours.</p>
+                <div class="pc-footer">
+                    <span class="pc-client">Get in touch</span>
+                    <span class="pc-arrow">&#8599;</span>
+                </div>
+            </div>
+        </a>
+
+    </div>
+</section>
+
+<!-- ── HOW WE WORK ── -->
+<section class="process-section">
+    <div class="process-inner">
+        <div class="process-copy reveal">
+            <div class="section-label">How we work</div>
+            <h2 class="process-h">From brief to<br><em>browser</em> in weeks.</h2>
+            <p class="process-p">No bloated agencies, no endless revisions. We move with you and ship fast without cutting corners on quality or craft.</p>
+        </div>
+        <div class="process-steps">
+            <div class="p-step reveal">
+                <div class="p-num">01</div>
+                <div class="p-body">
+                    <div class="p-title">Discovery &amp; brief</div>
+                    <p class="p-desc">We start by understanding your market, your audience, and your goal. One focused session is usually enough. No questionnaires with 40 fields.</p>
+                    <div class="p-time">1&ndash;2 days</div>
+                </div>
+            </div>
+            <div class="p-step reveal" style="transition-delay:0.08s">
+                <div class="p-num">02</div>
+                <div class="p-body">
+                    <div class="p-title">Design prototype</div>
+                    <p class="p-desc">A working visual prototype in the browser. You see the real thing, not a static mockup. Feedback is fast and specific.</p>
+                    <div class="p-time">3&ndash;5 days</div>
+                </div>
+            </div>
+            <div class="p-step reveal" style="transition-delay:0.16s">
+                <div class="p-num">03</div>
+                <div class="p-body">
+                    <div class="p-title">Build &amp; integrate</div>
+                    <p class="p-desc">Full development: payments, logistics, CMS, analytics. We handle the complexity so you don't have to manage five different vendors.</p>
+                    <div class="p-time">1&ndash;3 weeks</div>
+                </div>
+            </div>
+            <div class="p-step reveal" style="transition-delay:0.24s">
+                <div class="p-num">04</div>
+                <div class="p-body">
+                    <div class="p-title">Launch &amp; handover</div>
+                    <p class="p-desc">We deploy, test across devices, and hand over a site you can manage yourself. Documentation included. No dependency on us to make basic updates.</p>
+                    <div class="p-time">1&ndash;2 days</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta-band">
+    <div class="section-label" style="justify-content:center; margin-bottom:22px;">Ready?</div>
+    <h2 class="cta-h">Your site.<br>Your market.<br><em>Done right.</em></h2>
+    <p class="cta-p">Tell us what you're building. We'll respond with a clear scope and timeline within 48 hours.</p>
+    <div class="cta-actions">
+        <a href="contact.html" class="btn-primary">Start a project</a>
+        <a href="index.html#services" class="btn-ghost">Back to services</a>
+    </div>
+</section>
+
+<!-- ── FOOTER ── */-->
+<footer>
+    <div class="footer-grid">
+        <div class="footer-brand">
+            <a href="index.html" class="footer-logo">
+                <img src="assets/auralys_logo.png" alt="Auralys AI">
+                <span>Auralys AI</span>
+            </a>
+            <p>AI-powered business analytics and e-commerce solutions for growing companies across India, South Africa, and the United Kingdom.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Product</h4>
+            <ul>
+                <li><a href="index.html#analyst">AI Analyst</a></li>
+                <li><a href="https://ppt-creator.streamlit.app" target="_blank">Launch App</a></li>
+                <li><a href="index.html#services">Website Development</a></li>
+                <li><a href="index.html#services">Consulting</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Company</h4>
+            <ul>
+                <li><a href="index.html#global">Our Presence</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="mailto:sumant@auralys.ai">sumant@auralys.ai</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <span>&copy; 2026 Auralys AI. Built for real business challenges.</span>
+        <span>India &middot; South Africa &middot; United Kingdom</span>
+    </div>
+</footer>
+
+<script>
+    // ── Scroll reveal ──
+    const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    // ── Filter ──
+    function filter(cat, btn) {
+        document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.querySelectorAll('#proj-grid .project-card').forEach(card => {
+            const cats = card.dataset.cat || '';
+            if (cat === 'all' || cats.includes(cat)) {
+                card.removeAttribute('hidden');
+            } else {
+                card.setAttribute('hidden', '');
+            }
+        });
+    }
+
+    // ── Mobile hamburger ──
+    (function () {
+        const hamburger = document.getElementById('nav-hamburger');
+        const drawer = document.getElementById('nav-drawer');
+        let isOpen = false;
+
+        function toggle() {
+            isOpen = !isOpen;
+            hamburger.classList.toggle('open', isOpen);
+            drawer.classList.toggle('open', isOpen);
+            hamburger.setAttribute('aria-expanded', isOpen);
+            // Prevent body scroll when drawer is open
+            document.body.style.overflow = isOpen ? 'hidden' : '';
+        }
+
+        hamburger.addEventListener('click', toggle);
+
+        // Close drawer on link click
+        drawer.querySelectorAll('a').forEach(a => {
+            a.addEventListener('click', () => {
+                if (isOpen) toggle();
+            });
+        });
+
+        // Close on resize to desktop
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 700 && isOpen) toggle();
+        });
+    })();
+
+    // ── Slideshow ──
+    (function () {
+        const SLIDE_COUNT = 3;
+        const INTERVAL_MS = 3200;
+        const track = document.getElementById('slideshow-track');
+        const dots = document.querySelectorAll('.slide-dot');
+        const prevBtn = document.getElementById('slide-prev');
+        const nextBtn = document.getElementById('slide-next');
+        let current = 0;
+        let timer = null;
+
+        function goTo(index) {
+            current = (index + SLIDE_COUNT) % SLIDE_COUNT;
+            track.style.transform = 'translateX(-' + (current * 100 / SLIDE_COUNT) + '%)';
+            dots.forEach((d, i) => d.classList.toggle('active', i === current));
+        }
+
+        function startAuto() {
+            clearInterval(timer);
+            timer = setInterval(() => goTo(current + 1), INTERVAL_MS);
+        }
+
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => { goTo(parseInt(dot.dataset.index, 10)); startAuto(); });
+        });
+
+        prevBtn.addEventListener('click', () => { goTo(current - 1); startAuto(); });
+        nextBtn.addEventListener('click', () => { goTo(current + 1); startAuto(); });
+
+        const slideshow = document.getElementById('miifa-slideshow');
+        slideshow.addEventListener('mouseenter', () => clearInterval(timer));
+        slideshow.addEventListener('mouseleave', startAuto);
+
+        // Touch/swipe
+        let touchStartX = 0;
+        let touchStartY = 0;
+        slideshow.addEventListener('touchstart', e => {
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+        }, { passive: true });
+        slideshow.addEventListener('touchend', e => {
+            const dx = e.changedTouches[0].clientX - touchStartX;
+            const dy = e.changedTouches[0].clientY - touchStartY;
+            // Only register horizontal swipe if dominant axis is horizontal
+            if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
+                goTo(dx < 0 ? current + 1 : current - 1);
+                startAuto();
+            }
+        }, { passive: true });
+
+        goTo(0);
+        startAuto();
+    })();
+</script>
+
+</body>
+</html>
