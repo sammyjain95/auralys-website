@@ -378,12 +378,10 @@
         .featured-slideshow {
             position: relative; overflow: hidden;
             background: var(--bg-surface);
-            /* Stretch to fill grid cell height — no min-height needed */
-            display: flex; flex-direction: column;
+            min-height: 320px;
         }
         .slideshow-track {
             display: flex; width: 300%;
-            flex: 1; /* fill the slideshow height */
             transition: transform 0.6s cubic-bezier(0.4,0,0.2,1);
         }
         .slide { width: calc(100% / 3); flex-shrink: 0; }
@@ -688,8 +686,7 @@
         @media (max-width: 1100px) {
             .featured-project { grid-template-columns: 1fr; }
             .featured-info { border-left: none; border-top: 1px solid var(--border); }
-            /* Stacked layout: slideshow needs its own height via aspect-ratio */
-            .featured-slideshow { aspect-ratio: 16/9; flex: none; }
+            .featured-slideshow { aspect-ratio: 16/9; min-height: auto; }
             .project-grid { grid-template-columns: repeat(2, 1fr); }
             .process-inner { grid-template-columns: 1fr; }
             .process-copy { position: static; }
@@ -716,7 +713,7 @@
             .featured-section { padding-top: 48px; padding-bottom: 48px; }
 
             /* Featured slideshow: taller on mobile for visual impact */
-            .featured-slideshow { aspect-ratio: 4/3; flex: none; }
+            .featured-slideshow { aspect-ratio: 4/3; min-height: auto; }
             
             /* Slightly larger slide arrows on touch */
             .slide-btn { width: 48px; height: 48px; }
@@ -774,23 +771,23 @@
 
 <!-- ── NAV ── -->
 <nav>
-    <a href="index.html" class="nav-logo">
+    <a href="/" class="nav-logo">
         <img src="assets/auralys_logo.png" alt="Auralys AI">
         <span>Auralys AI</span>
     </a>
 
     <!-- Desktop nav -->
     <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
+        <li><a href="/">Home</a></li>
         <li class="nav-dropdown">
-            <a href="index.html#services">Solutions</a>
+            <a href="/#services">Solutions</a>
             <ul class="dropdown-menu">
                 <li><a href="https://ppt-creator.streamlit.app" target="_blank"><span class="dropdown-item-label">AI Business Analyst</span></a></li>
-                <li><a href="web_development_portfolio.html"><span class="dropdown-item-label">Website Development</span></a></li>
-                <li><a href="contact.html"><span class="dropdown-item-label">Strategic Consulting</span></a></li>
+                <li><a href="/web_development_portfolio.html"><span class="dropdown-item-label">Website Development</span></a></li>
+                <li><a href="/contact.html"><span class="dropdown-item-label">Strategic Consulting</span></a></li>
             </ul>
         </li>
-        <li><a href="index.html#global">Our Presence</a></li>
+        <li><a href="/#global">Our Presence</a></li>
         <li><a href="contact.html">Contact</a></li>
     </ul>
 
@@ -805,11 +802,11 @@
 
 <!-- Mobile drawer -->
 <nav class="nav-drawer" id="nav-drawer" aria-label="Mobile menu">
-    <a href="index.html" class="drawer-link">
+    <a href="/" class="drawer-link">
         Home
         <span class="drawer-link-arrow">→</span>
     </a>
-    <a href="index.html#services" class="drawer-link" style="border-bottom: none; padding-bottom: 4px;">
+    <a href="/#services" class="drawer-link" style="border-bottom: none; padding-bottom: 4px;">
         Solutions
     </a>
     <div class="drawer-sub">
@@ -823,7 +820,7 @@
             <span class="drawer-sub-dot"></span>Strategic Consulting
         </a>
     </div>
-    <a href="index.html#global" class="drawer-link">
+    <a href="/#global" class="drawer-link">
         Our Presence
         <span class="drawer-link-arrow">→</span>
     </a>
@@ -1180,8 +1177,8 @@
     <h2 class="cta-h">Your site.<br>Your market.<br><em>Done right.</em></h2>
     <p class="cta-p">Tell us what you're building. We'll respond with a clear scope and timeline within 48 hours.</p>
     <div class="cta-actions">
-        <a href="contact.html" class="btn-primary">Start a project</a>
-        <a href="index.html#services" class="btn-ghost">Back to services</a>
+        <a href="/contact.html" class="btn-primary">Start a project</a>
+        <a href="/#services" class="btn-ghost">Back to services</a>
     </div>
 </section>
 
@@ -1189,7 +1186,7 @@
 <footer>
     <div class="footer-grid">
         <div class="footer-brand">
-            <a href="index.html" class="footer-logo">
+            <a href="/" class="footer-logo">
                 <img src="assets/auralys_logo.png" alt="Auralys AI">
                 <span>Auralys AI</span>
             </a>
@@ -1198,17 +1195,17 @@
         <div class="footer-col">
             <h4>Product</h4>
             <ul>
-                <li><a href="index.html#analyst">AI Analyst</a></li>
+                <li><a href="/#analyst">AI Analyst</a></li>
                 <li><a href="https://ppt-creator.streamlit.app" target="_blank">Launch App</a></li>
-                <li><a href="index.html#services">Website Development</a></li>
-                <li><a href="index.html#services">Consulting</a></li>
+                <li><a href="/#services">Website Development</a></li>
+                <li><a href="/#services">Consulting</a></li>
             </ul>
         </div>
         <div class="footer-col">
             <h4>Company</h4>
             <ul>
-                <li><a href="index.html#global">Our Presence</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="/#global">Our Presence</a></li>
+                <li><a href="/contact.html">Contact Us</a></li>
                 <li><a href="mailto:sumant@auralys.ai">sumant@auralys.ai</a></li>
             </ul>
         </div>
