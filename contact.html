@@ -2,14 +2,13 @@
 <html lang="en">
 <head>
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-E48XX831EP"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-E48XX831EP');
-</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-E48XX831EP"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-E48XX831EP');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us — Auralys AI</title>
@@ -17,23 +16,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* ── Aligned with index.html OKLCH token system ── */
-            --gold:         oklch(72% 0.12 82);
-            --gold-dim:     oklch(58% 0.09 82);
-            --gold-faint:   oklch(72% 0.04 82);
-            --bg:           oklch(13% 0.008 82);
-            --bg-raised:    oklch(16% 0.008 82);
-            --bg-surface:   oklch(19% 0.007 82);
-            --text:         oklch(93% 0.005 82);
-            --text-mid:     oklch(72% 0.006 82);
-            --text-low:     oklch(52% 0.005 82);
-            --border:       oklch(28% 0.006 82);
-            --border-gold:  oklch(72% 0.09 82 / 0.22);
-
-            /* ── Derived composites ── */
-            --gold-glow:    oklch(72% 0.12 82 / 0.09);
-            --gold-glow-md: oklch(72% 0.12 82 / 0.32);
-            --gold-dim-bg:  oklch(58% 0.09 82 / 0.14);
+            --gold:          oklch(72% 0.12 82);
+            --gold-dim:      oklch(58% 0.09 82);
+            --gold-faint:    oklch(72% 0.04 82);
+            --bg:            oklch(13% 0.008 82);
+            --bg-raised:     oklch(16% 0.008 82);
+            --bg-surface:    oklch(19% 0.007 82);
+            --text:          oklch(93% 0.005 82);
+            --text-mid:      oklch(72% 0.006 82);
+            --text-low:      oklch(52% 0.005 82);
+            --border:        oklch(28% 0.006 82);
+            --border-gold:   oklch(72% 0.09 82 / 0.22);
+            --gold-glow:     oklch(72% 0.12 82 / 0.09);
+            --gold-glow-md:  oklch(72% 0.12 82 / 0.32);
+            --gold-dim-bg:   oklch(58% 0.09 82 / 0.14);
             --surface-hover: oklch(22% 0.007 82);
         }
 
@@ -48,7 +44,6 @@
             overflow-x: hidden;
         }
 
-        /* Grain texture */
         body::before {
             content: '';
             position: fixed;
@@ -57,42 +52,6 @@
             opacity: 0.025;
             pointer-events: none;
             z-index: 0;
-        }
-
-        /* ── Footer bottom row ── */
-        .footer-bottom {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        gap: 0.75rem;
-        padding-top: 1.5rem;
-        border-top: 1px solid var(--border, oklch(28% 0.006 82));
-        margin-top: 2rem;
-        }
-        .footer-copy {
-        font-size: 0.78rem;
-        color: var(--text-low, oklch(52% 0.005 82));
-        letter-spacing: 0.03em;
-        }
-        .footer-legal-links {
-        display: flex;
-        align-items: center;
-        gap: 1.25rem;
-        }
-        .footer-legal-links a {
-        font-size: 0.78rem;
-        color: var(--text-low, oklch(52% 0.005 82));
-        text-decoration: none;
-        letter-spacing: 0.03em;
-        transition: color 0.2s;
-        }
-        .footer-legal-links a:hover { color: var(--gold, oklch(72% 0.12 82)); }
-        .footer-sep {
-        width: 1px;
-        height: 10px;
-        background: var(--border, oklch(28% 0.006 82));
-        display: inline-block;
         }
 
         /* ─── NAV ─────────────────────────────────── */
@@ -340,9 +299,7 @@
             border: 1px solid var(--border);
         }
 
-        .form-group {
-            margin-bottom: 28px;
-        }
+        .form-group { margin-bottom: 28px; }
 
         label {
             display: block;
@@ -371,9 +328,7 @@
         }
 
         input::placeholder,
-        textarea::placeholder {
-            color: var(--text-low);
-        }
+        textarea::placeholder { color: var(--text-low); }
 
         input:focus,
         textarea:focus,
@@ -416,7 +371,6 @@
             margin: 36px 0;
         }
 
-        /* Submit */
         .submit-btn {
             width: 100%;
             padding: 16px 40px;
@@ -507,13 +461,44 @@
 
         .footer-col a:hover { color: var(--text-mid); }
 
+        /* ─── FOOTER BOTTOM ───────────────────────── */
         .footer-bottom {
             max-width: 1280px;
             margin: 0 auto;
-            text-align: center;
-            font-size: 12px;
-            color: oklch(52% 0.005 82 / 0.5);
-            letter-spacing: 0.3px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .footer-copy {
+            font-size: 0.78rem;
+            color: var(--text-low);
+            letter-spacing: 0.03em;
+        }
+
+        .footer-legal-links {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+        }
+
+        .footer-legal-links a {
+            font-size: 0.78rem;
+            color: var(--text-low);
+            text-decoration: none;
+            letter-spacing: 0.03em;
+            transition: color 0.2s;
+        }
+
+        .footer-legal-links a:hover { color: var(--gold); }
+
+        .footer-sep {
+            width: 1px;
+            height: 10px;
+            background: var(--border);
+            display: inline-block;
         }
 
         /* ─── ANIMATIONS ──────────────────────────── */
@@ -524,10 +509,7 @@
 
         /* ─── RESPONSIVE ──────────────────────────── */
         @media (max-width: 1024px) {
-            .contact-wrap {
-                grid-template-columns: 1fr;
-                gap: 56px;
-            }
+            .contact-wrap { grid-template-columns: 1fr; gap: 56px; }
             .contact-info { position: static; }
         }
 
@@ -540,6 +522,7 @@
             .footer-inner { grid-template-columns: 1fr; gap: 40px; }
             footer { padding: 56px 24px 28px; }
             .nav-links { gap: 24px; }
+            .footer-bottom { flex-direction: column; align-items: flex-start; gap: 1rem; }
         }
     </style>
 </head>
@@ -557,6 +540,14 @@
         </ul>
     </nav>
 
+    <!-- HERO -->
+    <div class="hero">
+        <div class="hero-glow"></div>
+        <div class="hero-rule"><span></span></div>
+        <h1>Get in <em>touch</em></h1>
+        <p>Whether you need a demo, enterprise consultation, or complete solutions — our team responds within 24 hours.</p>
+    </div>
+
     <!-- CONTACT -->
     <div class="contact-wrap">
 
@@ -564,7 +555,7 @@
         <div class="contact-info">
             <p class="section-label">Reach out</p>
             <h2>We're here to help</h2>
-            <p>Whether you need a demo, enterprise pricing, or just want to explore — our team responds within 24 hours.</p>
+            <p>Tell us about your business challenges and we'll show you exactly how Auralys can help.</p>
 
             <div class="info-list">
                 <div class="info-item">
@@ -709,11 +700,11 @@
         </div>
 
         <div class="footer-bottom">
-            &copy; 2026 Auralys AI. All rights reserved. Built for real business challenges.
+            <span class="footer-copy">&copy; 2026 Auralys AI. All rights reserved.</span>
             <div class="footer-legal-links">
-            <a href="/privacy-policy.html">Privacy Policy</a>
-            <span class="footer-sep"></span>
-            <a href="/terms-of-service.html">Terms &amp; Conditions</a>
+                <a href="/privacy-policy.html">Privacy Policy</a>
+                <span class="footer-sep"></span>
+                <a href="/terms-of-service.html">Terms &amp; Conditions</a>
             </div>
         </div>
     </footer>
