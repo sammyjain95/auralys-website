@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms of Service — Auralys AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* ── DESIGN TOKENS ── */
+  :root {
+    --gold:        oklch(72% 0.12 82);
+    --gold-dim:    oklch(58% 0.09 82);
+    --gold-faint:  oklch(72% 0.04 82);
+    --bg:          oklch(13% 0.008 82);
+    --bg-raised:   oklch(16% 0.008 82);
+    --bg-surface:  oklch(19% 0.007 82);
+    --text:        oklch(93% 0.005 82);
+    --text-mid:    oklch(72% 0.006 82);
+    --text-low:    oklch(52% 0.005 82);
+    --border:      oklch(28% 0.006 82);
+    --border-gold: oklch(72% 0.09 82 / 0.22);
+
+    /* derived */
+    --gold-glow:   oklch(72% 0.12 82 / 0.14);
+    --gold-dim-bg: oklch(72% 0.12 82 / 0.08);
+    --col:         700px;
+    --wide:        1120px;
+    --nav-h:       72px;
+    --sidebar-w:   252px;
+
+    --sans:  'Figtree', sans-serif;
+    --serif: 'DM Serif Display', serif;
+    --mono:  'DM Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.75;
+    font-size: 16px;
+    font-weight: 400;
+    overflow-x: hidden;
+  }
+
+  /* ── SCROLL PROGRESS ── */
+  #progress-bar {
+    position: fixed;
+    top: var(--nav-h);
+    left: 0;
+    height: 2px;
+    background: var(--gold);
+    width: 0%;
+    z-index: 901;
+    transition: width 0.1s linear;
+    box-shadow: 0 0 10px var(--gold-glow);
+    pointer-events: none;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 900;
+    padding: 0 clamp(24px, 5vw, 64px);
+    height: var(--nav-h);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: oklch(13% 0.008 82 / 0.88);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border-gold);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .nav-logo img { height: 34px; width: auto; }
+  .nav-logo span {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 17px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--text-mid);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.4px;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  .nav-cta {
+    padding: 9px 22px;
+    background: var(--gold);
+    color: oklch(13% 0.008 82);
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    white-space: nowrap;
+  }
+  .nav-cta:hover {
+    background: oklch(78% 0.13 82);
+    transform: translateY(-1px);
+  }
+
+  /* Mobile hamburger */
+  .nav-burger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    background: none;
+    border: none;
+  }
+  .nav-burger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--text-mid);
+    border-radius: 2px;
+    transition: all 0.2s;
+  }
+  .nav-mobile {
+    display: none;
+    position: fixed;
+    top: var(--nav-h);
+    inset: var(--nav-h) 0 0;
+    background: oklch(13% 0.008 82 / 0.97);
+    backdrop-filter: blur(16px);
+    padding: 2rem clamp(24px, 5vw, 64px);
+    flex-direction: column;
+    gap: 1.5rem;
+    z-index: 899;
+  }
+  .nav-mobile.open { display: flex; }
+  .nav-mobile a {
+    color: var(--text-mid);
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border);
+    transition: color 0.2s;
+  }
+  .nav-mobile a:hover { color: var(--gold); }
+  .nav-mobile .nav-cta {
+    display: inline-block;
+    margin-top: 0.5rem;
+    align-self: flex-start;
+    color: oklch(13% 0.008 82);
+  }
+
+  /* ── PAGE LAYOUT ── */
+  .page-wrap {
+    padding-top: var(--nav-h);
+    min-height: 100vh;
+  }
+
+  .layout {
+    display: flex;
+    max-width: var(--wide);
+    margin: 0 auto;
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    width: var(--sidebar-w);
+    flex-shrink: 0;
+    position: sticky;
+    top: var(--nav-h);
+    height: calc(100vh - var(--nav-h));
+    overflow-y: auto;
+    padding: 3rem 0 3rem 2rem;
+    border-right: 1px solid var(--border);
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+  .sidebar-label {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-low);
+    margin-bottom: 1.25rem;
+    padding-left: 0.75rem;
+  }
+  .nav-list { list-style: none; }
+  .nav-list li { margin-bottom: 2px; }
+  .nav-list a {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.38rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: var(--text-low);
+    text-decoration: none;
+    transition: all 0.15s ease;
+    line-height: 1.3;
+  }
+  .nav-list a .num {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    color: var(--border);
+    min-width: 18px;
+    flex-shrink: 0;
+    transition: color 0.15s;
+  }
+  .nav-list a:hover {
+    background: var(--gold-dim-bg);
+    color: var(--gold-faint);
+  }
+  .nav-list a:hover .num { color: var(--gold-dim); }
+  .nav-list a.active {
+    background: var(--gold-dim-bg);
+    color: var(--gold);
+    font-weight: 500;
+  }
+  .nav-list a.active .num { color: var(--gold); }
+
+  /* ── MAIN CONTENT ── */
+  .main {
+    flex: 1;
+    min-width: 0;
+    padding: 4rem 3.5rem 6rem;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    margin-bottom: 4rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--border);
+    animation: fadeUp 0.5s cubic-bezier(0.22,1,0.36,1) both;
+  }
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 1px;
+    background: var(--gold-dim);
+    opacity: 0.6;
+  }
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.4rem, 4vw, 3.2rem);
+    font-weight: 400;
+    color: var(--text);
+    line-height: 1.1;
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.01em;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    font-size: 0.78rem;
+    color: var(--text-low);
+    font-family: var(--mono);
+    letter-spacing: 0.04em;
+  }
+  .hero-meta span {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+  }
+  .hero-meta .dot {
+    display: inline-block;
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--gold-dim);
+    opacity: 0.6;
+    flex-shrink: 0;
+  }
+
+  /* ── POLICY SECTIONS ── */
+  .policy-section {
+    margin-bottom: 3.5rem;
+    scroll-margin-top: calc(var(--nav-h) + 24px);
+    animation: fadeUp 0.45s cubic-bezier(0.22,1,0.36,1) both;
+  }
+  .policy-section:nth-child(1)  { animation-delay: 0.05s; }
+  .policy-section:nth-child(2)  { animation-delay: 0.10s; }
+  .policy-section:nth-child(3)  { animation-delay: 0.15s; }
+  .policy-section:nth-child(4)  { animation-delay: 0.20s; }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+  }
+  .section-num {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    color: var(--gold-dim);
+    letter-spacing: 0.08em;
+    flex-shrink: 0;
+    padding-top: 3px;
+  }
+  .section-header h2 {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--text);
+    line-height: 1.2;
+  }
+
+  h3 {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--gold-dim);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin: 1.75rem 0 0.7rem;
+  }
+
+  p {
+    margin-bottom: 1rem;
+    font-size: 0.94rem;
+    color: var(--text-mid);
+    max-width: var(--col);
+    line-height: 1.8;
+    font-weight: 400;
+  }
+
+  a { color: var(--gold); text-decoration: none; }
+  a:hover {
+    color: oklch(78% 0.13 82);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  strong.kw { font-weight: 600; color: var(--text); }
+
+  /* ── POLICY LIST ── */
+  ul.policy-list {
+    list-style: none;
+    margin: 0.5rem 0 1.25rem 0;
+    max-width: var(--col);
+  }
+  ul.policy-list li {
+    position: relative;
+    padding: 0.5rem 0.75rem 0.5rem 1.5rem;
+    font-size: 0.92rem;
+    color: var(--text-mid);
+    margin-bottom: 2px;
+    border-radius: 5px;
+    transition: background 0.15s;
+    line-height: 1.7;
+  }
+  ul.policy-list li:hover {
+    background: var(--gold-dim-bg);
+  }
+  ul.policy-list li::before {
+    content: '';
+    position: absolute;
+    left: 0.5rem;
+    top: calc(0.5rem + 0.7em - 3px);
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--gold-dim);
+    opacity: 0.5;
+  }
+
+  /* ── IMPORTANT / WARNING CALLOUT ── */
+  .callout {
+    background: var(--gold-dim-bg);
+    border: 1px solid var(--border-gold);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    margin: 1.25rem 0 1.5rem;
+    max-width: var(--col);
+  }
+  .callout p {
+    font-size: 0.87rem;
+    color: var(--text-mid);
+    margin: 0;
+    line-height: 1.7;
+  }
+  .callout strong { font-weight: 600; color: var(--gold-dim); }
+
+  /* ── WARNING CALLOUT (AI disclaimer, higher contrast) ── */
+  .callout-warn {
+    background: oklch(72% 0.12 82 / 0.06);
+    border: 1px solid oklch(72% 0.09 82 / 0.35);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    margin: 1.25rem 0 1.5rem;
+    max-width: var(--col);
+  }
+  .callout-warn p {
+    font-size: 0.87rem;
+    color: var(--text-mid);
+    margin: 0;
+    line-height: 1.7;
+    font-style: italic;
+  }
+  .callout-warn strong { font-weight: 600; color: var(--gold); font-style: normal; }
+
+  /* ── MISCELLANEOUS ITEMS (definition list style) ── */
+  .misc-list {
+    list-style: none;
+    margin: 0.5rem 0 1.25rem;
+    max-width: var(--col);
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+  .misc-list li {
+    font-size: 0.92rem;
+    color: var(--text-mid);
+    padding: 0.5rem 0.75rem;
+    border-radius: 5px;
+    line-height: 1.7;
+    transition: background 0.15s;
+  }
+  .misc-list li:hover { background: var(--gold-dim-bg); }
+
+  /* ── CONTACT CARD ── */
+  .contact-card {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-gold);
+    border-radius: 10px;
+    padding: 1.5rem 2rem;
+    margin-top: 0.75rem;
+    min-width: 290px;
+  }
+  .contact-card .card-name {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    color: var(--text);
+  }
+  .contact-card .card-role {
+    font-size: 0.68rem;
+    color: var(--text-low);
+    font-family: var(--mono);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+  .contact-card .card-line {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.84rem;
+    color: var(--text-mid);
+  }
+  .contact-card .card-line a { color: var(--gold); text-decoration: none; }
+  .contact-card .card-line a:hover { color: oklch(78% 0.13 82); text-decoration: underline; }
+  .contact-card .card-icon {
+    width: 15px; height: 15px;
+    opacity: 0.4;
+    flex-shrink: 0;
+    color: var(--gold-faint);
+  }
+  .contact-card .card-sla {
+    margin-top: 0.4rem;
+    font-size: 0.74rem;
+    color: var(--text-low);
+    font-family: var(--mono);
+    letter-spacing: 0.04em;
+    border-top: 1px solid var(--border);
+    padding-top: 0.55rem;
+  }
+
+  /* ── DOC FOOTER ── */
+  .doc-footer {
+    margin-top: 4rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--border);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--text-low);
+    letter-spacing: 0.04em;
+    max-width: var(--col);
+    line-height: 1.8;
+  }
+
+  /* ── SITE FOOTER ── */
+  .site-footer {
+    border-top: 1px solid var(--border);
+    margin-top: 2rem;
+    padding: 3rem clamp(24px, 5vw, 64px);
+    max-width: var(--wide);
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .footer-inner {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 3rem;
+    align-items: start;
+  }
+  .footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .footer-brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .footer-brand-logo img { height: 28px; width: auto; }
+  .footer-brand-logo span {
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .footer-brand p {
+    font-size: 0.82rem;
+    color: var(--text-low);
+    line-height: 1.6;
+    max-width: 280px;
+    margin: 0;
+  }
+  .footer-col h4 {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-low);
+    margin-bottom: 1rem;
+  }
+  .footer-col ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .footer-col a {
+    font-size: 0.84rem;
+    color: var(--text-mid);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--gold); text-decoration: none; }
+  .footer-bottom {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .footer-bottom p {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    color: var(--text-low);
+    letter-spacing: 0.04em;
+    margin: 0;
+    max-width: none;
+  }
+  .footer-legal-links {
+    display: flex;
+    gap: 1.5rem;
+  }
+  .footer-legal-links a {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    color: var(--text-low);
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-legal-links a:hover { color: var(--gold); text-decoration: none; }
+  .footer-legal-links a.active-page { color: var(--gold-dim); }
+
+  /* ── ANIMATION ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero, .policy-section { animation: none; }
+    #progress-bar { transition: none; }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .sidebar { display: none; }
+    .main { padding: 3rem 2rem 5rem; }
+  }
+  @media (max-width: 768px) {
+    .main { padding: 2.5rem 1.5rem 4rem; }
+    .nav-links, .nav-cta { display: none; }
+    .nav-burger { display: flex; }
+    .footer-inner {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .footer-bottom {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<!-- ── NAV ── -->
+<nav>
+  <a href="https://auralys.ai" class="nav-logo">
+    <img src="https://auralys.ai/assets/auralys_logo.png" alt="Auralys AI">
+    <span>Auralys AI</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="https://auralys.ai/#analyst">AI Analyst</a></li>
+    <li><a href="https://auralys.ai/#services">Solutions</a></li>
+    <li><a href="https://auralys.ai/#global">Our Presence</a></li>
+  </ul>
+  <a href="https://auralys.ai/contact.html" class="nav-cta">Contact Us</a>
+  <button class="nav-burger" id="burger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile menu -->
+<div class="nav-mobile" id="mobile-menu">
+  <a href="https://auralys.ai/#analyst">AI Analyst</a>
+  <a href="https://auralys.ai/#services">Solutions</a>
+  <a href="https://auralys.ai/#global">Our Presence</a>
+  <a href="https://auralys.ai/contact.html" class="nav-cta">Contact Us</a>
+</div>
+
+<div class="page-wrap">
+  <div class="layout">
+
+    <!-- ── SIDEBAR ── -->
+    <aside class="sidebar" aria-label="Document navigation">
+      <p class="sidebar-label">Contents</p>
+      <ul class="nav-list" id="toc">
+        <li><a href="#s1"><span class="num">01</span>Introduction</a></li>
+        <li><a href="#s2"><span class="num">02</span>Description of Services</a></li>
+        <li><a href="#s3"><span class="num">03</span>Acceptable Use</a></li>
+        <li><a href="#s4"><span class="num">04</span>Your Data</a></li>
+        <li><a href="#s5"><span class="num">05</span>Intellectual Property</a></li>
+        <li><a href="#s6"><span class="num">06</span>Payment & Refunds</a></li>
+        <li><a href="#s7"><span class="num">07</span>Disclaimers & Liability</a></li>
+        <li><a href="#s8"><span class="num">08</span>Confidentiality</a></li>
+        <li><a href="#s9"><span class="num">09</span>Suspension & Termination</a></li>
+        <li><a href="#s10"><span class="num">10</span>Governing Law</a></li>
+        <li><a href="#s11"><span class="num">11</span>Dispute Resolution</a></li>
+        <li><a href="#s12"><span class="num">12</span>Grievance Officer</a></li>
+        <li><a href="#s13"><span class="num">13</span>Changes to Terms</a></li>
+        <li><a href="#s14"><span class="num">14</span>Miscellaneous</a></li>
+        <li><a href="#s15"><span class="num">15</span>Contact</a></li>
+      </ul>
+    </aside>
+
+    <!-- ── MAIN ── -->
+    <main class="main">
+
+      <!-- Hero -->
+      <div class="hero">
+        <p class="hero-eyebrow">Legal Document</p>
+        <h1>Terms of <em>Service</em></h1>
+        <div class="hero-meta">
+          <span><span class="dot"></span>Effective: 6 June 2026</span>
+          <span><span class="dot"></span>auralys.ai</span>
+          <span><span class="dot"></span>Governed by Indian Law</span>
+        </div>
+      </div>
+
+      <!-- 1 -->
+      <section class="policy-section" id="s1">
+        <div class="section-header">
+          <span class="section-num">01</span>
+          <h2>Introduction and Acceptance</h2>
+        </div>
+        <p>Auralys AI ("we", "us", "our") is a sole proprietorship operating under Indian law. We provide an AI-powered business analytics platform, website development services, and strategic data consulting through <a href="https://auralys.ai" target="_blank" rel="noopener">auralys.ai</a> and the AI Analyst application at <a href="https://ppt-creator.streamlit.app" target="_blank" rel="noopener">ppt-creator.streamlit.app</a> (collectively, the "Services").</p>
+        <p>By accessing our website, submitting an enquiry, or using the AI Analyst tool, you ("you" or "the User") agree to be bound by these Terms of Service ("Terms"). If you are accessing the Services on behalf of a company or organisation, you represent that you have authority to bind that entity and these Terms apply to it.</p>
+        <div class="callout">
+          <p>If you do not agree to these Terms, please do not use our website or Services.</p>
+        </div>
+      </section>
+
+      <!-- 2 -->
+      <section class="policy-section" id="s2">
+        <div class="section-header">
+          <span class="section-num">02</span>
+          <h2>Description of Services</h2>
+        </div>
+
+        <h3>2.1 AI Analyst tool</h3>
+        <p>The AI Analyst tool enables you to upload business data (spreadsheets, CSV files, or pasted data), describe the analytical output you require, and receive a generated PowerPoint presentation. The tool uses large language model AI to interpret your data and structure the output.</p>
+        <div class="callout-warn">
+          <p><strong>Important:</strong> The AI Analyst tool generates outputs based on the data you provide. All outputs are AI-generated and may contain errors, inaccuracies, or misinterpretations. Outputs do not constitute professional financial, strategic, legal, or investment advice. You are solely responsible for reviewing, validating, and making decisions based on any output generated by the tool.</p>
+        </div>
+
+        <h3>2.2 Website development services</h3>
+        <p>We design and build websites and e-commerce platforms for clients. Specific deliverables, timelines, payment terms, and ownership arrangements for website development engagements are governed by a separate written agreement or statement of work signed between the parties. In the absence of such an agreement, these Terms apply.</p>
+
+        <h3>2.3 Strategic data consulting</h3>
+        <p>We provide advisory services to help organisations identify and implement data and AI solutions. Consulting engagements are governed by a separate engagement letter or statement of work. These Terms apply to the extent not superseded by that document.</p>
+      </section>
+
+      <!-- 3 -->
+      <section class="policy-section" id="s3">
+        <div class="section-header">
+          <span class="section-num">03</span>
+          <h2>User Obligations and Acceptable Use</h2>
+        </div>
+        <p>By using the Services, you agree that you will not:</p>
+        <ul class="policy-list">
+          <li>Upload data or files that contain personal data of third parties unless you have a lawful basis to process and share that data with our platform.</li>
+          <li>Use the Services to generate content that is unlawful, defamatory, fraudulent, or that infringes the intellectual property rights of any third party.</li>
+          <li>Attempt to reverse-engineer, scrape, or otherwise extract the underlying AI models, algorithms, or source code of the Services.</li>
+          <li>Use the Services to produce outputs intended to mislead investors, regulators, auditors, or any other party.</li>
+          <li>Circumvent, disable, or interfere with any security features or access controls.</li>
+          <li>Resell, sublicense, or commercialise the Services or any output thereof without our prior written consent.</li>
+          <li>Upload files containing malicious code, malware, or any content designed to damage or interfere with our systems.</li>
+        </ul>
+        <p>We reserve the right to suspend or terminate access for any user who violates these obligations.</p>
+      </section>
+
+      <!-- 4 -->
+      <section class="policy-section" id="s4">
+        <div class="section-header">
+          <span class="section-num">04</span>
+          <h2>Your Data and Uploaded Files</h2>
+        </div>
+
+        <h3>4.1 Ownership</h3>
+        <p>You retain full ownership of all data, files, and content you upload to the AI Analyst tool. We do not claim any ownership over your uploaded data or over the presentation outputs generated from it.</p>
+
+        <h3>4.2 Licence to process</h3>
+        <p>By uploading data to the AI Analyst tool, you grant us a limited, temporary, non-exclusive licence to process that data solely for the purpose of generating your requested output during that session. This licence expires at the end of your session.</p>
+
+        <h3>4.3 No retention</h3>
+        <p>Uploaded files are processed in-session and are not stored on our servers after your session ends. We do not use your uploaded data to train AI models, improve algorithms, or for any purpose beyond generating your immediate output.</p>
+
+        <h3>4.4 Your responsibility</h3>
+        <p>You are responsible for ensuring that any data you upload does not violate applicable law, third-party rights, or any confidentiality obligation. If your files contain personal data of individuals, you must have a lawful basis for that processing under the Information Technology Act, 2000, the DPDP Act, 2023, or any other applicable law.</p>
+      </section>
+
+      <!-- 5 -->
+      <section class="policy-section" id="s5">
+        <div class="section-header">
+          <span class="section-num">05</span>
+          <h2>Intellectual Property</h2>
+        </div>
+
+        <h3>5.1 Our IP</h3>
+        <p>All content on <a href="https://auralys.ai" target="_blank" rel="noopener">auralys.ai</a> — including text, graphics, logos, and the structure and design of the AI Analyst tool — is owned by or licensed to Auralys AI and is protected by applicable intellectual property laws. You may not reproduce, distribute, or create derivative works from our content without our prior written permission.</p>
+
+        <h3>5.2 Output ownership</h3>
+        <p>Presentations generated by the AI Analyst tool from your uploaded data are provided to you for your own use. You may use, edit, and publish outputs for your own business purposes. We do not claim ownership of outputs generated from your data.</p>
+
+        <h3>5.3 Feedback</h3>
+        <p>If you provide us with feedback, suggestions, or ideas about the Services, you grant us a perpetual, irrevocable, royalty-free licence to use that feedback for any purpose without obligation to you.</p>
+      </section>
+
+      <!-- 6 -->
+      <section class="policy-section" id="s6">
+        <div class="section-header">
+          <span class="section-num">06</span>
+          <h2>Payment, Pricing, and Refunds</h2>
+        </div>
+
+        <h3>6.1 Pricing</h3>
+        <p>The AI Analyst tool is currently offered on a free trial basis. Paid plans, if introduced, will be communicated on the website with pricing clearly stated inclusive or exclusive of applicable GST. All prices are in Indian Rupees (INR) unless otherwise stated.</p>
+
+        <h3>6.2 Invoicing</h3>
+        <p>For website development and consulting engagements, invoices will be raised as agreed in the relevant statement of work. Invoices are subject to applicable GST as required under the Goods and Services Tax Act, 2017.</p>
+
+        <h3>6.3 Refund policy</h3>
+        <p>For consulting and website development services, refund eligibility depends on the stage of work completed at the time of cancellation, as specified in the relevant engagement agreement. Where no separate agreement exists:</p>
+        <ul class="policy-list">
+          <li><strong class="kw">Before commencement:</strong> full refund of any advance paid.</li>
+          <li><strong class="kw">After work has commenced:</strong> a pro-rata refund based on the proportion of work not yet delivered, at our reasonable assessment.</li>
+          <li><strong class="kw">Completed deliverables</strong> that have been approved by the client are not eligible for refund.</li>
+        </ul>
+        <p>For SaaS subscriptions (when introduced): you may cancel at any time. Cancellation takes effect at the end of the then-current billing period. We do not provide pro-rata refunds for unused portions of a billing period unless required by applicable law.</p>
+        <div class="callout">
+          <p>To request a refund, contact us at <a href="mailto:sumant@auralys.ai">sumant@auralys.ai</a> with your invoice number and reason. We will acknowledge within 48 hours and resolve within 30 days.</p>
+        </div>
+      </section>
+
+      <!-- 7 -->
+      <section class="policy-section" id="s7">
+        <div class="section-header">
+          <span class="section-num">07</span>
+          <h2>Disclaimers and Limitation of Liability</h2>
+        </div>
+
+        <h3>7.1 "As is" service</h3>
+        <p>The Services are provided "as is" and "as available" without warranties of any kind, whether express or implied, including but not limited to warranties of merchantability, fitness for a particular purpose, accuracy, or non-infringement. We do not warrant that the Services will be uninterrupted, error-free, or free from harmful components.</p>
+
+        <h3>7.2 AI output disclaimer</h3>
+        <p>Outputs generated by the AI Analyst tool are produced by artificial intelligence and are not reviewed by a human analyst before delivery. They may contain factual errors, misinterpretations of data, or omissions. You must independently verify any output before relying on it for business decisions.</p>
+        <div class="callout-warn">
+          <p><strong>Liability disclaimer:</strong> Auralys AI expressly disclaims liability for any loss or damage arising from reliance on AI-generated outputs.</p>
+        </div>
+
+        <h3>7.3 Limitation of liability</h3>
+        <p>To the maximum extent permitted by applicable Indian law, Auralys AI's total liability to you for any claim arising out of or relating to these Terms or the Services — whether in contract, tort, or otherwise — shall not exceed the amount you paid to us in the three months preceding the event giving rise to the claim, or INR 5,000, whichever is greater.</p>
+        <p>In no event shall we be liable for indirect, incidental, special, consequential, or punitive damages, including loss of profits, loss of data, or loss of business opportunity, even if we have been advised of the possibility of such damages.</p>
+
+        <h3>7.4 Third-party services</h3>
+        <p>The Services rely on third-party infrastructure including Streamlit (Snowflake Inc.) and Google. We are not liable for any downtime, data loss, or failure attributable to these third-party providers.</p>
+      </section>
+
+      <!-- 8 -->
+      <section class="policy-section" id="s8">
+        <div class="section-header">
+          <span class="section-num">08</span>
+          <h2>Confidentiality</h2>
+        </div>
+        <p>Where you share confidential business information with us in the course of a consulting or development engagement, we will treat it as confidential and will not disclose it to third parties without your consent, except as required by law. This obligation does not apply to information that is publicly available, independently developed by us, or received from a third party without restriction.</p>
+        <p>Similarly, we may share proprietary methodologies or tools with you during an engagement. You agree to treat such information as confidential and not to disclose or replicate it without our written permission.</p>
+      </section>
+
+      <!-- 9 -->
+      <section class="policy-section" id="s9">
+        <div class="section-header">
+          <span class="section-num">09</span>
+          <h2>Suspension and Termination</h2>
+        </div>
+        <p>We may suspend or terminate your access to the Services at any time, with or without notice, if we reasonably believe you have violated these Terms, engaged in fraudulent or harmful conduct, or if required to do so by law.</p>
+        <p>You may stop using the Services at any time. If you have a paid subscription (when available), you may cancel by contacting us at <a href="mailto:sumant@auralys.ai">sumant@auralys.ai</a>.</p>
+        <div class="callout">
+          <p>On termination, any licences granted to you under these Terms cease immediately. Sections 5 (IP), 7 (Disclaimers), 8 (Confidentiality), 10 (Governing Law), and 11 (Disputes) survive termination.</p>
+        </div>
+      </section>
+
+      <!-- 10 -->
+      <section class="policy-section" id="s10">
+        <div class="section-header">
+          <span class="section-num">10</span>
+          <h2>Governing Law</h2>
+        </div>
+        <p>These Terms are governed by and construed in accordance with the laws of India, without regard to conflict of law principles. The courts of India shall have exclusive jurisdiction over any dispute arising under or in connection with these Terms.</p>
+      </section>
+
+      <!-- 11 -->
+      <section class="policy-section" id="s11">
+        <div class="section-header">
+          <span class="section-num">11</span>
+          <h2>Dispute Resolution</h2>
+        </div>
+        <p>In the event of any dispute, the parties shall first attempt to resolve it informally by contacting <a href="mailto:sumant@auralys.ai">sumant@auralys.ai</a>. If the dispute is not resolved within 30 days of such notification, either party may escalate the matter to mediation under the Mediation Act, 2023.</p>
+        <p>If mediation does not result in a resolution, the dispute shall be referred to arbitration under the Arbitration and Conciliation Act, 1996, with arbitration seated in India.</p>
+      </section>
+
+      <!-- 12 -->
+      <section class="policy-section" id="s12">
+        <div class="section-header">
+          <span class="section-num">12</span>
+          <h2>Grievance Officer</h2>
+        </div>
+        <p>In accordance with the Information Technology Act, 2000, and the Consumer Protection (E-Commerce) Rules, 2020, the Grievance Officer for Auralys AI is:</p>
+        <div class="contact-card">
+          <span class="card-name">Sumant Jain</span>
+          <span class="card-role">Proprietor · Auralys AI</span>
+          <div class="card-line">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+            <a href="mailto:sumant@auralys.ai">sumant@auralys.ai</a>
+          </div>
+          <div class="card-line">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+            +91 8420240360
+          </div>
+          <div class="card-sla">Complaints acknowledged within 48 h · Resolved within 1 month</div>
+        </div>
+      </section>
+
+      <!-- 13 -->
+      <section class="policy-section" id="s13">
+        <div class="section-header">
+          <span class="section-num">13</span>
+          <h2>Changes to These Terms</h2>
+        </div>
+        <p>We may update these Terms from time to time to reflect changes in our Services, business model, or applicable law. When we make material changes, we will update the effective date at the top of this document. Continued use of the Services after the updated Terms are posted constitutes acceptance of the revised Terms.</p>
+      </section>
+
+      <!-- 14 -->
+      <section class="policy-section" id="s14">
+        <div class="section-header">
+          <span class="section-num">14</span>
+          <h2>Miscellaneous</h2>
+        </div>
+        <ul class="misc-list">
+          <li><strong class="kw">Entire agreement:</strong> These Terms, together with our Privacy Policy and any applicable engagement agreement, constitute the entire agreement between you and Auralys AI with respect to the Services.</li>
+          <li><strong class="kw">Severability:</strong> If any provision of these Terms is found to be unenforceable, the remaining provisions continue in full force.</li>
+          <li><strong class="kw">No waiver:</strong> Failure to enforce any provision of these Terms does not constitute a waiver of that right.</li>
+          <li><strong class="kw">Assignment:</strong> You may not assign your rights under these Terms without our written consent. We may assign our obligations to a successor entity.</li>
+          <li><strong class="kw">Language:</strong> These Terms are written in English. In the event of any conflict with a translated version, the English version prevails.</li>
+        </ul>
+      </section>
+
+      <!-- 15 -->
+      <section class="policy-section" id="s15">
+        <div class="section-header">
+          <span class="section-num">15</span>
+          <h2>Contact</h2>
+        </div>
+        <p>For questions about these Terms, please contact:</p>
+        <div class="contact-card">
+          <span class="card-name">Auralys AI</span>
+          <span class="card-role">Sole Proprietorship · India</span>
+          <div class="card-line">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+            <a href="mailto:sumant@auralys.ai">sumant@auralys.ai</a>
+          </div>
+          <div class="card-line">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+            +91 8420240360
+          </div>
+          <div class="card-line">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            <a href="https://auralys.ai" target="_blank" rel="noopener">auralys.ai</a>
+          </div>
+          <div class="card-line">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            54/A Block D, New Alipore, Kolkata - 700053
+          </div>
+        </div>
+
+        <div class="doc-footer">
+          <p>Governed by the laws of India · Disputes subject to exclusive jurisdiction of Indian courts · Last reviewed: 6 June 2026 · <a href="https://auralys.ai">auralys.ai</a></p>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ── SITE FOOTER ── -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="https://auralys.ai" class="footer-brand-logo">
+          <img src="https://auralys.ai/assets/auralys_logo.png" alt="Auralys AI">
+          <span>Auralys AI</span>
+        </a>
+        <p>AI-powered business analytics and e-commerce solutions for growing companies across India, South Africa, and the United Kingdom.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="https://auralys.ai/#analyst">AI Analyst</a></li>
+          <li><a href="https://ppt-creator.streamlit.app" target="_blank" rel="noopener">Launch App</a></li>
+          <li><a href="https://auralys.ai/web_development_portfolio.html">Web Development</a></li>
+          <li><a href="https://auralys.ai/#global">Our Presence</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="https://auralys.ai/contact.html">Contact Us</a></li>
+          <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="/terms-of-service.html" class="active-page">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Auralys AI. Built for real business challenges. India · South Africa · United Kingdom</p>
+      <div class="footer-legal-links">
+        <a href="/privacy-policy.html">Privacy Policy</a>
+        <a href="/terms-of-service.html" class="active-page">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+
+</div><!-- /page-wrap -->
+
+<script>
+  // Scroll progress
+  const bar = document.getElementById('progress-bar');
+  window.addEventListener('scroll', () => {
+    const d = document.documentElement;
+    bar.style.width = (d.scrollTop / (d.scrollHeight - d.clientHeight) * 100) + '%';
+  }, { passive: true });
+
+  // Sidebar active section highlighting
+  const sections = document.querySelectorAll('.policy-section');
+  const links = document.querySelectorAll('#toc a');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const a = document.querySelector('#toc a[href="#' + e.target.id + '"]');
+        if (a) { a.classList.add('active'); a.scrollIntoView({ block: 'nearest' }); }
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(s => obs.observe(s));
+
+  // Mobile hamburger
+  const burger = document.getElementById('burger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  burger.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open);
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+</body>
+</html>

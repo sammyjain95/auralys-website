@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — Auralys AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* ── DESIGN TOKENS (canonical 11 + derived) ── */
+  :root {
+    --gold:        oklch(72% 0.12 82);
+    --gold-dim:    oklch(58% 0.09 82);
+    --gold-faint:  oklch(72% 0.04 82);
+    --bg:          oklch(13% 0.008 82);
+    --bg-raised:   oklch(16% 0.008 82);
+    --bg-surface:  oklch(19% 0.007 82);
+    --text:        oklch(93% 0.005 82);
+    --text-mid:    oklch(72% 0.006 82);
+    --text-low:    oklch(52% 0.005 82);
+    --border:      oklch(28% 0.006 82);
+    --border-gold: oklch(72% 0.09 82 / 0.22);
+
+    /* derived */
+    --gold-glow:   oklch(72% 0.12 82 / 0.14);
+    --gold-dim-bg: oklch(72% 0.12 82 / 0.08);
+    --col:         700px;
+    --wide:        1120px;
+    --nav-h:       72px;
+    --sidebar-w:   252px;
+
+    --sans:  'Figtree', sans-serif;
+    --serif: 'DM Serif Display', serif;
+    --mono:  'DM Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.75;
+    font-size: 16px;
+    font-weight: 400;
+    overflow-x: hidden;
+  }
+
+  /* ── Scroll progress bar ── */
+  #progress-bar {
+    position: fixed;
+    top: var(--nav-h);
+    left: 0;
+    height: 2px;
+    background: var(--gold);
+    width: 0%;
+    z-index: 901;
+    transition: width 0.1s linear;
+    box-shadow: 0 0 10px var(--gold-glow);
+    pointer-events: none;
+  }
+
+  /* ── NAV (matches index.html exactly) ── */
+  nav {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 900;
+    padding: 0 clamp(24px, 5vw, 64px);
+    height: var(--nav-h);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: oklch(13% 0.008 82 / 0.88);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border-gold);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .nav-logo img { height: 34px; width: auto; }
+  .nav-logo span {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 17px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--text-mid);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.4px;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  .nav-cta {
+    padding: 9px 22px;
+    background: var(--gold);
+    color: oklch(13% 0.008 82);
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    white-space: nowrap;
+  }
+  .nav-cta:hover {
+    background: oklch(78% 0.13 82);
+    transform: translateY(-1px);
+  }
+
+  /* Mobile hamburger */
+  .nav-burger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    background: none;
+    border: none;
+  }
+  .nav-burger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--text-mid);
+    border-radius: 2px;
+    transition: all 0.2s;
+  }
+  .nav-mobile {
+    display: none;
+    position: fixed;
+    top: var(--nav-h);
+    inset: var(--nav-h) 0 0;
+    background: oklch(13% 0.008 82 / 0.97);
+    backdrop-filter: blur(16px);
+    padding: 2rem clamp(24px, 5vw, 64px);
+    flex-direction: column;
+    gap: 1.5rem;
+    z-index: 899;
+  }
+  .nav-mobile.open { display: flex; }
+  .nav-mobile a {
+    color: var(--text-mid);
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border);
+    transition: color 0.2s;
+  }
+  .nav-mobile a:hover { color: var(--gold); }
+  .nav-mobile .nav-cta {
+    display: inline-block;
+    margin-top: 0.5rem;
+    align-self: flex-start;
+    color: oklch(13% 0.008 82);
+  }
+
+  /* ── BODY LAYOUT ── */
+  .page-wrap {
+    padding-top: var(--nav-h);
+    min-height: 100vh;
+  }
+
+  .layout {
+    display: flex;
+    max-width: var(--wide);
+    margin: 0 auto;
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    width: var(--sidebar-w);
+    flex-shrink: 0;
+    position: sticky;
+    top: var(--nav-h);
+    height: calc(100vh - var(--nav-h));
+    overflow-y: auto;
+    padding: 3rem 0 3rem 2rem;
+    border-right: 1px solid var(--border);
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+  .sidebar-label {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-low);
+    margin-bottom: 1.25rem;
+    padding-left: 0.75rem;
+  }
+  .nav-list { list-style: none; }
+  .nav-list li { margin-bottom: 2px; }
+  .nav-list a {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.38rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: var(--text-low);
+    text-decoration: none;
+    transition: all 0.15s ease;
+    line-height: 1.3;
+  }
+  .nav-list a .num {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    color: var(--border);
+    min-width: 18px;
+    flex-shrink: 0;
+    transition: color 0.15s;
+  }
+  .nav-list a:hover {
+    background: var(--gold-dim-bg);
+    color: var(--gold-faint);
+  }
+  .nav-list a:hover .num { color: var(--gold-dim); }
+  .nav-list a.active {
+    background: var(--gold-dim-bg);
+    color: var(--gold);
+    font-weight: 500;
+  }
+  .nav-list a.active .num { color: var(--gold); }
+
+  /* ── MAIN CONTENT ── */
+  .main {
+    flex: 1;
+    min-width: 0;
+    padding: 4rem 3.5rem 6rem;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    margin-bottom: 4rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--border);
+    animation: fadeUp 0.5s cubic-bezier(0.22,1,0.36,1) both;
+  }
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 1px;
+    background: var(--gold-dim);
+    opacity: 0.6;
+  }
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.4rem, 4vw, 3.2rem);
+    font-weight: 400;
+    color: var(--text);
+    line-height: 1.1;
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.01em;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    font-size: 0.78rem;
+    color: var(--text-low);
+    font-family: var(--mono);
+    letter-spacing: 0.04em;
+  }
+  .hero-meta span {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+  }
+  .hero-meta .dot {
+    display: inline-block;
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--gold-dim);
+    opacity: 0.6;
+    flex-shrink: 0;
+  }
+
+  /* ── POLICY SECTIONS ── */
+  .policy-section {
+    margin-bottom: 3.5rem;
+    scroll-margin-top: calc(var(--nav-h) + 24px);
+    animation: fadeUp 0.45s cubic-bezier(0.22,1,0.36,1) both;
+  }
+  .policy-section:nth-child(1)  { animation-delay: 0.05s; }
+  .policy-section:nth-child(2)  { animation-delay: 0.10s; }
+  .policy-section:nth-child(3)  { animation-delay: 0.15s; }
+  .policy-section:nth-child(4)  { animation-delay: 0.20s; }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+  }
+  .section-num {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    color: var(--gold-dim);
+    letter-spacing: 0.08em;
+    flex-shrink: 0;
+    padding-top: 3px;
+  }
+  .section-header h2 {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--text);
+    line-height: 1.2;
+  }
+
+  h3 {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--gold-dim);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin: 1.75rem 0 0.7rem;
+  }
+
+  p {
+    margin-bottom: 1rem;
+    font-size: 0.94rem;
+    color: var(--text-mid);
+    max-width: var(--col);
+    line-height: 1.8;
+    font-weight: 400;
+  }
+
+  a { color: var(--gold); text-decoration: none; }
+  a:hover {
+    color: oklch(78% 0.13 82);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  strong.kw { font-weight: 600; color: var(--text); }
+
+  /* ── POLICY LIST — no side-stripe, dot markers ── */
+  ul.policy-list {
+    list-style: none;
+    margin: 0.5rem 0 1.25rem 0;
+    max-width: var(--col);
+  }
+  ul.policy-list li {
+    position: relative;
+    padding: 0.5rem 0.75rem 0.5rem 1.5rem;
+    font-size: 0.92rem;
+    color: var(--text-mid);
+    margin-bottom: 2px;
+    border-radius: 5px;
+    transition: background 0.15s;
+    line-height: 1.7;
+  }
+  ul.policy-list li:hover {
+    background: var(--gold-dim-bg);
+  }
+  ul.policy-list li::before {
+    content: '';
+    position: absolute;
+    left: 0.5rem;
+    top: calc(0.5rem + 0.7em - 3px);
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--gold-dim);
+    opacity: 0.5;
+  }
+
+  /* ── CALLOUT ── */
+  .callout {
+    background: var(--gold-dim-bg);
+    border: 1px solid var(--border-gold);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    margin: 1.25rem 0 1.5rem;
+    max-width: var(--col);
+  }
+  .callout p {
+    font-size: 0.87rem;
+    color: var(--text-mid);
+    margin: 0;
+    line-height: 1.7;
+  }
+  .callout strong { font-weight: 600; color: var(--gold-dim); }
+
+  /* ── CONTACT CARD ── */
+  .contact-card {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-gold);
+    border-radius: 10px;
+    padding: 1.5rem 2rem;
+    margin-top: 0.75rem;
+    min-width: 290px;
+  }
+  .contact-card .card-name {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    color: var(--text);
+  }
+  .contact-card .card-role {
+    font-size: 0.68rem;
+    color: var(--text-low);
+    font-family: var(--mono);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+  .contact-card .card-line {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.84rem;
+    color: var(--text-mid);
+  }
+  .contact-card .card-line a { color: var(--gold); }
+  .contact-card .card-icon {
+    width: 15px; height: 15px;
+    opacity: 0.4;
+    flex-shrink: 0;
+    color: var(--gold-faint);
+  }
+  .contact-card .card-sla {
+    margin-top: 0.4rem;
+    font-size: 0.74rem;
+    color: var(--text-low);
+    font-family: var(--mono);
+    letter-spacing: 0.04em;
+    border-top: 1px solid var(--border);
+    padding-top: 0.55rem;
+  }
+
+  /* ── PLACEHOLDER ── */
+  .placeholder {
+    display: inline;
+    background: oklch(72% 0.12 82 / 0.1);
+    border: 1px dashed var(--border-gold);
+    border-radius: 4px;
+    padding: 1px 7px;
+    font-size: 0.78rem;
+    color: var(--gold-dim);
+    font-family: var(--mono);
+  }
+
+  /* ── DOC FOOTER ── */
+  .doc-footer {
+    margin-top: 4rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--border);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--text-low);
+    letter-spacing: 0.04em;
+    max-width: var(--col);
+    line-height: 1.8;
+  }
+
+  /* ── SITE FOOTER (matches index.html) ── */
+  .site-footer {
+    border-top: 1px solid var(--border);
+    margin-top: 2rem;
+    padding: 3rem clamp(24px, 5vw, 64px);
+    max-width: var(--wide);
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .footer-inner {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 3rem;
+    align-items: start;
+  }
+  .footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .footer-brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .footer-brand-logo img { height: 28px; width: auto; }
+  .footer-brand-logo span {
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .footer-brand p {
+    font-size: 0.82rem;
+    color: var(--text-low);
+    line-height: 1.6;
+    max-width: 280px;
+    margin: 0;
+  }
+  .footer-col h4 {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-low);
+    margin-bottom: 1rem;
+  }
+  .footer-col ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .footer-col a {
+    font-size: 0.84rem;
+    color: var(--text-mid);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--gold); text-decoration: none; }
+  .footer-bottom {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .footer-bottom p {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    color: var(--text-low);
+    letter-spacing: 0.04em;
+    margin: 0;
+    max-width: none;
+  }
+  .footer-legal-links {
+    display: flex;
+    gap: 1.5rem;
+  }
+  .footer-legal-links a {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    color: var(--text-low);
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-legal-links a:hover { color: var(--gold); text-decoration: none; }
+  .footer-legal-links a.active-page { color: var(--gold-dim); }
+
+  /* ── ANIMATION ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero, .policy-section { animation: none; }
+    #progress-bar { transition: none; }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .sidebar { display: none; }
+    .main { padding: 3rem 2rem 5rem; }
+  }
+  @media (max-width: 768px) {
+    .main { padding: 2.5rem 1.5rem 4rem; }
+    .nav-links, .nav-cta { display: none; }
+    .nav-burger { display: flex; }
+    .footer-inner {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .footer-bottom {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<!-- ── NAV ── -->
+<nav>
+  <a href="https://auralys.ai" class="nav-logo">
+    <img src="https://auralys.ai/assets/auralys_logo.png" alt="Auralys AI">
+    <span>Auralys AI</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="https://auralys.ai/#analyst">AI Analyst</a></li>
+    <li><a href="https://auralys.ai/#services">Solutions</a></li>
+    <li><a href="https://auralys.ai/#global">Our Presence</a></li>
+  </ul>
+  <a href="https://auralys.ai/contact.html" class="nav-cta">Contact Us</a>
+  <button class="nav-burger" id="burger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile menu -->
+<div class="nav-mobile" id="mobile-menu">
+  <a href="https://auralys.ai/#analyst">AI Analyst</a>
+  <a href="https://auralys.ai/#services">Solutions</a>
+  <a href="https://auralys.ai/#global">Our Presence</a>
+  <a href="https://auralys.ai/contact.html" class="nav-cta">Contact Us</a>
+</div>
+
+<div class="page-wrap">
+  <div class="layout">
+
+    <!-- ── SIDEBAR ── -->
+    <aside class="sidebar" aria-label="Document navigation">
+      <p class="sidebar-label">Contents</p>
+      <ul class="nav-list" id="toc">
+        <li><a href="#s1"><span class="num">01</span>About This Policy</a></li>
+        <li><a href="#s2"><span class="num">02</span>Data We Collect</a></li>
+        <li><a href="#s3"><span class="num">03</span>Legal Basis</a></li>
+        <li><a href="#s4"><span class="num">04</span>How We Share Data</a></li>
+        <li><a href="#s5"><span class="num">05</span>International Transfers</a></li>
+        <li><a href="#s6"><span class="num">06</span>Cookies</a></li>
+        <li><a href="#s7"><span class="num">07</span>Data Security</a></li>
+        <li><a href="#s8"><span class="num">08</span>Your Rights</a></li>
+        <li><a href="#s9"><span class="num">09</span>Grievance Officer</a></li>
+        <li><a href="#s10"><span class="num">10</span>Children's Privacy</a></li>
+        <li><a href="#s11"><span class="num">11</span>Third-Party Links</a></li>
+        <li><a href="#s12"><span class="num">12</span>Policy Changes</a></li>
+        <li><a href="#s13"><span class="num">13</span>Contact Us</a></li>
+      </ul>
+    </aside>
+
+    <!-- ── MAIN ── -->
+    <main class="main">
+
+      <!-- Hero -->
+      <div class="hero">
+        <p class="hero-eyebrow">Legal Document</p>
+        <h1>Privacy <em>Policy</em></h1>
+        <div class="hero-meta">
+          <span><span class="dot"></span>Effective: 6 June 2026</span>
+          <span><span class="dot"></span>auralys.ai</span>
+          <span><span class="dot"></span>IT Act 2000 · DPDP Act 2023</span>
+        </div>
+      </div>
+
+      <!-- 1 -->
+      <section class="policy-section" id="s1">
+        <div class="section-header">
+          <span class="section-num">01</span>
+          <h2>About This Policy</h2>
+        </div>
+        <p>Auralys AI ("we", "us", "our") is a sole proprietorship operated under Indian law. We provide an AI-powered business analytics platform, website development services, and strategic consulting. This Privacy Policy explains what personal data we collect through <a href="https://auralys.ai">auralys.ai</a> and our AI Analyst application, why we collect it, how we use it, and your rights in relation to it.</p>
+        <p>By using our website or submitting information through our contact form or AI Analyst tool, you acknowledge the practices described in this policy.</p>
+        <div class="callout">
+          <p><strong>Legal basis:</strong> This policy is published in compliance with Rule 4 of the Information Technology (Reasonable Security Practices and Procedures and Sensitive Personal Data or Information) Rules, 2011 (SPDI Rules) under the Information Technology Act, 2000, and in anticipation of the Digital Personal Data Protection Act, 2023 (DPDP Act).</p>
+        </div>
+      </section>
+
+      <!-- 2 -->
+      <section class="policy-section" id="s2">
+        <div class="section-header">
+          <span class="section-num">02</span>
+          <h2>Personal Data We Collect</h2>
+        </div>
+
+        <h3>2.1 Contact form</h3>
+        <p>When you submit an enquiry via our Contact page, we collect:</p>
+        <ul class="policy-list">
+          <li>First name and last name</li>
+          <li>Email address</li>
+          <li>Phone number (optional)</li>
+          <li>Company name and your role within the company</li>
+          <li>Company size (band selected from a dropdown)</li>
+          <li>The nature of your enquiry and any message you write</li>
+        </ul>
+        <p><strong class="kw">Purpose:</strong> To respond to your enquiry, schedule demos, and discuss service requirements. We do not use contact form data for unsolicited marketing without your explicit consent.</p>
+        <p><strong class="kw">Retention:</strong> Contact enquiries are retained for as long as necessary to respond and maintain a record of our business relationship, and deleted upon request.</p>
+
+        <h3>2.2 AI Analyst tool</h3>
+        <p>When you use our AI Analyst application at <a href="https://ppt-creator.streamlit.app" target="_blank" rel="noopener">ppt-creator.streamlit.app</a>, you may upload files (Excel, CSV, or pasted data) and provide a brief on the presentation you require. We want to be transparent about how this data is handled:</p>
+        <ul class="policy-list">
+          <li>Uploaded files are processed in-session only for the purpose of generating your requested presentation.</li>
+          <li>Files are not stored after your session ends and are not retained on our servers.</li>
+          <li>Uploaded data is not used to train AI models, shared with third parties, or used for any purpose beyond generating your requested output.</li>
+          <li>You should avoid uploading files containing sensitive personal data about third parties. If such data is included, you are responsible for ensuring you have the right to process it.</li>
+        </ul>
+        <div class="callout">
+          <p><strong>Infrastructure note:</strong> The AI Analyst tool is hosted on Streamlit Community Cloud (Snowflake Inc.), which processes data on its infrastructure. Streamlit's own privacy policy governs any data handled at the infrastructure level.</p>
+        </div>
+
+        <h3>2.3 Website analytics</h3>
+        <p>We use Google Analytics to understand how visitors interact with our website. It collects pages visited, time on page, referring source, browser and device type, and approximate geographic location (derived from IP address, which is anonymised). You can opt out by installing the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Google Analytics Opt-out Browser Add-on</a> or adjusting your browser's cookie settings.</p>
+        <p>We do not use advertising cookies, retargeting pixels, or third-party advertising networks.</p>
+      </section>
+
+      <!-- 3 -->
+      <section class="policy-section" id="s3">
+        <div class="section-header">
+          <span class="section-num">03</span>
+          <h2>Legal Basis for Processing</h2>
+        </div>
+        <ul class="policy-list">
+          <li><strong class="kw">Consent</strong> — when you submit a contact form or agree to analytics cookies.</li>
+          <li><strong class="kw">Legitimate interests</strong> — to respond to business enquiries and improve our services.</li>
+          <li><strong class="kw">Contract performance</strong> — when processing is necessary to deliver services you have engaged us for.</li>
+          <li><strong class="kw">Legal obligation</strong> — where we are required to retain records under Indian law.</li>
+        </ul>
+      </section>
+
+      <!-- 4 -->
+      <section class="policy-section" id="s4">
+        <div class="section-header">
+          <span class="section-num">04</span>
+          <h2>How We Share Your Data</h2>
+        </div>
+        <p>We do not sell, rent, or trade your personal data. We do not share your data with third parties for marketing purposes. We may share data only in the following limited circumstances:</p>
+        <ul class="policy-list">
+          <li><strong class="kw">Service providers</strong> — Google (Analytics) and Streamlit/Snowflake (AI tool hosting). These providers process data solely to provide the services described in this policy.</li>
+          <li><strong class="kw">Legal requirement</strong> — if required by applicable Indian law, court order, or governmental authority.</li>
+          <li><strong class="kw">Business transfer</strong> — in the unlikely event of a sale or transfer of the business, data may transfer as part of that transaction, subject to equivalent privacy protections.</li>
+        </ul>
+      </section>
+
+      <!-- 5 -->
+      <section class="policy-section" id="s5">
+        <div class="section-header">
+          <span class="section-num">05</span>
+          <h2>International Data Transfers</h2>
+        </div>
+        <p>Auralys AI serves clients in India, South Africa, and the United Kingdom. Your personal data may be processed on servers located outside India (for example, Google Analytics infrastructure or Streamlit hosting). We rely on the data protection frameworks and contractual safeguards of these providers to ensure your data remains protected to a standard consistent with Indian law.</p>
+      </section>
+
+      <!-- 6 -->
+      <section class="policy-section" id="s6">
+        <div class="section-header">
+          <span class="section-num">06</span>
+          <h2>Cookies</h2>
+        </div>
+        <p>We use the following types of cookies on auralys.ai:</p>
+        <ul class="policy-list">
+          <li><strong class="kw">Strictly necessary cookies</strong> — required for the website to function. These cannot be disabled.</li>
+          <li><strong class="kw">Analytics cookies</strong> — placed by Google Analytics to measure traffic and usage patterns. These are only placed if you consent to their use.</li>
+        </ul>
+        <p>You can manage or delete cookies at any time through your browser settings. Disabling analytics cookies will not affect the core functionality of the website.</p>
+      </section>
+
+      <!-- 7 -->
+      <section class="policy-section" id="s7">
+        <div class="section-header">
+          <span class="section-num">07</span>
+          <h2>Data Security</h2>
+        </div>
+        <p>We implement reasonable security practices and procedures as required under Section 43A of the Information Technology Act, 2000, including HTTPS encryption for all data transmitted to and from auralys.ai, access controls limiting who can view submitted enquiry data, and use of reputable, security-certified infrastructure providers.</p>
+        <p>While we take appropriate precautions, no method of transmission over the internet is 100% secure, and we cannot guarantee absolute security.</p>
+      </section>
+
+      <!-- 8 -->
+      <section class="policy-section" id="s8">
+        <div class="section-header">
+          <span class="section-num">08</span>
+          <h2>Your Rights</h2>
+        </div>
+        <p>In accordance with applicable Indian law and in anticipation of the DPDP Act 2023, you have the right to:</p>
+        <ul class="policy-list">
+          <li><strong class="kw">Access</strong> — request a copy of the personal data we hold about you.</li>
+          <li><strong class="kw">Correction</strong> — ask us to correct inaccurate or incomplete data.</li>
+          <li><strong class="kw">Erasure</strong> — request deletion of your personal data, subject to legal retention obligations.</li>
+          <li><strong class="kw">Withdraw consent</strong> — where processing is based on consent, withdraw it at any time without affecting the lawfulness of prior processing.</li>
+          <li><strong class="kw">Grievance</strong> — raise a complaint about how your data is handled.</li>
+        </ul>
+        <p>To exercise any of these rights, contact us at <a href="mailto:sumant@auralys.ai">sumant@auralys.ai</a>. We will respond within 30 days.</p>
+      </section>
+
+      <!-- 9 -->
+      <section class="policy-section" id="s9">
+        <div class="section-header">
+          <span class="section-num">09</span>
+          <h2>Grievance Officer</h2>
+        </div>
+        <p>In accordance with the Information Technology Act, 2000, and the Consumer Protection (E-Commerce) Rules, 2020, the following person is designated as the Grievance Officer for Auralys AI:</p>
+        <div class="contact-card">
+          <span class="card-name">Sumant <span class="placeholder">Full name</span></span>
+          <span class="card-role">Proprietor · Auralys AI</span>
+          <div class="card-line">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+            <a href="mailto:sumant@auralys.ai">sumant@auralys.ai</a>
+          </div>
+          <div class="card-line">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+            +91 8420240360
+          </div>
+          <div class="card-sla">Complaints acknowledged within 48 h · Resolved within 1 month</div>
+        </div>
+      </section>
+
+      <!-- 10 -->
+      <section class="policy-section" id="s10">
+        <div class="section-header">
+          <span class="section-num">10</span>
+          <h2>Children's Privacy</h2>
+        </div>
+        <p>Our services are intended for business users aged 18 and above. We do not knowingly collect personal data from individuals under the age of 18. If you believe a minor has submitted data to us, please contact us at <a href="mailto:sumant@auralys.ai">sumant@auralys.ai</a> and we will delete it promptly.</p>
+      </section>
+
+      <!-- 11 -->
+      <section class="policy-section" id="s11">
+        <div class="section-header">
+          <span class="section-num">11</span>
+          <h2>Third-Party Links</h2>
+        </div>
+        <p>Our website may contain links to external websites, including client portfolio sites and third-party tools. This policy does not apply to those websites. We encourage you to review the privacy policies of any third-party sites you visit.</p>
+      </section>
+
+      <!-- 12 -->
+      <section class="policy-section" id="s12">
+        <div class="section-header">
+          <span class="section-num">12</span>
+          <h2>Changes to This Policy</h2>
+        </div>
+        <p>We may update this Privacy Policy from time to time to reflect changes in our services or applicable law. When we make material changes, we will update the effective date at the top of this page. We encourage you to review this policy periodically.</p>
+      </section>
+
+      <!-- 13 -->
+      <section class="policy-section" id="s13">
+        <div class="section-header">
+          <span class="section-num">13</span>
+          <h2>Contact Us</h2>
+        </div>
+        <p>For any questions, concerns, or requests relating to this Privacy Policy or your personal data, please contact:</p>
+        <div class="contact-card">
+          <span class="card-name">Auralys AI</span>
+          <span class="card-role">Sole Proprietorship · India</span>
+          <div class="card-line">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+            <a href="mailto:sumant@auralys.ai">sumant@auralys.ai</a>
+          </div>
+          <div class="card-line">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+            +91 8420240360
+          </div>
+          <div class="card-line">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            <a href="https://auralys.ai" target="_blank" rel="noopener">auralys.ai</a>
+          </div>
+          <div class="card-line">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span class="placeholder">Registered address</span>
+          </div>
+        </div>
+
+        <div class="doc-footer">
+          <p>Governed by the laws of India · Disputes subject to exclusive jurisdiction of Indian courts · Last reviewed: 6 June 2026 · <a href="https://auralys.ai">auralys.ai</a></p>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ── SITE FOOTER ── -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="https://auralys.ai" class="footer-brand-logo">
+          <img src="https://auralys.ai/assets/auralys_logo.png" alt="Auralys AI">
+          <span>Auralys AI</span>
+        </a>
+        <p>AI-powered business analytics and e-commerce solutions for growing companies across India, South Africa, and the United Kingdom.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="https://auralys.ai/#analyst">AI Analyst</a></li>
+          <li><a href="https://ppt-creator.streamlit.app" target="_blank" rel="noopener">Launch App</a></li>
+          <li><a href="https://auralys.ai/web_development_portfolio.html">Web Development</a></li>
+          <li><a href="https://auralys.ai/#global">Our Presence</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="https://auralys.ai/contact.html">Contact Us</a></li>
+          <li><a href="/privacy-policy.html" class="active-page">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Auralys AI. Built for real business challenges. India · South Africa · United Kingdom</p>
+      <div class="footer-legal-links">
+        <a href="/privacy-policy.html" class="active-page">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+</div><!-- /page-wrap -->
+
+<script>
+  // Scroll progress
+  const bar = document.getElementById('progress-bar');
+  window.addEventListener('scroll', () => {
+    const d = document.documentElement;
+    bar.style.width = (d.scrollTop / (d.scrollHeight - d.clientHeight) * 100) + '%';
+  }, { passive: true });
+
+  // Sidebar active section
+  const sections = document.querySelectorAll('.policy-section');
+  const links = document.querySelectorAll('#toc a');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const a = document.querySelector('#toc a[href="#' + e.target.id + '"]');
+        if (a) { a.classList.add('active'); a.scrollIntoView({ block: 'nearest' }); }
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(s => obs.observe(s));
+
+  // Mobile hamburger
+  const burger = document.getElementById('burger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  burger.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open);
+  });
+  // Close on nav link click
+  mobileMenu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+</body>
+</html>

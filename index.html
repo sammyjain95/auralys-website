@@ -519,6 +519,27 @@
             opacity: 0.6;
         }
 
+            /* ── Footer legal links (bottom bar) ── */
+            .footer-legal-links {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            }
+            .footer-legal-links a {
+            font-size: 0.78rem;
+            color: var(--text-low);
+            text-decoration: none;
+            letter-spacing: 0.03em;
+            transition: color 0.2s;
+            }
+            .footer-legal-links a:hover { color: var(--gold); }
+            .footer-sep {
+            width: 1px;
+            height: 10px;
+            background: var(--border);
+            display: inline-block;
+            }
+
         /* Floating decorations */
         .hero-right-deco {
             position: absolute;
@@ -1559,6 +1580,11 @@
         <div class="footer-bottom">
             <span>© 2026 Auralys AI. Built for real business challenges.</span>
             <span>India · South Africa · United Kingdom</span>
+            <div class="footer-legal-links">
+        <a href="/privacy-policy.html">Privacy Policy</a>
+        <span class="footer-sep"></span>
+        <a href="/terms-of-service.html">Terms &amp; Conditions</a>
+      </div>
         </div>
     </footer>
 

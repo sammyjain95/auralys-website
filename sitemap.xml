@@ -28,6 +28,22 @@
     <priority>0.7</priority>
   </url>
 
+  <!-- Privacy Policy -->
+  <url>
+    <loc>https://auralys.ai/privacy-policy.html</loc>
+    <lastmod>2026-06-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <!-- Terms of Service -->
+  <url>
+    <loc>https://auralys.ai/terms-of-service.html</loc>
+    <lastmod>2026-06-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
   <!--
     Add new pages below as you build them.
 
