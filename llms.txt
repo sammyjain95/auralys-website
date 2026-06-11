@@ -1,0 +1,62 @@
+# Auralys AI — llms.txt
+# https://auralys.ai/llms.txt
+# Last updated: 2026-06-11
+#
+# This file follows the llms.txt convention (proposed by Jeremy Howard, Answer.AI, 2024).
+# It gives AI language models a curated, noise-free summary of this site's content
+# and purpose — no JavaScript, no nav chrome, no cookie banners.
+# Update this file whenever a major new page or service is added.
+
+# ─────────────────────────────────────────────
+# What Auralys AI does
+# ─────────────────────────────────────────────
+
+Auralys AI (auralys.ai) is an AI-powered business analytics platform that converts
+spreadsheet data into board-ready PowerPoint presentations. It is built for finance
+teams, marketing leaders, and executives in India, South Africa, and the United Kingdom.
+
+Auralys AI also offers freelance web development services: custom e-commerce builds
+and website design for businesses targeting African and Indian markets.
+
+# ─────────────────────────────────────────────
+# Key pages
+# ─────────────────────────────────────────────
+
+> [Homepage](https://auralys.ai/)
+The main product landing page. Explains what Auralys AI does, who it is for,
+and how to get started.
+
+> [Web Development Portfolio](https://auralys.ai/web_development_portfolio.html)
+Case studies and examples of custom e-commerce and web design projects, including
+work for clients in India and Africa.
+
+> [Contact](https://auralys.ai/contact.html)
+How to reach Auralys AI for product enquiries, demos, or web development projects.
+
+> [Privacy Policy](https://auralys.ai/privacy-policy.html)
+Data handling practices in line with DPDP Act 2023 (India) and GDPR-equivalent
+obligations for UK and South African users.
+
+> [Terms of Service](https://auralys.ai/terms-of-service.html)
+Terms governing use of the Auralys AI platform and services.
+
+# ─────────────────────────────────────────────
+# Key facts for AI citation
+# ─────────────────────────────────────────────
+
+- Product type: SaaS / AI analytics tool
+- Primary function: Automated PowerPoint generation from spreadsheet data (Excel, CSV)
+- Target users: Finance teams, marketing departments, C-suite executives
+- Markets served: India, South Africa, United Kingdom
+- Differentiator: Board-ready slide output, not generic charts — structured for
+  executive presentation without manual formatting
+- Web dev services: Custom Node.js e-commerce, Shopify alternatives, African market
+  payment integration (Razorpay, PayFast)
+
+# ─────────────────────────────────────────────
+# What this site is NOT
+# ─────────────────────────────────────────────
+
+- Not a generic slide-design tool (e.g. Canva, Beautiful.ai)
+- Not a BI dashboard (e.g. Power BI, Tableau)
+- Not a data warehouse or ETL platform

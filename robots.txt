@@ -1,14 +1,23 @@
 # robots.txt for auralys.ai
-# Last updated: 2026-05-29
+# Last updated: 2026-06-11
+# Strategy: Maximum AI citation visibility — allow all legitimate crawlers,
+#            block undocumented / non-compliant scrapers.
+# Review quarterly; AI crawler landscape changes fast.
+
 
 # -----------------------------------------------
-# Default: allow all crawlers
+# Default: allow all crawlers not listed below
 # -----------------------------------------------
 User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /api/private/
+Disallow: /_next/
+Disallow: /dashboard/
+
 
 # -----------------------------------------------
-# Google
+# Google — Traditional Search
 # -----------------------------------------------
 User-agent: Googlebot
 Allow: /
@@ -16,8 +25,18 @@ Allow: /
 User-agent: Googlebot-Image
 Allow: /
 
+
 # -----------------------------------------------
-# Microsoft / Bing / Copilot
+# Google AI — Gemini, AI Overviews, NotebookLM
+# Google-Extended = training opt-in for Gemini + AI Overviews.
+# Allowing it increases Google AI Overview citation surface.
+# -----------------------------------------------
+User-agent: Google-Extended
+Allow: /
+
+
+# -----------------------------------------------
+# Microsoft — Bing, Copilot
 # -----------------------------------------------
 User-agent: Bingbot
 Allow: /
@@ -25,20 +44,30 @@ Allow: /
 User-agent: msnbot
 Allow: /
 
+
 # -----------------------------------------------
-# OpenAI / ChatGPT
+# OpenAI — ChatGPT, SearchGPT
+# GPTBot       = training crawler (opt-out here to exclude from model training)
+# OAI-SearchBot = SearchGPT live-retrieval index (drives citations in ChatGPT Search)
+# ChatGPT-User  = user-triggered real-time browsing inside ChatGPT
 # -----------------------------------------------
 User-agent: GPTBot
-Allow: /
-
-User-agent: ChatGPT-User
 Allow: /
 
 User-agent: OAI-SearchBot
 Allow: /
 
+User-agent: ChatGPT-User
+Allow: /
+
+
 # -----------------------------------------------
-# Anthropic / Claude
+# Anthropic — Claude
+# ClaudeBot        = training crawler
+# anthropic-ai     = public search / retrieval crawler
+# Claude-Web       = legacy alias (keep for compatibility)
+# Claude-SearchBot = retrieval/search index crawler (2025+)
+# Claude-User      = user-triggered real-time fetcher (2025+)
 # -----------------------------------------------
 User-agent: ClaudeBot
 Allow: /
@@ -49,20 +78,28 @@ Allow: /
 User-agent: Claude-Web
 Allow: /
 
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+
 # -----------------------------------------------
 # Perplexity
+# PerplexityBot  = primary crawler
+# Perplexity-User = user-triggered real-time fetcher (2025+)
 # -----------------------------------------------
 User-agent: PerplexityBot
 Allow: /
 
-# -----------------------------------------------
-# Google AI / Gemini
-# -----------------------------------------------
-User-agent: Google-Extended
+User-agent: Perplexity-User
 Allow: /
 
+
 # -----------------------------------------------
-# Apple
+# Apple — Spotlight, Siri, Apple Intelligence
+# Applebot-Extended = training opt-in for Apple Intelligence
 # -----------------------------------------------
 User-agent: Applebot
 Allow: /
@@ -70,30 +107,115 @@ Allow: /
 User-agent: Applebot-Extended
 Allow: /
 
+
 # -----------------------------------------------
 # Meta AI
+# FacebookBot       = legacy (still active)
+# Meta-ExternalAgent = primary Meta AI crawler (2025+), feeds Meta AI answers
 # -----------------------------------------------
 User-agent: FacebookBot
 Allow: /
 
+User-agent: Meta-ExternalAgent
+Allow: /
+
+
 # -----------------------------------------------
-# Common SEO crawlers (Ahrefs, Semrush, Moz)
+# DuckDuckGo AI
+# DuckAssistBot feeds DuckAssist AI Answer Engine
+# -----------------------------------------------
+User-agent: DuckAssistBot
+Allow: /
+
+
+# -----------------------------------------------
+# You.com — AI-first search engine
+# -----------------------------------------------
+User-agent: YouBot
+Allow: /
+
+
+# -----------------------------------------------
+# Brave Search
+# IMPORTANT: Claude uses Brave Search for real-time retrieval.
+# Allowing BraveBot directly improves Claude citation visibility.
+# -----------------------------------------------
+User-agent: BraveBot
+Allow: /
+
+
+# -----------------------------------------------
+# Amazon — Alexa, Rufus Shopping AI
+# -----------------------------------------------
+User-agent: Amazonbot
+Allow: /
+
+
+# -----------------------------------------------
+# Mistral AI
+# -----------------------------------------------
+User-agent: MistralAI-User
+Allow: /
+
+
+# -----------------------------------------------
+# Common Crawl
+# CCBot feeds many downstream AI training pipelines.
+# Allowing it keeps auralys.ai in the broader AI knowledge base.
+# -----------------------------------------------
+User-agent: CCBot
+Allow: /
+
+
+# -----------------------------------------------
+# SEO crawlers — allow with crawl-delay to limit server load
 # -----------------------------------------------
 User-agent: AhrefsBot
 Allow: /
+Crawl-delay: 10
 
 User-agent: SemrushBot
 Allow: /
+Crawl-delay: 10
 
-User-agent: MJ12bot
-Allow: /
-
-User-agent: DotBot
-Allow: /
 
 # -----------------------------------------------
-# Block bad bots and scrapers
+# Block: undocumented, non-compliant, or low-value scrapers
+#
+# Bytespider   — ByteDance/TikTok; ignores robots.txt; high-volume
+# GrokBot      — xAI; no official documentation; masks as browser traffic
+# xAI-Bot      — xAI alias
+# cohere-ai    — bulk training scraper; no citation benefit
+# Diffbot      — aggressive knowledge-graph extractor
+# img2dataset  — bulk image harvester
+# Timpibot     — questionable compliance history
+# MauiBot      — ad fraud / scraper
+# SplitSignalBot — no legitimate purpose identified
+# BLEXBot      — link-building scraper
+# MJ12bot      — Majestic SEO; high crawl volume, low return
+# DotBot       — OpenLinkProfiler; aggressive link scraper
 # -----------------------------------------------
+User-agent: Bytespider
+Disallow: /
+
+User-agent: GrokBot
+Disallow: /
+
+User-agent: xAI-Bot
+Disallow: /
+
+User-agent: cohere-ai
+Disallow: /
+
+User-agent: Diffbot
+Disallow: /
+
+User-agent: img2dataset
+Disallow: /
+
+User-agent: Timpibot
+Disallow: /
+
 User-agent: MauiBot
 Disallow: /
 
@@ -103,7 +225,14 @@ Disallow: /
 User-agent: BLEXBot
 Disallow: /
 
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+
 # -----------------------------------------------
-# Sitemap location
+# Sitemap
 # -----------------------------------------------
 Sitemap: https://auralys.ai/sitemap.xml
