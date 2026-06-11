@@ -41,6 +41,14 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Blog index — GEO citation surface; update lastmod when new posts publish -->
+  <url>
+    <loc>https://auralys.ai/blog.html</loc>
+    <lastmod>2026-06-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <!-- ═══════════════════════════════════════════
        TIER 2 — Trust & legal pages
        ═══════════════════════════════════════════ -->
