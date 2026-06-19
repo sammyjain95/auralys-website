@@ -6,7 +6,7 @@
 
   <!--
     sitemap.xml for auralys.ai
-    Last updated : 2026-06-11
+    Last updated : 2026-06-19
     Review cadence: update lastmod whenever page content changes.
     Google uses lastmod to decide recrawl priority; keep it accurate.
     priority and changefreq are ignored by Google but used by Bing,
@@ -20,9 +20,17 @@
   <!-- Homepage — primary landing page and brand entry point -->
   <url>
     <loc>https://auralys.ai/</loc>
-    <lastmod>2026-06-11</lastmod>
+    <lastmod>2026-06-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+  </url>
+
+  <!-- FAQ — FAQPage JSON-LD schema; high GEO/AI citation surface -->
+  <url>
+    <loc>https://auralys.ai/faq.html</loc>
+    <lastmod>2026-06-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
   </url>
 
   <!-- Web Development Portfolio — client-facing service evidence -->
