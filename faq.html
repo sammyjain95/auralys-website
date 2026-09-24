@@ -1009,7 +1009,7 @@ footer {
     <li><a href="insights.html" onclick="closeMMenu()">Insights</a></li>
     <li><a href="faq.html" onclick="closeMMenu()">FAQ</a></li>
   </ul>
-  <button class="m-cta" onclick="closeMMenu(); window.location.href='contact.html'">Book a consultation</button>
+  <button class="m-cta" data-wa onclick="closeMMenu()">Book a consultation</button>
 </div>
 
 <!-- NAV -->
@@ -1024,7 +1024,7 @@ footer {
     <li><a href="insights.html">Insights</a></li>
     <li><a href="faq.html" class="active">FAQ</a></li>
   </ul>
-  <a href="contact.html" class="nav-cta">Book a consultation</a>
+  <a data-wa href="https://wa.me/14083066084?text=Hi%20Sumant%2C%20I%27d%20like%20to%20book%20a%20consultation%20with%20Auralys%20AI." target="_blank" rel="noopener" class="nav-cta">Book a consultation</a>
   <button class="hamburger" id="hbg" onclick="toggleMMenu()" aria-label="Menu" aria-expanded="false" aria-controls="mmenu">
     <span></span><span></span><span></span>
   </button>
@@ -1068,7 +1068,7 @@ footer {
       <div class="service-title-wrap">
         <h2>Strategic AI <em>Consulting</em></h2>
       </div>
-      <a class="service-cta-link" href="contact.html">Book a consultation</a>
+      <a data-wa class="service-cta-link" href="https://wa.me/14083066084?text=Hi%20Sumant%2C%20I%27d%20like%20to%20book%20a%20consultation%20with%20Auralys%20AI." target="_blank" rel="noopener">Book a consultation</a>
     </div>
 
     <div class="faq-list">
@@ -1116,7 +1116,7 @@ footer {
       <div class="service-title-wrap">
         <h2>Agentic AI / <em>AI Employees</em></h2>
       </div>
-      <a class="service-cta-link" href="contact.html">Book a consultation</a>
+      <a data-wa class="service-cta-link" href="https://wa.me/14083066084?text=Hi%20Sumant%2C%20I%27d%20like%20to%20book%20a%20consultation%20with%20Auralys%20AI." target="_blank" rel="noopener">Book a consultation</a>
     </div>
 
     <div class="faq-list">
@@ -1241,8 +1241,8 @@ footer {
   <h2>Talk to the founder<br><em>directly.</em></h2>
   <p>Book a consultation and talk through your highest-impact AI move with the founder.</p>
   <div class="cta-actions">
-    <a href="contact.html" class="btn-primary">Book a consultation</a>
-    <a href="tel:+918420240360" class="btn-ghost">Call +91 84202 40360</a>
+    <a data-wa href="https://wa.me/14083066084?text=Hi%20Sumant%2C%20I%27d%20like%20to%20book%20a%20consultation%20with%20Auralys%20AI." target="_blank" rel="noopener" class="btn-primary">Book a consultation</a>
+    <a data-tel href="tel:+14083066084" class="btn-ghost">Call <span data-phone-display>+1 408 306 6084</span></a>
   </div>
 </div>
 
@@ -1277,8 +1277,8 @@ footer {
       <ul>
         <li><a href="index.html#founder">From the founder</a></li>
         <li><a href="faq.html">FAQ</a></li>
-        <li><a href="contact.html">Book a consultation</a></li>
-        <li><a href="tel:+918420240360">+91 84202 40360</a></li>
+        <li><a data-wa href="https://wa.me/14083066084?text=Hi%20Sumant%2C%20I%27d%20like%20to%20book%20a%20consultation%20with%20Auralys%20AI." target="_blank" rel="noopener">Book a consultation</a></li>
+        <li><a data-tel data-phone-display href="tel:+14083066084">+1 408 306 6084</a></li>
       </ul>
     </div>
   </div>
@@ -1340,5 +1340,59 @@ footer {
   });
 </script>
 
+<script>
+/* Location-aware contact numbers for Auralys AI.
+   Visitors in India see the India number (+91 84202 40360);
+   everyone else sees the US number (+1 408 306 6084).
+   "Book a consultation" buttons open WhatsApp with a pre-drafted message.
+   Defaults to the US number if the geo lookup fails. */
+(function () {
+    var NUMBERS = {
+        IN:   { display: "+91 84202 40360", tel: "+918420240360", wa: "918420240360" },
+        INTL: { display: "+1 408 306 6084", tel: "+14083066084", wa: "14083066084" }
+    };
+    var WA_TEXT = "Hi Sumant, I'd like to book a consultation with Auralys AI.";
+    var current = NUMBERS.INTL;
+
+    function waUrl() {
+        return "https://wa.me/" + current.wa + "?text=" + encodeURIComponent(WA_TEXT);
+    }
+    function refresh() {
+        var i, els;
+        els = document.querySelectorAll("a[data-tel]");
+        for (i = 0; i < els.length; i++) els[i].setAttribute("href", "tel:" + current.tel);
+        els = document.querySelectorAll("[data-phone-display]");
+        for (i = 0; i < els.length; i++) els[i].textContent = current.display;
+        els = document.querySelectorAll("a[data-wa]");
+        for (i = 0; i < els.length; i++) els[i].setAttribute("href", waUrl());
+    }
+    document.addEventListener("click", function (e) {
+        var t = (e.target && e.target.closest) ? e.target.closest("[data-wa]") : null;
+        if (!t) return;
+        e.preventDefault();
+        window.open(waUrl(), "_blank", "noopener");
+    });
+    refresh();
+
+    function lookup(url, pick) {
+        var ctrl = new AbortController();
+        var timer = setTimeout(function () { ctrl.abort(); }, 3500);
+        return fetch(url, { signal: ctrl.signal }).then(function (r) {
+            clearTimeout(timer);
+            return r.json();
+        }).then(pick).catch(function () { return null; });
+    }
+    function applyCountry(cc) {
+        if (!cc) return false;
+        current = (String(cc).toUpperCase() === "IN") ? NUMBERS.IN : NUMBERS.INTL;
+        refresh();
+        return true;
+    }
+    lookup("https://ipapi.co/json/", function (d) { return d && d.country_code; }).then(function (cc) {
+        if (applyCountry(cc)) return;
+        lookup("https://ipwho.is/", function (d) { return d && d.country_code; }).then(applyCountry);
+    });
+})();
+</script>
 </body>
 </html>

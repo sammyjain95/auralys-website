@@ -680,7 +680,7 @@
             <li><a href="insights.html">Insights</a></li>
             <li><a href="index.html#faq">FAQ</a></li>
         </ul>
-        <a href="contact.html" class="nav-cta">Book a consultation</a>
+        <a data-wa href="https://wa.me/14083066084?text=Hi%20Sumant%2C%20I%27d%20like%20to%20book%20a%20consultation%20with%20Auralys%20AI." target="_blank" rel="noopener" class="nav-cta">Book a consultation</a>
     </nav>
 
     <!-- HERO -->
@@ -689,6 +689,11 @@
         <p class="hero-kicker">AI that delivers business outcomes</p>
         <h1>Book a <em>consultation.</em></h1>
         <p>Talk through your highest-impact AI move directly with the founder, <strong>Sumant Jain</strong>. No sales team, no scripts, just a working session on what AI can actually do for your business.</p>
+        <div style="display:flex; gap:18px; justify-content:center; align-items:center; flex-wrap:wrap; margin-top:30px;">
+            <a data-wa href="https://wa.me/14083066084?text=Hi%20Sumant%2C%20I%27d%20like%20to%20book%20a%20consultation%20with%20Auralys%20AI." target="_blank" rel="noopener" style="display:inline-block; padding:16px 36px; background:var(--gold); color:oklch(13% 0.008 82); border-radius:9px; font-weight:700; font-size:16px; text-decoration:none;">Book a consultation on WhatsApp</a>
+            <a data-tel href="tel:+14083066084" style="color:var(--gold); font-weight:600; font-size:15px; text-decoration:none;">or call <span data-phone-display>+1 408 306 6084</span></a>
+        </div>
+        <p style="margin-top:16px; font-size:13.5px; opacity:0.75;">Opens WhatsApp with a pre-drafted message. Visitors in India reach the India line, everyone else reaches the US line.</p>
     </header>
 
     <!-- WHAT HAPPENS NEXT -->
@@ -740,7 +745,7 @@
                     <div class="info-icon">☏</div>
                     <div class="info-text">
                         <strong>Phone</strong>
-                        <a href="tel:+918420240360">+91 84202 40360</a>
+                        <a data-tel data-phone-display href="tel:+14083066084">+1 408 306 6084</a>
                         <p>Prefer to talk first? Call directly.</p>
                     </div>
                 </div>
@@ -773,7 +778,7 @@
         <div class="contact-form-wrap">
             <form class="contact-form" target="_blank" action="https://formsubmit.co/cb0cd8cec3121f07421e692832f86053" method="POST">
                 <h2>Request a consultation</h2>
-                <p>Share a few details and we will reply within 24 hours with next steps.</p>
+                <p>Prefer email over WhatsApp? Share a few details and we will reply within 24 hours with next steps.</p>
 
                 <div class="form-row">
                     <div class="form-group">
@@ -881,8 +886,8 @@
                 <ul>
                     <li><a href="index.html#founder">From the founder</a></li>
                     <li><a href="index.html#faq">FAQ</a></li>
-                    <li><a href="contact.html">Book a consultation</a></li>
-                    <li><a href="tel:+918420240360">+91 84202 40360</a></li>
+                    <li><a data-wa href="https://wa.me/14083066084?text=Hi%20Sumant%2C%20I%27d%20like%20to%20book%20a%20consultation%20with%20Auralys%20AI." target="_blank" rel="noopener">Book a consultation</a></li>
+                    <li><a data-tel data-phone-display href="tel:+14083066084">+1 408 306 6084</a></li>
                 </ul>
             </div>
         </div>
@@ -897,5 +902,59 @@
         </div>
     </footer>
 
+<script>
+/* Location-aware contact numbers for Auralys AI.
+   Visitors in India see the India number (+91 84202 40360);
+   everyone else sees the US number (+1 408 306 6084).
+   "Book a consultation" buttons open WhatsApp with a pre-drafted message.
+   Defaults to the US number if the geo lookup fails. */
+(function () {
+    var NUMBERS = {
+        IN:   { display: "+91 84202 40360", tel: "+918420240360", wa: "918420240360" },
+        INTL: { display: "+1 408 306 6084", tel: "+14083066084", wa: "14083066084" }
+    };
+    var WA_TEXT = "Hi Sumant, I'd like to book a consultation with Auralys AI.";
+    var current = NUMBERS.INTL;
+
+    function waUrl() {
+        return "https://wa.me/" + current.wa + "?text=" + encodeURIComponent(WA_TEXT);
+    }
+    function refresh() {
+        var i, els;
+        els = document.querySelectorAll("a[data-tel]");
+        for (i = 0; i < els.length; i++) els[i].setAttribute("href", "tel:" + current.tel);
+        els = document.querySelectorAll("[data-phone-display]");
+        for (i = 0; i < els.length; i++) els[i].textContent = current.display;
+        els = document.querySelectorAll("a[data-wa]");
+        for (i = 0; i < els.length; i++) els[i].setAttribute("href", waUrl());
+    }
+    document.addEventListener("click", function (e) {
+        var t = (e.target && e.target.closest) ? e.target.closest("[data-wa]") : null;
+        if (!t) return;
+        e.preventDefault();
+        window.open(waUrl(), "_blank", "noopener");
+    });
+    refresh();
+
+    function lookup(url, pick) {
+        var ctrl = new AbortController();
+        var timer = setTimeout(function () { ctrl.abort(); }, 3500);
+        return fetch(url, { signal: ctrl.signal }).then(function (r) {
+            clearTimeout(timer);
+            return r.json();
+        }).then(pick).catch(function () { return null; });
+    }
+    function applyCountry(cc) {
+        if (!cc) return false;
+        current = (String(cc).toUpperCase() === "IN") ? NUMBERS.IN : NUMBERS.INTL;
+        refresh();
+        return true;
+    }
+    lookup("https://ipapi.co/json/", function (d) { return d && d.country_code; }).then(function (cc) {
+        if (applyCountry(cc)) return;
+        lookup("https://ipwho.is/", function (d) { return d && d.country_code; }).then(applyCountry);
+    });
+})();
+</script>
 </body>
 </html>
