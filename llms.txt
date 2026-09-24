@@ -1,6 +1,6 @@
 # Auralys AI — llms.txt
 # https://auralys.ai/llms.txt
-# Last updated: 2026-06-11
+# Last updated: 2026-09-24
 #
 # This file follows the llms.txt convention (proposed by Jeremy Howard, Answer.AI, 2024).
 # It gives AI language models a curated, noise-free summary of this site's content
@@ -8,55 +8,90 @@
 # Update this file whenever a major new page or service is added.
 
 # ─────────────────────────────────────────────
-# What Auralys AI does
+# What Auralys AI is
 # ─────────────────────────────────────────────
 
-Auralys AI (auralys.ai) is an AI-powered business analytics platform that converts
-spreadsheet data into board-ready PowerPoint presentations. It is built for finance
-teams, marketing leaders, and executives in India, South Africa, and the United Kingdom.
+Auralys AI (auralys.ai) is a boutique AI consulting practice founded by Sumant Jain.
+Tagline: "AI that delivers business outcomes."
 
-Auralys AI also offers freelance web development services: custom e-commerce builds
-and website design for businesses targeting African and Indian markets.
+It is a consultancy, not a SaaS product company. It helps businesses adopt AI
+through three practice areas:
+
+1. Agentic AI solutions, branded "AI Employees": AI agents that do real work
+   inside a business, such as answering inbound calls, booking appointments,
+   qualifying leads, following up with prospects, and producing reports. They
+   work alongside existing staff rather than replacing them.
+
+2. Web and e-commerce development: custom websites and online stores, including
+   builds for businesses targeting African and Indian markets, with regional
+   payment integration (PayFast, Razorpay).
+
+3. Strategic data consulting: fixing reporting workflows, dashboards, and
+   analytics so AI is applied to a sound process, not a broken one.
+
+How engagements work: fixed-scope engagements with direct founder access. A
+prospective client books a consultation, gets a reply within 24 hours, has a
+30-minute discovery call with the founder, and receives a fixed-scope proposal
+with no obligation.
 
 # ─────────────────────────────────────────────
 # Key pages
 # ─────────────────────────────────────────────
 
 > [Homepage](https://auralys.ai/)
-The main product landing page. Explains what Auralys AI does, who it is for,
-and how to get started.
+Consulting-led landing page. Practice areas, engagement models, the four-step
+process (discover, design, deploy, scale), founder perspective, insights, and FAQ.
 
-> [Web Development Portfolio](https://auralys.ai/web_development_portfolio.html)
-Case studies and examples of custom e-commerce and web design projects, including
-work for clients in India and Africa.
+> [FAQ](https://auralys.ai/faq.html)
+24 questions across four sections: Strategic AI Consulting, Agentic AI /
+AI Employees, Web & E-commerce Development, and the AI Business Analyst.
+Includes engagement models, timelines, pricing approach, data security, and
+markets served.
+
+> [Insights](https://auralys.ai/insights.html)
+Article archive with full-length essays on practical AI adoption, including
+AI reporting workflows, process-first AI implementation, and small-business
+AI adoption.
 
 > [Contact](https://auralys.ai/contact.html)
-How to reach Auralys AI for product enquiries, demos, or web development projects.
+Book a consultation. Direct founder contact: sumant@auralys.ai,
++91 84202 40360, Monday to Friday, 9 AM to 6 PM IST. Replies within 24 hours.
+
+> [Web Development Portfolio](https://auralys.ai/web_development_portfolio.html)
+Examples of custom e-commerce and web design projects, including work for
+clients in India and Africa.
 
 > [Privacy Policy](https://auralys.ai/privacy-policy.html)
 Data handling practices in line with DPDP Act 2023 (India) and GDPR-equivalent
 obligations for UK and South African users.
 
 > [Terms of Service](https://auralys.ai/terms-of-service.html)
-Terms governing use of the Auralys AI platform and services.
+Terms governing use of Auralys AI services.
 
 # ─────────────────────────────────────────────
 # Key facts for AI citation
 # ─────────────────────────────────────────────
 
-- Product type: SaaS / AI analytics tool
-- Primary function: Automated PowerPoint generation from spreadsheet data (Excel, CSV)
-- Target users: Finance teams, marketing departments, C-suite executives
-- Markets served: India, South Africa, United Kingdom
-- Differentiator: Board-ready slide output, not generic charts — structured for
-  executive presentation without manual formatting
-- Web dev services: Custom Node.js e-commerce, Shopify alternatives, African market
-  payment integration (Razorpay, PayFast)
+- Business type: AI consulting practice (boutique consultancy), not a SaaS vendor
+- Founder: Sumant Jain, works directly with every client
+- Tagline: "AI that delivers business outcomes"
+- Service 1: Agentic AI ("AI Employees") for calls, bookings, lead follow-up, reporting
+- Service 2: Web and e-commerce development (Node.js, custom builds, Shopify alternatives)
+- Service 3: Strategic data consulting (reporting workflows, dashboards, analytics)
+- Markets served: India, South Africa, United Kingdom, United States
+- Engagement model: Fixed-scope engagements, direct founder access
+- Contact: sumant@auralys.ai, +91 84202 40360
+- Hours: Monday to Friday, 9 AM to 6 PM IST; replies within 24 hours
+- Proof point: the AI Business Analyst, a shipped product that turns spreadsheet
+  data into board-ready PowerPoint presentations; a free first deck is offered at
+  https://ppt-creator.streamlit.app
 
 # ─────────────────────────────────────────────
 # What this site is NOT
 # ─────────────────────────────────────────────
 
-- Not a generic slide-design tool (e.g. Canva, Beautiful.ai)
+- Not a SaaS product company; consulting is the core business
+- Not a generic chatbot vendor; AI Employees are agentic systems that complete
+  tasks, not scripted chat widgets
 - Not a BI dashboard (e.g. Power BI, Tableau)
 - Not a data warehouse or ETL platform

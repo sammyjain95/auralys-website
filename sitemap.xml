@@ -6,60 +6,65 @@
 
   <!--
     sitemap.xml for auralys.ai
-    Last updated : 2026-06-19
+    Last updated : 2026-09-24
+    Positioning  : AI consulting practice ("AI that delivers business outcomes"),
+                   not a SaaS product site. Homepage, FAQ, Insights and Contact
+                   were fully rewritten on 2026-09-24; their lastmod reflects that.
     Review cadence: update lastmod whenever page content changes.
     Google uses lastmod to decide recrawl priority; keep it accurate.
     priority and changefreq are ignored by Google but used by Bing,
-    Perplexity, and other AI crawlers — keep them honest.
+    Perplexity, and other AI crawlers, so keep them honest.
   -->
 
-  <!-- ═══════════════════════════════════════════
-       TIER 1 — Core acquisition pages (highest crawl priority)
-       ═══════════════════════════════════════════ -->
+  <!-- ============================================================
+       TIER 1, Core acquisition pages (highest crawl priority)
+       ============================================================ -->
 
-  <!-- Homepage — primary landing page and brand entry point -->
+  <!-- Homepage, consulting-led landing page and brand entry point -->
   <url>
     <loc>https://auralys.ai/</loc>
-    <lastmod>2026-06-19</lastmod>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
-  <!-- FAQ — FAQPage JSON-LD schema; high GEO/AI citation surface -->
+  <!-- Contact, primary conversion endpoint: book a consultation -->
   <url>
-    <loc>https://auralys.ai/faq.html</loc>
-    <lastmod>2026-06-19</lastmod>
+    <loc>https://auralys.ai/contact.html</loc>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
-  <!-- Web Development Portfolio — client-facing service evidence -->
+  <!-- FAQ, FAQPage JSON-LD schema; high GEO/AI citation surface -->
+  <url>
+    <loc>https://auralys.ai/faq.html</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Insights, article archive; GEO citation surface.
+       Update lastmod whenever a new article is published. -->
+  <url>
+    <loc>https://auralys.ai/insights.html</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Web Development Portfolio, client-facing service evidence.
+       Unchanged in the 2026-09-24 redesign; lastmod kept as-is. -->
   <url>
     <loc>https://auralys.ai/web_development_portfolio.html</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <!-- Contact — conversion endpoint -->
-  <url>
-    <loc>https://auralys.ai/contact.html</loc>
-    <lastmod>2026-06-01</lastmod>
-    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- Blog index — GEO citation surface; update lastmod when new posts publish -->
-  <url>
-    <loc>https://auralys.ai/blog.html</loc>
-    <lastmod>2026-06-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- ═══════════════════════════════════════════
-       TIER 2 — Trust & legal pages
-       ═══════════════════════════════════════════ -->
+  <!-- ============================================================
+       TIER 2, Trust and legal pages
+       ============================================================ -->
 
   <url>
     <loc>https://auralys.ai/privacy-policy.html</loc>
@@ -75,10 +80,10 @@
     <priority>0.4</priority>
   </url>
 
-  <!-- ═══════════════════════════════════════════
-       TIER 3 — Planned pages (uncomment when live)
+  <!-- ============================================================
+       TIER 3, Planned pages (uncomment when live)
        Add lastmod = publish date; update whenever content changes.
-       ═══════════════════════════════════════════ -->
+       ============================================================ -->
 
   <!--
   <url>
@@ -89,51 +94,46 @@
   </url>
 
   <url>
-    <loc>https://auralys.ai/pricing.html</loc>
+    <loc>https://auralys.ai/ai-employees.html</loc>
     <lastmod>YYYY-MM-DD</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://auralys.ai/features.html</loc>
+    <loc>https://auralys.ai/case-studies.html</loc>
     <lastmod>YYYY-MM-DD</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   -->
 
-  <!-- ═══════════════════════════════════════════
-       TIER 4 — Blog / GEO content (uncomment when live)
-       Blog posts drive AI citation; keep lastmod current.
-       ═══════════════════════════════════════════ -->
+  <!-- ============================================================
+       TIER 4, Insights articles
+       Articles currently live as anchors on insights.html, and anchors
+       cannot appear in a sitemap. If an article gets a standalone page,
+       add it here. Suggested slugs for the three published articles:
+       ============================================================ -->
 
   <!--
   <url>
-    <loc>https://auralys.ai/blog/</loc>
-    <lastmod>YYYY-MM-DD</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://auralys.ai/blog/ai-analytics-for-indian-msmes.html</loc>
-    <lastmod>YYYY-MM-DD</lastmod>
-    <changefreq>monthly</changefreq>
+    <loc>https://auralys.ai/insights/board-deck-ai-reporting-workflow.html</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://auralys.ai/blog/spreadsheet-to-powerpoint-ai.html</loc>
-    <lastmod>YYYY-MM-DD</lastmod>
-    <changefreq>monthly</changefreq>
+    <loc>https://auralys.ai/insights/fix-the-process-before-you-ai-it.html</loc>
+    <lastmod>2026-07-01</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://auralys.ai/blog/board-ready-presentations-for-finance-teams.html</loc>
-    <lastmod>YYYY-MM-DD</lastmod>
-    <changefreq>monthly</changefreq>
+    <loc>https://auralys.ai/insights/small-business-ai-adoption.html</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   -->

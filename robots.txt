@@ -1,7 +1,9 @@
 # robots.txt for auralys.ai
-# Last updated: 2026-06-11
-# Strategy: Maximum AI citation visibility — allow all legitimate crawlers,
-#            block undocumented / non-compliant scrapers.
+# Last updated: 2026-09-24
+# Strategy: Maximum AI citation visibility. Allow all legitimate crawlers,
+#            including training crawlers, because a stranger asking an AI
+#            assistant about AI consulting is the customer we want.
+#            Block only undocumented, non-compliant, or low-value scrapers.
 # Review quarterly; AI crawler landscape changes fast.
 
 
@@ -17,7 +19,7 @@ Disallow: /dashboard/
 
 
 # -----------------------------------------------
-# Google — Traditional Search
+# Google: Traditional Search
 # -----------------------------------------------
 User-agent: Googlebot
 Allow: /
@@ -25,18 +27,29 @@ Allow: /
 User-agent: Googlebot-Image
 Allow: /
 
-
-# -----------------------------------------------
-# Google AI — Gemini, AI Overviews, NotebookLM
-# Google-Extended = training opt-in for Gemini + AI Overviews.
-# Allowing it increases Google AI Overview citation surface.
-# -----------------------------------------------
-User-agent: Google-Extended
+User-agent: GoogleOther
 Allow: /
 
 
 # -----------------------------------------------
-# Microsoft — Bing, Copilot
+# Google AI: Gemini, AI Overviews, NotebookLM, Deep Research
+# Google-Extended = training opt-in for Gemini + AI Overviews.
+# Allowing it increases Google AI Overview citation surface.
+# Gemini-Deep-Research = user-triggered deep research fetches.
+# Google-CloudVertexBot = Vertex AI agent fetches.
+# -----------------------------------------------
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Gemini-Deep-Research
+Allow: /
+
+User-agent: Google-CloudVertexBot
+Allow: /
+
+
+# -----------------------------------------------
+# Microsoft: Bing, Copilot
 # -----------------------------------------------
 User-agent: Bingbot
 Allow: /
@@ -46,8 +59,8 @@ Allow: /
 
 
 # -----------------------------------------------
-# OpenAI — ChatGPT, SearchGPT
-# GPTBot       = training crawler (opt-out here to exclude from model training)
+# OpenAI: ChatGPT, SearchGPT
+# GPTBot        = training crawler
 # OAI-SearchBot = SearchGPT live-retrieval index (drives citations in ChatGPT Search)
 # ChatGPT-User  = user-triggered real-time browsing inside ChatGPT
 # -----------------------------------------------
@@ -62,12 +75,12 @@ Allow: /
 
 
 # -----------------------------------------------
-# Anthropic — Claude
-# ClaudeBot        = training crawler
+# Anthropic: Claude
+# ClaudeBot        = primary crawler (training + retrieval)
 # anthropic-ai     = public search / retrieval crawler
-# Claude-Web       = legacy alias (keep for compatibility)
-# Claude-SearchBot = retrieval/search index crawler (2025+)
-# Claude-User      = user-triggered real-time fetcher (2025+)
+# Claude-Web       = legacy alias (kept for compatibility)
+# Claude-SearchBot = retrieval/search index crawler
+# Claude-User      = user-triggered real-time fetcher
 # -----------------------------------------------
 User-agent: ClaudeBot
 Allow: /
@@ -87,8 +100,10 @@ Allow: /
 
 # -----------------------------------------------
 # Perplexity
-# PerplexityBot  = primary crawler
-# Perplexity-User = user-triggered real-time fetcher (2025+)
+# PerplexityBot  = primary crawler (drives answer citations)
+# Perplexity-User = user-triggered fetcher. Note: Perplexity documents
+#                   that Perplexity-User ignores robots.txt by design,
+#                   so this rule is a signal, not enforcement.
 # -----------------------------------------------
 User-agent: PerplexityBot
 Allow: /
@@ -98,7 +113,7 @@ Allow: /
 
 
 # -----------------------------------------------
-# Apple — Spotlight, Siri, Apple Intelligence
+# Apple: Spotlight, Siri, Apple Intelligence
 # Applebot-Extended = training opt-in for Apple Intelligence
 # -----------------------------------------------
 User-agent: Applebot
@@ -110,13 +125,44 @@ Allow: /
 
 # -----------------------------------------------
 # Meta AI
-# FacebookBot       = legacy (still active)
-# Meta-ExternalAgent = primary Meta AI crawler (2025+), feeds Meta AI answers
+# FacebookBot        = legacy (still active)
+# Meta-ExternalAgent = primary Meta AI crawler, feeds Meta AI answers
+# Meta-ExternalFetcher = on-demand content fetch
+# meta-webindexer    = Meta search index crawler
 # -----------------------------------------------
 User-agent: FacebookBot
 Allow: /
 
 User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: Meta-ExternalFetcher
+Allow: /
+
+User-agent: meta-webindexer
+Allow: /
+
+
+# -----------------------------------------------
+# xAI: Grok
+# NOTE (2026-09-24): xAI still publishes no official crawler
+# documentation. GrokBot, xAI-Bot, xAI-Grok and Grok-DeepSearch come
+# from third-party crawler directories, and Grok's live browsing is
+# widely reported to use an ordinary browser user-agent that no
+# robots.txt rule can match. Previously blocked; now explicitly
+# allowed to match the maximum-visibility strategy. The wildcard
+# would allow them anyway; naming them is an unambiguous signal.
+# -----------------------------------------------
+User-agent: GrokBot
+Allow: /
+
+User-agent: xAI-Bot
+Allow: /
+
+User-agent: xAI-Grok
+Allow: /
+
+User-agent: Grok-DeepSearch
 Allow: /
 
 
@@ -129,7 +175,7 @@ Allow: /
 
 
 # -----------------------------------------------
-# You.com — AI-first search engine
+# You.com: AI-first search engine
 # -----------------------------------------------
 User-agent: YouBot
 Allow: /
@@ -145,7 +191,7 @@ Allow: /
 
 
 # -----------------------------------------------
-# Amazon — Alexa, Rufus Shopping AI
+# Amazon: Alexa, Rufus Shopping AI
 # -----------------------------------------------
 User-agent: Amazonbot
 Allow: /
@@ -159,6 +205,22 @@ Allow: /
 
 
 # -----------------------------------------------
+# Huawei PetalBot: Petal Search AI
+# Relevant for APAC visibility, including India.
+# -----------------------------------------------
+User-agent: PetalBot
+Allow: /
+
+
+# -----------------------------------------------
+# Allen Institute AI2Bot: academic / research crawler
+# Feeds Semantic Scholar and research AI; low volume, no downside.
+# -----------------------------------------------
+User-agent: AI2Bot
+Allow: /
+
+
+# -----------------------------------------------
 # Common Crawl
 # CCBot feeds many downstream AI training pipelines.
 # Allowing it keeps auralys.ai in the broader AI knowledge base.
@@ -168,7 +230,7 @@ Allow: /
 
 
 # -----------------------------------------------
-# SEO crawlers — allow with crawl-delay to limit server load
+# SEO crawlers: allow with crawl-delay to limit server load
 # -----------------------------------------------
 User-agent: AhrefsBot
 Allow: /
@@ -182,29 +244,25 @@ Crawl-delay: 10
 # -----------------------------------------------
 # Block: undocumented, non-compliant, or low-value scrapers
 #
-# Bytespider   — ByteDance/TikTok; ignores robots.txt; high-volume
-# GrokBot      — xAI; no official documentation; masks as browser traffic
-# xAI-Bot      — xAI alias
-# cohere-ai    — bulk training scraper; no citation benefit
-# Diffbot      — aggressive knowledge-graph extractor
-# img2dataset  — bulk image harvester
-# Timpibot     — questionable compliance history
-# MauiBot      — ad fraud / scraper
-# SplitSignalBot — no legitimate purpose identified
-# BLEXBot      — link-building scraper
-# MJ12bot      — Majestic SEO; high crawl volume, low return
-# DotBot       — OpenLinkProfiler; aggressive link scraper
+# Bytespider   : ByteDance/TikTok; ignores robots.txt; high-volume.
+#                Kept blocked for server load, not for strategy.
+# cohere-*     : bulk training scrapers; no citation benefit.
+# Diffbot      : aggressive knowledge-graph extractor.
+# img2dataset  : bulk image harvester.
+# Timpibot     : questionable compliance history.
+# MauiBot      : ad fraud / scraper.
+# SplitSignalBot: no legitimate purpose identified.
+# BLEXBot      : link-building scraper.
+# MJ12bot      : Majestic SEO; high crawl volume, low return.
+# DotBot       : OpenLinkProfiler; aggressive link scraper.
 # -----------------------------------------------
 User-agent: Bytespider
 Disallow: /
 
-User-agent: GrokBot
-Disallow: /
-
-User-agent: xAI-Bot
-Disallow: /
-
 User-agent: cohere-ai
+Disallow: /
+
+User-agent: cohere-training-data-crawler
 Disallow: /
 
 User-agent: Diffbot
