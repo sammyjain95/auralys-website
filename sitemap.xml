@@ -6,7 +6,7 @@
 
   <!--
     sitemap.xml for auralys.ai
-    Last updated : 2026-10-15
+    Last updated : 2026-10-22
     Positioning  : AI consulting practice ("AI that delivers business outcomes"),
                    not a SaaS product site. Homepage, FAQ, Insights and Contact
                    were fully rewritten on 2026-09-24; their lastmod reflects that.
@@ -68,6 +68,15 @@
     <lastmod>2026-10-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+  </url>
+
+  <!-- Webinar registration page, Ember retirement-clarity live session.
+       Update lastmod when the session date or registration details change. -->
+  <url>
+    <loc>https://auralys.ai/webinar.html</loc>
+    <lastmod>2026-10-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 
   <!-- ============================================================
