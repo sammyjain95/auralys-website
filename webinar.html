@@ -235,9 +235,7 @@
   .founder-layout { display: grid; grid-template-columns: 260px 1fr; gap: 48px; align-items: start; margin-top: 32px; }
   .founder-photo {
     aspect-ratio: 4/5; border-radius: 14px; border: 1px solid var(--border-gold);
-    background: linear-gradient(135deg, var(--bg-surface), var(--bg));
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Libre Baskerville', serif; font-size: 56px; font-weight: 700; color: var(--gold);
+    object-fit: cover; width: 100%; display: block;
     box-shadow: 0 24px 64px oklch(8% 0.004 82 / 0.6);
   }
   .founder-copy p { font-size: 17px; color: var(--text-mid); line-height: 1.8; margin-bottom: 18px; font-weight: 300; }
@@ -521,7 +519,7 @@
     <div class="section-label reveal">Your host</div>
     <h2 class="sec reveal">Hosted by <em>Sumant Jain,</em> founder of Auralys AI.</h2>
     <div class="founder-layout reveal">
-      <div class="founder-photo" aria-label="Sumant Jain">SJ</div>
+      <img class="founder-photo" src="assets/sumant-jain.jpg" alt="Sumant Jain, founder of Auralys AI">
       <div class="founder-copy">
         <p>Sumant analyzes markets the way he builds AI systems: with data, rules, and skepticism. He runs a rules-based quant framework over commodity ETFs and Indian equities, and every analysis carries its counter-thesis.</p>
         <p class="founder-pull">"The market doesn't reward the best prediction. It rewards the best process."</p>
