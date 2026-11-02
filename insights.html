@@ -156,14 +156,22 @@
             border-bottom: 1px solid var(--border-gold);
         }
 
-        .nav-brand {
-            display: flex; align-items: center; gap: 12px;
-            font-family: 'Libre Baskerville', serif;
-            font-size: 22px; font-weight: 700;
-            color: var(--text); text-decoration: none;
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
         }
 
-        .nav-brand img { width: 34px; height: 34px; border-radius: 8px; }
+        .nav-logo img { height: 34px; width: auto; }
+
+        .nav-logo span {
+            font-weight: 700;
+            font-size: 17px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
 
         .nav-links { display: flex; gap: clamp(16px, 2.5vw, 36px); list-style: none; }
 
@@ -345,9 +353,9 @@
 <body>
 
     <nav>
-        <a href="index.html" class="nav-brand">
-            <img src="assets/auralys_logo.png" alt="Auralys AI logo">
-            Auralys AI
+        <a href="index.html" class="nav-logo">
+            <img src="assets/auralys_logo.webp" alt="Auralys AI logo" width="36" height="36">
+            <span>Auralys AI</span>
         </a>
         <ul class="nav-links">
             <li><a href="index.html#consulting">Consulting</a></li>
