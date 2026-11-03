@@ -681,7 +681,7 @@
             <li><a href="insights.html">Insights</a></li>
             <li><a href="index.html#faq">FAQ</a></li>
         </ul>
-        <a data-wa href="https://wa.me/14083066084?text=Hi%20Sumant%2C%20I%27d%20like%20to%20book%20a%20consultation%20with%20Auralys%20AI." target="_blank" rel="noopener" class="nav-cta">Book a consultation</a>
+        <a data-wa href="https://calendar.app.google/H4xRz1CCSKCDZ4b36" target="_blank" rel="noopener" class="nav-cta">Book a consultation</a>
     </nav>
 
     <!-- HERO -->
@@ -691,10 +691,10 @@
         <h1>Book a <em>consultation.</em></h1>
         <p>Talk through your highest-impact AI move directly with the founder, <strong>Sumant Jain</strong>. No sales team, no scripts, just a working session on what AI can actually do for your business.</p>
         <div style="display:flex; gap:18px; justify-content:center; align-items:center; flex-wrap:wrap; margin-top:30px;">
-            <a data-wa href="https://wa.me/14083066084?text=Hi%20Sumant%2C%20I%27d%20like%20to%20book%20a%20consultation%20with%20Auralys%20AI." target="_blank" rel="noopener" style="display:inline-block; padding:16px 36px; background:var(--gold); color:oklch(13% 0.008 82); border-radius:9px; font-weight:700; font-size:16px; text-decoration:none;">Book a consultation on WhatsApp</a>
+            <a data-wa href="https://calendar.app.google/H4xRz1CCSKCDZ4b36" target="_blank" rel="noopener" style="display:inline-block; padding:16px 36px; background:var(--gold); color:oklch(13% 0.008 82); border-radius:9px; font-weight:700; font-size:16px; text-decoration:none;">Book a consultation</a>
             <a data-tel href="tel:+14083066084" style="color:var(--gold); font-weight:600; font-size:15px; text-decoration:none;">or call <span data-phone-display>+1 408 306 6084</span></a>
         </div>
-        <p style="margin-top:16px; font-size:13.5px; opacity:0.75;">Opens WhatsApp with a pre-drafted message. Visitors in India reach the India line, everyone else reaches the US line.</p>
+        <p style="margin-top:16px; font-size:13.5px; opacity:0.75;">Opens the booking page to pick a 30-minute slot. You will get a Google Meet link after booking.</p>
     </header>
 
     <!-- WHAT HAPPENS NEXT -->
@@ -887,7 +887,7 @@
                 <ul>
                     <li><a href="index.html#founder">From the founder</a></li>
                     <li><a href="index.html#faq">FAQ</a></li>
-                    <li><a data-wa href="https://wa.me/14083066084?text=Hi%20Sumant%2C%20I%27d%20like%20to%20book%20a%20consultation%20with%20Auralys%20AI." target="_blank" rel="noopener">Book a consultation</a></li>
+                    <li><a data-wa href="https://calendar.app.google/H4xRz1CCSKCDZ4b36" target="_blank" rel="noopener">Book a consultation</a></li>
                     <li><a data-tel data-phone-display href="tel:+14083066084">+1 408 306 6084</a></li>
                 </ul>
             </div>
@@ -907,7 +907,7 @@
 /* Location-aware contact numbers for Auralys AI.
    Visitors in India see the India number (+91 84202 40360);
    everyone else sees the US number (+1 408 306 6084).
-   "Book a consultation" buttons open WhatsApp with a pre-drafted message.
+   "Book a consultation" buttons open the booking page.
    Defaults to the US number if the geo lookup fails. */
 (function () {
     var NUMBERS = {
@@ -918,7 +918,7 @@
     var current = NUMBERS.INTL;
 
     function waUrl() {
-        return "https://wa.me/" + current.wa + "?text=" + encodeURIComponent(WA_TEXT);
+        return "https://calendar.app.google/H4xRz1CCSKCDZ4b36";
     }
     function refresh() {
         var i, els;
