@@ -6,7 +6,7 @@
 
   <!--
     sitemap.xml for auralys.ai
-    Last updated : 2026-11-02
+    Last updated : 2026-11-03
     Positioning  : AI consulting practice ("AI that delivers business outcomes"),
                    not a SaaS product site. Homepage, FAQ, Insights and Contact
                    were fully rewritten on 2026-09-24; their lastmod reflects that.
@@ -51,6 +51,30 @@
     <lastmod>2026-11-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://auralys.ai/insights-june-2026.html</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://auralys.ai/insights-july-2026.html</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://auralys.ai/insights-september-2026.html</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://auralys.ai/insights-october-2026.html</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 
   <!-- Web Development Portfolio, client-facing service evidence.
