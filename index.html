@@ -47,6 +47,21 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://auralys.ai/#organization",
+  "name": "Auralys AI",
+  "url": "https://auralys.ai",
+  "logo": "https://auralys.ai/assets/auralys_logo.webp",
+  "telephone": "+918420240360",
+  "sameAs": [
+    "https://www.linkedin.com/in/sumantjain/"
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "Auralys AI",
   "applicationCategory": "BusinessApplication",
@@ -111,7 +126,7 @@
       "name": "How does Auralys AI handle data security?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Auralys AI uses bank-grade encryption and follows enterprise compliance standards. Client data is handled under strict confidentiality agreements and is never shared or repurposed without consent."
+        "text": "Security and compliance requirements are scoped during discovery, based on the sensitivity of your data. Client data is handled under strict confidentiality agreements and is never shared or repurposed without consent."
       }
     },
     {
@@ -273,19 +288,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Figtree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --gold:        oklch(72% 0.12 82);
-            --gold-dim:    oklch(58% 0.09 82);
-            --gold-faint:  oklch(72% 0.04 82);
-            --bg:          oklch(13% 0.008 82);
-            --bg-raised:   oklch(16% 0.008 82);
-            --bg-surface:  oklch(19% 0.007 82);
-            --text:        oklch(93% 0.005 82);
-            --text-mid:    oklch(72% 0.006 82);
-            --text-low:    oklch(52% 0.005 82);
-            --border:      oklch(28% 0.006 82);
-            --border-gold: oklch(72% 0.09 82 / 0.22);
-        }
+        
 
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -309,7 +312,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background: oklch(13% 0.008 82 / 0.88);
+            background: rgba(250, 247, 241, 0.88);
             backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--border-gold);
         }
@@ -352,7 +355,7 @@
         .nav-cta {
             padding: 10px 22px;
             background: var(--gold);
-            color: oklch(13% 0.008 82);
+            color: var(--on-dark);
             border-radius: 6px;
             font-weight: 700;
             font-size: 14px;
@@ -502,7 +505,7 @@
             gap: 10px;
             padding: 15px 32px;
             background: var(--gold);
-            color: oklch(13% 0.008 82);
+            color: var(--on-dark);
             border-radius: 7px;
             font-weight: 700;
             font-size: 15px;
@@ -1210,7 +1213,7 @@
         /* ── SERVICES ── */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 1px;
             background: var(--border);
             margin-top: 60px;
@@ -1629,6 +1632,7 @@
             .trust-strip { grid-template-columns: 1fr; }
         }
     </style>
+    <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
 
@@ -1643,6 +1647,7 @@
             <li><a href="#engagement">Engagement</a></li>
             <li><a href="web_development_portfolio.html">Portfolio</a></li>
             <li><a href="insights.html">Insights</a></li>
+            <li><a href="secure-ai-programme-outline.html">Secure AI</a></li>
             <li><a href="webinar.html">Webinars</a></li>
             <li><a href="case-studies.html">Case Studies</a></li>
             <li><a href="#faq">FAQ</a></li>
@@ -1800,7 +1805,7 @@
     <!-- CONSULTING PRACTICE AREAS -->
     <section class="section" id="consulting">
         <div class="section-label">Consulting practice</div>
-        <h2 class="section-h2">Three practices, <em>one goal:</em> outcomes.</h2>
+        <h2 class="section-h2">Four practices, <em>one goal:</em> outcomes.</h2>
         <p class="section-intro">Every engagement starts with the business result you need, then works backward to the right AI, data, or web solution.</p>
         <div class="services-grid">
             <div class="service-cell reveal">
@@ -1809,14 +1814,20 @@
                 <p class="service-desc"><strong>Outcomes:</strong> every inbound call answered, bookings and enquiries handled around the clock, lower cost per qualified lead.<br><br><strong>For:</strong> SMBs and operations teams losing business to missed calls and manual follow-up, from clinics and trades to realtors and professional services.</p>
                 <a data-wa href="https://calendar.app.google/H4xRz1CCSKCDZ4b36" target="_blank" rel="noopener" class="btn-ghost">Book a consultation</a>
             </div>
-            <div class="service-cell reveal" style="transition-delay:0.1s">
+            <div class="service-cell reveal" style="transition-delay:0.05s">
                 <div class="service-num">02</div>
+                <div class="service-title">Secure AI Programme</div>
+                <p class="service-desc"><strong>Outcomes:</strong> sensitive work on your own private AI stack, on a secure cloud or on-premise, with your data in an environment you control.<br><br><strong>For:</strong> regulated companies in defence, banking, law, and pharma that want AI without handing their data to a public system.</p>
+                <a href="secure-ai-programme-outline.html" class="btn-ghost">Read the one-page outline</a>
+            </div>
+            <div class="service-cell reveal" style="transition-delay:0.1s">
+                <div class="service-num">03</div>
                 <div class="service-title">Strategic Data Consulting</div>
                 <p class="service-desc"><strong>Outcomes:</strong> a prioritized AI roadmap, de-risked pilots, and clarity on build versus buy.<br><br><strong>For:</strong> mid-market and enterprise leaders who want AI investments tied to business impact, not demos.</p>
                 <a data-wa href="https://calendar.app.google/H4xRz1CCSKCDZ4b36" target="_blank" rel="noopener" class="btn-ghost">Book a consultation</a>
             </div>
-            <div class="service-cell reveal" style="transition-delay:0.2s">
-                <div class="service-num">03</div>
+            <div class="service-cell reveal" style="transition-delay:0.15s">
+                <div class="service-num">04</div>
                 <div class="service-title">Web &amp; E-commerce Development</div>
                 <p class="service-desc"><strong>Outcomes:</strong> conversion-focused sites and stores that launch fast and sell.<br><br><strong>For:</strong> growing companies across India, South Africa, the UK, and the US that need a premium online footprint without agency bloat.</p>
                 <a data-wa href="https://calendar.app.google/H4xRz1CCSKCDZ4b36" target="_blank" rel="noopener" class="btn-ghost">Book a consultation</a>
@@ -1992,7 +2003,7 @@
             </details>
             <details>
                 <summary>How does Auralys AI handle data security?</summary>
-                <div class="faq-answer">Auralys AI uses bank-grade encryption and follows enterprise compliance standards. Client data is handled under strict confidentiality agreements and is never shared or repurposed without consent.</div>
+                <div class="faq-answer">Security and compliance requirements are scoped during discovery, based on the sensitivity of your data. Client data is handled under strict confidentiality agreements and is never shared or repurposed without consent.</div>
             </details>
             <details>
                 <summary>Which countries does Auralys AI serve?</summary>
@@ -2031,6 +2042,7 @@
                 <h4>Consulting</h4>
                 <ul>
                     <li><a href="#consulting">AI Employees</a></li>
+                    <li><a href="secure-ai-programme-outline.html">Secure AI Programme</a></li>
                     <li><a href="#consulting">Data consulting</a></li>
                     <li><a href="#consulting">Web &amp; e-commerce</a></li>
                     <li><a href="#engagement">Engagement models</a></li>

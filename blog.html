@@ -29,7 +29,40 @@
   {"@context":"https://schema.org","@type":"Article","headline":"How an AI Business Reporting Tool Saves Hours Every Week","author":{"@type":"Organization","name":"Auralys AI"},"publisher":{"@type":"Organization","name":"Auralys AI"}}
   </script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How much does an AI business reporting tool cost?","acceptedAnswer":{"@type":"Answer","text":"Enterprise-grade tools typically start at $50 to $200/month or INR 500 to INR 2,000/month."}},{"@type":"Question","name":"Do I need data science skills?","acceptedAnswer":{"@type":"Answer","text":"No. Upload spreadsheets and get insights without code."}},{"@type":"Question","name":"Is my data secure?","acceptedAnswer":{"@type":"Answer","text":"Auralys provides bank-grade encryption and compliance-focused protection."}}]}
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How much does an AI business reporting tool cost?","acceptedAnswer":{"@type":"Answer","text":"Pricing depends on the scope of the work and is agreed in writing after a discovery call, before any build starts."}},{"@type":"Question","name":"Do I need data science skills?","acceptedAnswer":{"@type":"Answer","text":"No. Upload spreadsheets and get insights without code."}},{"@type":"Question","name":"Is my data secure?","acceptedAnswer":{"@type":"Answer","text":"Security is scoped during discovery, based on the sensitivity of your data and where it needs to live. Client data is handled under strict confidentiality agreements."}}]}
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://auralys.ai/#organization",
+    "name": "Auralys AI",
+    "url": "https://auralys.ai",
+    "logo": "https://auralys.ai/assets/auralys_logo.webp",
+    "telephone": "+918420240360",
+    "sameAs": [
+      "https://www.linkedin.com/in/sumantjain/"
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Auralys AI",
+    "url": "https://auralys.ai"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://auralys.ai/" },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://auralys.ai/blog.html" }
+    ]
+  }
   </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -40,27 +73,7 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     /* ── TOKENS ── */
-    :root {
-      --gold:        oklch(72% 0.12 82);
-      --gold-dim:    oklch(58% 0.09 82);
-      --gold-faint:  oklch(72% 0.04 82);
-      --bg:          oklch(13% 0.008 82);
-      --bg-raised:   oklch(16% 0.008 82);
-      --bg-surface:  oklch(19% 0.007 82);
-      --text:        oklch(93% 0.005 82);
-      --text-mid:    oklch(72% 0.006 82);
-      --text-low:    oklch(52% 0.005 82);
-      --border:      oklch(28% 0.006 82);
-      --border-gold: oklch(72% 0.09 82 / 0.22);
-      --green:       oklch(65% 0.18 145);
-      --nav-h:       72px;
-
-      /* derived */
-      --gold-glow:   oklch(72% 0.12 82 / 0.14);
-      --gold-dim-bg: oklch(72% 0.12 82 / 0.08);
-      --col:         740px;
-      --wide:        1080px;
-    }
+    
 
     html { font-size: 17px; scroll-behavior: smooth; }
 
@@ -93,7 +106,7 @@
       align-items: center;
       justify-content: space-between;
       padding: 0 2rem;
-      background: oklch(13% 0.008 82 / 0.88);
+      background: rgba(250, 247, 241, 0.88);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
       border-bottom: 1px solid var(--border);
@@ -430,13 +443,13 @@
       padding: 0.85rem 1rem;
       text-align: left;
       font-weight: 600;
-      color: var(--gold-faint);
+      color: var(--gold);
       letter-spacing: 0.03em;
       white-space: nowrap;
     }
     tbody tr { border-bottom: 1px solid var(--border); }
     tbody tr:last-child { border-bottom: none; }
-    tbody tr:hover { background: oklch(16% 0.008 82 / 0.6); }
+    tbody tr:hover { background: var(--bg-raised); }
     tbody td { padding: 0.85rem 1rem; color: var(--text-mid); vertical-align: top; }
     tbody td:first-child { color: var(--text); font-weight: 500; }
     .accent-val { color: var(--green) !important; font-weight: 600 !important; }
@@ -547,19 +560,21 @@
       .nav-links .hide-mob { display: none; }
     }
   </style>
+    <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
 
   <!-- Navigation -->
   <nav class="nav">
     <a href="https://auralys.ai" class="nav-logo">
-      <img src="https://auralys.ai/assets/auralys_logo.png" alt="Auralys" onerror="this.style.display='none'" />
+      <img src="https://auralys.ai/assets/auralys_logo.webp" alt="Auralys" onerror="this.style.display='none'" />
       <span class="nav-logo-text">AURALYS AI</span>
     </a>
     <div class="nav-links">
       <a href="https://auralys.ai/#features" class="hide-mob">Features</a>
       <a href="https://auralys.ai/#solutions" class="hide-mob">Solutions</a>
       <a href="https://auralys.ai/blog" class="hide-mob">Blog</a>
+      <a href="secure-ai-programme-outline.html" class="hide-mob">Secure AI</a>
       <a href="https://ppt-creator.streamlit.app" class="nav-cta">Launch Demo</a>
     </div>
   </nav>
@@ -841,7 +856,7 @@
             </tr>
             <tr>
               <td>Enterprise security</td>
-              <td>Bank-grade encryption and compliance-focused protection for sensitive data</td>
+              <td>Security scoped during discovery, based on the sensitivity of your data</td>
             </tr>
           </tbody>
         </table>
@@ -883,7 +898,7 @@
 
       <div class="faq-item">
         <div class="faq-q">How much does an AI business reporting tool cost?</div>
-        <div class="faq-a">Pricing varies by vendor. Enterprise-grade tools with bank-grade security typically start at $500–$2,000/month depending on team size, feature set, and integration requirements.</div>
+        <div class="faq-a">Pricing varies by vendor and scope. Costs are agreed in writing after a discovery call, before any build starts.</div>
       </div>
       <div class="faq-item">
         <div class="faq-q">Do I need data science skills to use one?</div>
@@ -895,7 +910,7 @@
       </div>
       <div class="faq-item">
         <div class="faq-q">Is my data secure?</div>
-        <div class="faq-a">Reputable platforms provide enterprise security with bank-grade encryption and compliance-focused protection. Always verify SOC 2 or ISO 27001 certifications before sharing sensitive financial data.</div>
+        <div class="faq-a">Reputable platforms provide enterprise security. Always verify SOC 2 or ISO 27001 certifications before sharing sensitive financial data.</div>
       </div>
       <div class="faq-item">
         <div class="faq-q">How long does it take to see ROI?</div>
@@ -943,6 +958,7 @@
       <div class="footer-links">
         <a href="https://auralys.ai/#features">Features</a>
         <a href="https://auralys.ai/#solutions">Solutions</a>
+        <a href="secure-ai-programme-outline.html">Secure AI</a>
         <a href="https://auralys.ai/contact.html">Contact</a>
         <a href="https://auralys.ai/blog">Blog</a>
       </div>

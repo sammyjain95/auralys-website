@@ -1,0 +1,169 @@
+/* ==========================================================================
+   Auralys AI — Paper Light design system (shared stylesheet)
+   Direction 3, chosen 2026-11-22. Single source of truth for colour,
+   type, spacing, and shared components. Every page links this file
+   AFTER its own inline <style> block, so these rules win on equal
+   specificity, and the :root tokens below replace each page's old
+   duplicated :root block (removed during the migration).
+   Fonts: Libre Baskerville (display) + Figtree (body), via Google Fonts.
+   ========================================================================== */
+
+:root {
+    --gold:        #9a7b1e;   /* quiet gold: labels, rules, small accents */
+    --gold-strong: #b9903f;   /* warm gold: hover states, highlights */
+    --gold-faint:  #efe6c8;   /* pale gold wash for chips and highlights */
+    --bg:          #faf7f1;   /* warm paper page background */
+    --bg-raised:   #f3ede2;   /* raised warm surface */
+    --bg-surface:  #ffffff;   /* card surface */
+    --text:        #1c1710;   /* ink */
+    --text-mid:    #6f6455;   /* secondary text */
+    --text-low:    #9a8f7d;   /* tertiary text */
+    --border:      #e4d9c2;   /* hairlines */
+    --border-gold: #c9b896;   /* stronger hairline, gold tinted */
+    --dark:        #1c1710;   /* dark band (CTA) */
+    --on-dark:     #faf7f1;
+    --radius:      12px;
+}
+
+/* ---------- Base ---------- */
+html { scroll-behavior: smooth; }
+body {
+    font-family: 'Figtree', sans-serif;
+    background-color: var(--bg) !important;
+    color: var(--text) !important;
+    line-height: 1.65;
+    overflow-x: hidden;
+}
+h1, h2, h3, .serif { font-family: 'Libre Baskerville', serif; }
+a { color: var(--gold); }
+img { max-width: 100%; }
+::selection { background: var(--gold-faint); color: var(--text); }
+
+/* ---------- Layout helpers ---------- */
+.wrap, .container { max-width: 1180px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 48px); }
+section { padding: clamp(56px, 8vw, 88px) 0; }
+
+/* ---------- Navigation ---------- */
+nav {
+    background: rgba(250, 247, 241, 0.92) !important;
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border) !important;
+}
+.nav-logo { display: inline-flex; align-items: center; gap: 10px; color: var(--text) !important; text-decoration: none; font-weight: 700; font-size: 18px; }
+.nav-logo img { border-radius: 50%; }
+.nav-links { list-style: none; display: flex; gap: 26px; margin: 0; padding: 0; }
+.nav-links a { color: var(--text-mid) !important; text-decoration: none; font-size: 15px; font-weight: 500; }
+.nav-links a:hover, .nav-links a:focus-visible { color: var(--gold) !important; }
+.nav-cta { background: var(--dark) !important; color: var(--on-dark) !important; }
+.nav-cta:hover { background: var(--gold-strong) !important; color: var(--dark) !important; }
+.nav-dropdown .dropdown-menu { background: var(--bg-surface) !important; border: 1px solid var(--border) !important; box-shadow: 0 12px 32px rgba(28, 23, 16, 0.12); }
+.dropdown-item-desc { color: var(--text-mid) !important; }
+
+/* ---------- Buttons ---------- */
+.btn-primary {
+    background: var(--dark) !important;
+    color: var(--on-dark) !important;
+    box-shadow: 0 4px 20px rgba(28, 23, 16, 0.18) !important;
+}
+.btn-primary:hover { background: var(--gold-strong) !important; color: var(--dark) !important; transform: translateY(-1px); }
+.btn-ghost {
+    border: 1px solid var(--border-gold) !important;
+    color: var(--text) !important;
+    background: transparent !important;
+}
+.btn-ghost:hover { border-color: var(--gold) !important; color: var(--gold) !important; }
+
+/* ---------- Section labels, headings ---------- */
+.section-label { color: var(--gold) !important; }
+.section-label::before, .section-label::after { background: var(--gold); }
+.hero-kicker { color: var(--gold) !important; }
+.hero-sub { color: var(--text-mid) !important; }
+
+/* ---------- Cards and surfaces ---------- */
+.consult-card, .insight-card, .faq-item, .card, .panel {
+    background: var(--bg-surface) !important;
+    border: 1px solid var(--border) !important;
+    box-shadow: 0 2px 12px rgba(28, 23, 16, 0.05);
+}
+.consult-card:hover, .insight-card:hover { border-color: var(--border-gold) !important; box-shadow: 0 8px 28px rgba(28, 23, 16, 0.09); }
+.service-num, .step-num { color: var(--gold) !important; }
+.insight-tag, .tag, .flag {
+    background: var(--gold-faint) !important;
+    color: var(--gold) !important;
+    border: 1px solid var(--border-gold);
+}
+.insight-meta, .consult-row-desc, .metric-lbl { color: var(--text-mid) !important; }
+
+/* ---------- Founder / pull quotes ---------- */
+.founder-pull { border-left: 3px solid var(--gold) !important; color: var(--text) !important; }
+.founder-sign-name { color: var(--text) !important; }
+.founder-sign-title, .founder-photo-sub, .founder-photo-note { color: var(--text-mid) !important; }
+
+/* ---------- CTA band (dark ink band on paper) ---------- */
+.cta-band, .cta-block {
+    background: var(--dark) !important;
+    color: var(--on-dark) !important;
+}
+.cta-band h2, .cta-block h2 { color: var(--on-dark) !important; }
+.cta-band p, .cta-block p { color: #cfc4ae !important; }
+.cta-band .btn-primary { background: var(--gold-strong) !important; color: var(--dark) !important; box-shadow: none !important; }
+.cta-band .btn-ghost { border-color: rgba(250, 247, 241, 0.5) !important; color: var(--on-dark) !important; }
+
+/* ---------- FAQ ---------- */
+.faq-item { border-radius: var(--radius); }
+.q-text { color: var(--text) !important; }
+.a-body, .faq-answer { color: var(--text-mid) !important; }
+.q-toggle { color: var(--gold) !important; }
+
+/* ---------- Forms ---------- */
+.form-group label { color: var(--text) !important; }
+.form-group input, .form-group textarea, .form-group select {
+    background: var(--bg-surface) !important;
+    border: 1px solid var(--border) !important;
+    color: var(--text) !important;
+    border-radius: 8px;
+}
+.form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+    border-color: var(--gold) !important;
+    outline: 2px solid var(--gold-faint);
+}
+
+/* ---------- Trust strip, marquee, ticks ---------- */
+.trust-item, .marquee-item { color: var(--text-mid) !important; }
+.tick { color: var(--gold) !important; }
+.trust-strip-desc { color: var(--text-mid) !important; }
+.trust-strip-desc a { color: var(--gold) !important; }
+
+/* ---------- Footer ---------- */
+footer { background: var(--bg-raised) !important; border-top: 1px solid var(--border) !important; }
+footer p, footer li, footer a { color: var(--text-mid) !important; }
+footer h4 { color: var(--text) !important; }
+footer a:hover { color: var(--gold) !important; }
+.footer-bottom { border-top: 1px solid var(--border) !important; color: var(--text-low) !important; }
+.footer-logo { color: var(--text) !important; }
+
+/* ---------- Article / long-form content ---------- */
+article p, .article-body p { color: var(--text) !important; }
+article li { color: var(--text-mid) !important; }
+blockquote { border-left: 3px solid var(--gold) !important; color: var(--text-mid) !important; }
+code { background: var(--bg-raised) !important; color: var(--text) !important; }
+hr { border-color: var(--border) !important; }
+
+/* ---------- Hero decoration (light treatment) ---------- */
+.deck-mockup, .hero-right-deco, .hero-right-deco2 {
+    background: var(--bg-surface) !important;
+    border: 1px solid var(--border) !important;
+    box-shadow: 0 16px 40px rgba(28, 23, 16, 0.10);
+}
+.bar-track { background: var(--bg-raised) !important; }
+.bar-fill { background: var(--gold-strong) !important; }
+.bar-name, .chart-label { color: var(--text-mid) !important; }
+.deco-label { color: var(--text-low) !important; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+    .nav-links { display: none; }
+}
+@media (max-width: 640px) {
+    section { padding: 48px 0; }
+}

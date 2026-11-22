@@ -24,25 +24,11 @@
     <meta name="twitter:title" content="Case Studies | Auralys AI">
     <meta name="twitter:description" content="Quantified outcomes from Auralys AI engagements. Proof, not promises.">
     <meta name="twitter:image" content="https://auralys.ai/assets/auralys_og.png">
-    <link rel="icon" href="assets/auralys_logo.png" type="image/x-icon">
+    <link rel="icon" href="assets/auralys_logo.webp" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Figtree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         /* ── TOKENS ── */
-        :root {
-            --gold:        oklch(72% 0.12 82);
-            --gold-dim:    oklch(58% 0.09 82);
-            --gold-faint:  oklch(72% 0.04 82);
-            --bg:          oklch(13% 0.008 82);
-            --bg-raised:   oklch(16% 0.008 82);
-            --bg-surface:  oklch(19% 0.007 82);
-            --text:        oklch(93% 0.005 82);
-            --text-mid:    oklch(72% 0.006 82);
-            --text-low:    oklch(52% 0.005 82);
-            --border:      oklch(28% 0.006 82);
-            --border-gold: oklch(72% 0.09 82 / 0.22);
-            --green:       oklch(65% 0.18 145);
-            --nav-h:       72px;
-        }
+        
 
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
@@ -65,7 +51,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background: oklch(13% 0.008 82 / 0.92);
+            background: rgba(250, 247, 241, 0.92);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--border-gold);
@@ -115,7 +101,7 @@
             display: none;
             position: fixed;
             inset: var(--nav-h) 0 0;
-            background: oklch(13% 0.008 82 / 0.97);
+            background: rgba(250, 247, 241, 0.97);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             z-index: 800;
@@ -156,7 +142,7 @@
         .drawer-sub-link {
             display: flex; align-items: center; gap: 12px;
             padding: 14px 0;
-            border-bottom: 1px solid oklch(28% 0.006 82 / 0.5);
+            border-bottom: 1px solid var(--border);
             color: var(--text-mid); text-decoration: none;
             font-size: 15px; font-weight: 500;
             transition: color 0.2s;
@@ -178,7 +164,7 @@
         .btn-primary {
             display: inline-flex; align-items: center; gap: 10px;
             padding: 9px 22px; background: var(--gold);
-            color: oklch(13% 0.008 82); border-radius: 6px;
+            color: var(--on-dark); border-radius: 6px;
             font-weight: 600; font-size: 14px; letter-spacing: 0.5px;
             text-decoration: none; transition: background 0.2s, transform 0.2s;
             -webkit-tap-highlight-color: transparent;
@@ -248,8 +234,8 @@
         .hero-grid {
             position: absolute; inset: 0;
             background-image:
-                linear-gradient(oklch(28% 0.006 82 / 0.25) 1px, transparent 1px),
-                linear-gradient(90deg, oklch(28% 0.006 82 / 0.25) 1px, transparent 1px);
+                linear-gradient(rgba(28, 23, 16, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(28, 23, 16, 0.08) 1px, transparent 1px);
             background-size: 60px 60px;
             mask-image: radial-gradient(ellipse 80% 70% at 50% 100%, black 30%, transparent 100%);
         }
@@ -428,7 +414,7 @@
         .slide-btn {
             position: absolute; top: 50%; transform: translateY(-50%);
             z-index: 10; width: 44px; height: 44px; border-radius: 50%;
-            background: oklch(13% 0.008 82 / 0.75);
+            background: rgba(28, 23, 16, 0.75);
             border: 1px solid var(--border-gold);
             color: var(--gold); font-size: 16px;
             display: flex; align-items: center; justify-content: center;
@@ -436,7 +422,7 @@
             backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
             -webkit-tap-highlight-color: transparent;
         }
-        .slide-btn:hover { background: oklch(13% 0.008 82 / 0.95); transform: translateY(-50%) scale(1.08); }
+        .slide-btn:hover { background: rgba(28, 23, 16, 0.95); transform: translateY(-50%) scale(1.08); }
         .slide-btn.prev { left: 14px; }
         .slide-btn.next { right: 14px; }
 
@@ -524,7 +510,7 @@
         .filter-pill:hover { border-color: var(--border-gold); color: var(--text-mid); }
         .filter-pill.active {
             background: var(--gold); border-color: var(--gold);
-            color: oklch(13% 0.008 82); font-weight: 600;
+            color: var(--text); font-weight: 600;
         }
 
         .project-grid {
@@ -561,7 +547,7 @@
         .pc-dot-g { background: oklch(58% 0.18 145 / 0.7); }
         .pc-url {
             flex: 1; max-width: 160px; height: 13px;
-            background: oklch(16% 0.008 82); border-radius: 3px;
+            background: rgba(250, 247, 241, 0.14); border-radius: 3px;
             margin: 0 8px; display: flex; align-items: center;
             padding: 0 7px; gap: 4px;
         }
@@ -717,7 +703,7 @@
 
         /* ── Mobile: ≤700px ── */
         @media (max-width: 700px) {
-            :root { --nav-h: 64px; }
+            
 
             /* Nav: hide desktop links, show hamburger */
             .nav-links { display: none; }
@@ -786,6 +772,7 @@
             .hero-scroll { display: none; }
         }
     </style>
+    <link rel="stylesheet" href="assets/css/main.css">
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -808,13 +795,35 @@
  ]
 }
 </script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "Organization",
+ "@id": "https://auralys.ai/#organization",
+ "name": "Auralys AI",
+ "url": "https://auralys.ai",
+ "logo": "https://auralys.ai/assets/auralys_logo.webp",
+ "telephone": "+918420240360",
+ "sameAs": [
+  "https://www.linkedin.com/in/sumantjain/"
+ ]
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "WebSite",
+ "name": "Auralys AI",
+ "url": "https://auralys.ai"
+}
+</script>
 </head>
 <body>
 
 <!-- ── NAV ── -->
 <nav>
     <a href="/" class="nav-logo">
-        <img src="assets/auralys_logo.png" alt="Auralys AI">
+        <img src="assets/auralys_logo.webp" alt="Auralys AI">
         <span>Auralys AI</span>
     </a>
 
@@ -829,6 +838,7 @@
                 <li><a href="/contact.html"><span class="dropdown-item-label">Strategic Consulting</span></a></li>
             </ul>
         </li>
+        <li><a href="secure-ai-programme-outline.html">Secure AI</a></li>
         <li><a href="/#global">Our Presence</a></li>
         <li><a href="contact.html">Contact</a></li>
     </ul>
@@ -868,6 +878,10 @@
     </a>
     <a href="contact.html" class="drawer-link">
         Contact
+        <span class="drawer-link-arrow">→</span>
+    </a>
+    <a href="secure-ai-programme-outline.html" class="drawer-link">
+        Secure AI
         <span class="drawer-link-arrow">→</span>
     </a>
     <div class="drawer-cta">
@@ -949,7 +963,7 @@
     <div class="footer-grid">
         <div class="footer-brand">
             <a href="/" class="footer-logo">
-                <img src="assets/auralys_logo.png" alt="Auralys AI">
+                <img src="assets/auralys_logo.webp" alt="Auralys AI">
                 <span>Auralys AI</span>
             </a>
             <p>AI-powered business analytics and e-commerce solutions for growing companies across India, South Africa, and the United Kingdom.</p>
@@ -961,6 +975,7 @@
                 <li><a href="https://ppt-creator.streamlit.app" target="_blank">Launch App</a></li>
                 <li><a href="/#services">Website Development</a></li>
                 <li><a href="/#services">Consulting</a></li>
+                <li><a href="secure-ai-programme-outline.html">Secure AI Programme</a></li>
             </ul>
         </div>
         <div class="footer-col">

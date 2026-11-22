@@ -18,7 +18,7 @@
 <title>FAQ | Auralys AI</title>
 <meta name="description" content="AI that delivers business outcomes. Answers to frequently asked questions about Auralys AI's consulting services: strategic AI consulting, agentic AI employees, web and e-commerce development, and the AI Business Analyst.">
 <link rel="canonical" href="https://auralys.ai/faq.html">
-<link rel="icon" type="image/png" href="assets/auralys_logo.png">
+<link rel="icon" type="image/png" href="assets/auralys_logo.webp">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Figtree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -82,7 +82,7 @@
       "name": "How does Auralys AI handle data security?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Auralys AI uses bank-grade encryption and follows enterprise compliance standards. Client data is handled under strict confidentiality agreements and is never shared or repurposed without consent."
+        "text": "Security and compliance requirements are scoped during discovery, based on the sensitivity of your data. Client data is handled under strict confidentiality agreements and is never shared or repurposed without consent."
       }
     },
     {
@@ -241,6 +241,39 @@
 }
 </script>
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://auralys.ai/#organization",
+  "name": "Auralys AI",
+  "url": "https://auralys.ai",
+  "logo": "https://auralys.ai/assets/auralys_logo.webp",
+  "telephone": "+918420240360",
+  "sameAs": [
+    "https://www.linkedin.com/in/sumantjain/"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Auralys AI",
+  "url": "https://auralys.ai"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://auralys.ai/" },
+    { "@type": "ListItem", "position": 2, "name": "FAQ", "item": "https://auralys.ai/faq.html" }
+  ]
+}
+</script>
+
 <style>
 /* ── RESET & TOKENS - matched exactly to index.html ── */
 *, *::before, *::after {
@@ -249,21 +282,7 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-:root {
-  --gold:        oklch(72% 0.12 82);
-  --gold-dim:    oklch(58% 0.09 82);
-  --gold-faint:  oklch(72% 0.04 82);
-  --bg:          oklch(13% 0.008 82);
-  --bg-raised:   oklch(16% 0.008 82);
-  --bg-surface:  oklch(19% 0.007 82);
-  --text:        oklch(93% 0.005 82);
-  --text-mid:    oklch(72% 0.006 82);
-  --text-low:    oklch(52% 0.005 82);
-  --border:      oklch(28% 0.006 82);
-  --border-gold: oklch(72% 0.09 82 / 0.22);
-  --safe-top:    env(safe-area-inset-top, 0px);
-  --safe-bottom: env(safe-area-inset-bottom, 0px);
-}
+
 
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 body {
@@ -289,7 +308,7 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: oklch(13% 0.008 82 / 0.88);
+  background: rgba(250, 247, 241, 0.88);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border-gold);
 }
@@ -332,7 +351,7 @@ nav {
 .nav-cta {
   padding: 9px 22px;
   background: var(--gold);
-  color: oklch(13% 0.008 82);
+  color: var(--on-dark);
   border-radius: 6px;
   font-weight: 600;
   font-size: 14px;
@@ -432,7 +451,7 @@ nav {
   position: fixed;
   top: 72px;
   left: 0; right: 0;
-  background: oklch(13% 0.008 82 / 0.98);
+  background: rgba(250, 247, 241, 0.98);
   backdrop-filter: blur(24px);
   border-bottom: 1px solid var(--border);
   z-index: 899;
@@ -460,7 +479,7 @@ nav {
   align-items: center;
   justify-content: center;
   background: var(--gold);
-  color: oklch(13% 0.008 82);
+  color: var(--text);
   border: none;
   padding: 16px 28px;
   border-radius: 6px;
@@ -813,7 +832,7 @@ details.faq-item[open] .q-toggle {
   gap: 10px;
   padding: 15px 32px;
   background: var(--gold);
-  color: oklch(13% 0.008 82);
+  color: var(--on-dark);
   border-radius: 7px;
   font-weight: 700;
   font-size: 15px;
@@ -998,6 +1017,7 @@ footer {
   .footer-bottom { flex-direction: column; text-align: center; }
 }
 </style>
+    <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
 
@@ -1007,6 +1027,7 @@ footer {
     <li><a href="index.html#consulting" onclick="closeMMenu()">Consulting</a></li>
     <li><a href="index.html#engagement" onclick="closeMMenu()">Engagement</a></li>
     <li><a href="insights.html" onclick="closeMMenu()">Insights</a></li>
+            <li><a href="secure-ai-programme-outline.html">Secure AI</a></li>
     <li><a href="faq.html" onclick="closeMMenu()">FAQ</a></li>
   </ul>
   <button class="m-cta" data-wa onclick="closeMMenu()">Book a consultation</button>
@@ -1015,7 +1036,7 @@ footer {
 <!-- NAV -->
 <nav id="nav" aria-label="Primary navigation">
   <a href="index.html" class="nav-logo">
-    <img src="assets/auralys_logo.png" alt="Auralys AI logo">
+    <img src="assets/auralys_logo.webp" alt="Auralys AI logo">
     <span>Auralys AI</span>
   </a>
   <ul class="nav-links">
@@ -1095,7 +1116,7 @@ footer {
 
       <details class="faq-item">
         <summary><span class="q-text">How does Auralys AI handle data security?</span><span class="q-toggle">+</span></summary>
-        <div class="a-body">Auralys AI uses bank-grade encryption and follows enterprise compliance standards. Client data is handled under strict confidentiality agreements and is never shared or repurposed without consent.</div>
+        <div class="a-body">Security and compliance requirements are scoped during discovery, based on the sensitivity of your data. Client data is handled under strict confidentiality agreements and is never shared or repurposed without consent.</div>
       </details>
 
       <details class="faq-item">
@@ -1252,7 +1273,7 @@ footer {
   <div class="footer-grid">
     <div class="footer-brand">
       <a href="index.html" class="footer-logo">
-        <img src="assets/auralys_logo.png" alt="Auralys AI logo">
+        <img src="assets/auralys_logo.webp" alt="Auralys AI logo">
         <span>Auralys AI</span>
       </a>
       <p>Boutique AI consulting for measurable business outcomes: agentic AI employees, strategic data consulting, and web and e-commerce development. Clients across India, South Africa, the United Kingdom, and the United States.</p>
@@ -1261,6 +1282,7 @@ footer {
       <h4>Consulting</h4>
       <ul>
         <li><a href="index.html#consulting">AI Employees</a></li>
+                    <li><a href="secure-ai-programme-outline.html">Secure AI Programme</a></li>
         <li><a href="index.html#consulting">Data consulting</a></li>
         <li><a href="index.html#consulting">Web &amp; e-commerce</a></li>
         <li><a href="index.html#engagement">Engagement models</a></li>
