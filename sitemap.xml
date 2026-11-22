@@ -6,7 +6,7 @@
 
   <!--
     sitemap.xml for auralys.ai
-    Last updated : 2026-11-03
+    Last updated : 2026-11-22
     Positioning  : AI consulting practice ("AI that delivers business outcomes"),
                    not a SaaS product site. Homepage, FAQ, Insights and Contact
                    were fully rewritten on 2026-09-24; their lastmod reflects that.
@@ -75,6 +75,14 @@
     <lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+
+  <!-- Secure AI Programme outline, one-page programme outline linked from the Secure AI Insights article and outreach emails -->
+  <url>
+    <loc>https://auralys.ai/secure-ai-programme-outline.html</loc>
+    <lastmod>2026-11-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 
   <!-- Web Development Portfolio, client-facing service evidence.
