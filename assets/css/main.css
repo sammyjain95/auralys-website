@@ -104,10 +104,10 @@ nav {
     background: var(--dark) !important;
     color: var(--on-dark) !important;
 }
-.cta-band h2, .cta-block h2 { color: var(--on-dark) !important; }
+.cta-band h2, .cta-block h2, .cta-band h3, .cta-block h3 { color: var(--on-dark) !important; }
 .cta-band p, .cta-block p { color: #cfc4ae !important; }
-.cta-band .btn-primary { background: var(--gold-strong) !important; color: var(--dark) !important; box-shadow: none !important; }
-.cta-band .btn-ghost { border-color: rgba(250, 247, 241, 0.5) !important; color: var(--on-dark) !important; }
+.cta-band .btn-primary, .cta-block .btn-primary { background: var(--gold-strong) !important; color: var(--dark) !important; box-shadow: none !important; }
+.cta-band .btn-ghost, .cta-block .btn-ghost { border-color: rgba(250, 247, 241, 0.5) !important; color: var(--on-dark) !important; }
 
 /* ---------- FAQ ---------- */
 .faq-item { border-radius: var(--radius); }
