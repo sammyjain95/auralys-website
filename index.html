@@ -948,6 +948,9 @@
             line-height: 1.6;
         }
 
+        /* Founder text column: cap the measure so paragraph lines stay
+           readable at wide desktop widths (was ~1240px a line). */
+        .founder-copy { max-width: 720px; }
         .founder-copy p {
             font-size: 17px;
             color: var(--text-mid);
@@ -1606,6 +1609,18 @@
             html { scroll-behavior: auto; }
         }
 
+        /* ── DESKTOP: Process and FAQ use the full container ── */
+        /* At 1919px the 860px Process card and 820px FAQ list left half
+           the container empty and looked unfinished. Above 961px the
+           four steps and six questions sit in two columns instead;
+           below 961px they fall back to the single-column rules above. */
+        @media (min-width: 961px) {
+            .process-steps { display: grid; grid-template-columns: 1fr 1fr; gap: 0 48px; }
+            .process-step:nth-child(3), .process-step:nth-child(4) { border-bottom: none; }
+            .faq-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0 48px; max-width: none; align-items: start; }
+            .faq-list details:nth-child(5), .faq-list details:nth-child(6) { border-bottom: none; }
+        }
+
         /* ── RESPONSIVE ── */
         @media (max-width: 1100px) {
             .trust-strip { grid-template-columns: repeat(2, 1fr); }
@@ -1632,7 +1647,7 @@
             .trust-strip { grid-template-columns: 1fr; }
         }
     </style>
-    <link rel="stylesheet" href="assets/css/main.css?v=2">
+    <link rel="stylesheet" href="assets/css/main.css?v=3">
 </head>
 <body>
 
@@ -1654,7 +1669,27 @@
             <li><a href="contact.html">Contact Us</a></li>
         </ul>
         <a data-wa href="https://calendar.app.google/H4xRz1CCSKCDZ4b36" target="_blank" rel="noopener" class="nav-cta">Book a consultation</a>
-    </nav>
+        <button class="hamburger" id="hbg" onclick="toggleMMenu()" aria-label="Menu" aria-expanded="false" aria-controls="mmenu">
+            <span></span><span></span><span></span>
+        </button>
+</nav>
+
+<!-- Mobile menu (shared pattern; see assets/css/main.css and assets/js/nav.js) -->
+<div class="mobile-menu" id="mmenu">
+    <ul>
+        <li><a href="#consulting">Consulting</a></li>
+        <li><a href="#engagement">Engagement</a></li>
+        <li><a href="web_development_portfolio.html">Portfolio</a></li>
+        <li><a href="insights.html">Insights</a></li>
+        <li><a href="secure-ai-programme-outline.html">Secure AI</a></li>
+        <li><a href="webinar.html">Webinars</a></li>
+        <li><a href="case-studies.html">Case Studies</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+    </ul>
+    <a class="m-cta" href="https://calendar.app.google/H4xRz1CCSKCDZ4b36" target="_blank" rel="noopener">Book a consultation</a>
+</div>
+
 
     <!-- HERO -->
     <section class="hero">
@@ -1880,7 +1915,7 @@
         <h2 class="section-h2">From first call to <em>live in production.</em></h2>
         <p class="section-intro">A simple, transparent delivery process. You always know what happens next.</p>
 
-        <div class="reveal" style="max-width: 860px; margin-top: 60px;">
+        <div class="reveal" style="margin-top: 60px;">
             <div class="process-flow">
                 <div class="process-header">
                     <span>How an engagement runs</span>
@@ -2143,5 +2178,6 @@
     });
 })();
 </script>
+    <script src="assets/js/nav.js"></script>
 </body>
 </html>

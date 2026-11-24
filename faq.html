@@ -423,75 +423,6 @@ nav {
   font-size: 13px;
 }
 
-/* ── MOBILE NAV ── */
-.hamburger {
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  gap: 5px;
-  width: 44px;
-  height: 44px;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-}
-.hamburger span {
-  display: block;
-  height: 2px;
-  background: var(--text);
-  border-radius: 2px;
-  transition: all 0.3s;
-}
-.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.hamburger.open span:nth-child(2) { opacity: 0; }
-.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-.mobile-menu {
-  display: none;
-  position: fixed;
-  top: 72px;
-  left: 0; right: 0;
-  background: rgba(250, 247, 241, 0.98);
-  backdrop-filter: blur(24px);
-  border-bottom: 1px solid var(--border);
-  z-index: 899;
-  padding: 16px clamp(24px, 5vw, 64px) calc(24px + var(--safe-bottom));
-  transform: translateY(-10px);
-  opacity: 0;
-  transition: transform 0.35s cubic-bezier(.4,0,.2,1), opacity 0.3s;
-  pointer-events: none;
-}
-.mobile-menu.open { transform: translateY(0); opacity: 1; pointer-events: all; }
-.mobile-menu ul { list-style: none; display: flex; flex-direction: column; }
-.mobile-menu a {
-  font-family: 'Libre Baskerville', serif;
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--text);
-  padding: 14px 0;
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  min-height: 44px;
-}
-.mobile-menu .m-cta {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--gold);
-  color: var(--text);
-  border: none;
-  padding: 16px 28px;
-  border-radius: 6px;
-  font-size: 15px;
-  font-weight: 700;
-  width: 100%;
-  margin-top: 16px;
-  font-family: 'Figtree', sans-serif;
-  cursor: pointer;
-  min-height: 44px;
-}
-
 /* ── HERO ── */
 .hero {
   padding-top: calc(72px + var(--safe-top));
@@ -996,9 +927,6 @@ footer {
 
 /* ── RESPONSIVE ── */
 @media (max-width: 768px) {
-  .nav-links, .nav-cta { display: none; }
-  .hamburger { display: flex; }
-  .mobile-menu { display: block; }
 
   .trust-band { flex-direction: column; align-items: flex-start; gap: 16px; }
   .trust-items { gap: 20px; }
@@ -1017,21 +945,11 @@ footer {
   .footer-bottom { flex-direction: column; text-align: center; }
 }
 </style>
-    <link rel="stylesheet" href="assets/css/main.css?v=2">
+    <link rel="stylesheet" href="assets/css/main.css?v=3">
 </head>
 <body>
 
 <!-- MOBILE MENU -->
-<div class="mobile-menu" id="mmenu">
-  <ul>
-    <li><a href="index.html#consulting" onclick="closeMMenu()">Consulting</a></li>
-    <li><a href="index.html#engagement" onclick="closeMMenu()">Engagement</a></li>
-    <li><a href="insights.html" onclick="closeMMenu()">Insights</a></li>
-            <li><a href="secure-ai-programme-outline.html">Secure AI</a></li>
-    <li><a href="faq.html" onclick="closeMMenu()">FAQ</a></li>
-  </ul>
-  <button class="m-cta" data-wa onclick="closeMMenu()">Book a consultation</button>
-</div>
 
 <!-- NAV -->
 <nav id="nav" aria-label="Primary navigation">
@@ -1048,9 +966,26 @@ footer {
   </ul>
   <a data-wa href="https://calendar.app.google/H4xRz1CCSKCDZ4b36" target="_blank" rel="noopener" class="nav-cta">Book a consultation</a>
   <button class="hamburger" id="hbg" onclick="toggleMMenu()" aria-label="Menu" aria-expanded="false" aria-controls="mmenu">
-    <span></span><span></span><span></span>
+      <span></span><span></span><span></span>
   </button>
 </nav>
+
+<!-- Mobile menu (shared pattern; see assets/css/main.css and assets/js/nav.js) -->
+<div class="mobile-menu" id="mmenu">
+    <ul>
+        <li><a href="index.html#consulting">Consulting</a></li>
+        <li><a href="index.html#engagement">Engagement</a></li>
+        <li><a href="web_development_portfolio.html">Portfolio</a></li>
+        <li><a href="insights.html">Insights</a></li>
+        <li><a href="secure-ai-programme-outline.html">Secure AI</a></li>
+        <li><a href="webinar.html">Webinars</a></li>
+        <li><a href="case-studies.html">Case Studies</a></li>
+        <li><a href="index.html#faq">FAQ</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+    </ul>
+    <a class="m-cta" href="https://calendar.app.google/H4xRz1CCSKCDZ4b36" target="_blank" rel="noopener">Book a consultation</a>
+</div>
+
 
 <!-- HERO -->
 <div class="hero">
@@ -1317,32 +1252,6 @@ footer {
 </footer>
 
 <script>
-  // ── MOBILE HAMBURGER ──
-  let mOpen = false;
-
-  function toggleMMenu() {
-    mOpen = !mOpen;
-    const btn = document.getElementById('hbg');
-    btn.classList.toggle('open', mOpen);
-    btn.setAttribute('aria-expanded', mOpen);
-    document.getElementById('mmenu').classList.toggle('open', mOpen);
-    document.body.style.overflow = mOpen ? 'hidden' : '';
-  }
-
-  function closeMMenu() {
-    if (!mOpen) return;
-    mOpen = false;
-    const btn = document.getElementById('hbg');
-    btn.classList.remove('open');
-    btn.setAttribute('aria-expanded', 'false');
-    document.getElementById('mmenu').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  document.addEventListener('click', e => {
-    if (mOpen && !e.target.closest('#mmenu') && !e.target.closest('#hbg')) closeMMenu();
-  });
-
   // ── SCROLL REVEAL ──
   const revealObserver = new IntersectionObserver(
     entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
@@ -1417,5 +1326,6 @@ footer {
     });
 })();
 </script>
+    <script src="assets/js/nav.js"></script>
 </body>
 </html>

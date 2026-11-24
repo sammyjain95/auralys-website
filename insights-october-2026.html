@@ -345,7 +345,27 @@
             <li><a href="index.html#faq">FAQ</a></li>
         </ul>
         <a data-wa href="https://calendar.app.google/H4xRz1CCSKCDZ4b36" target="_blank" rel="noopener" class="nav-cta">Book a consultation</a>
-    </nav>
+        <button class="hamburger" id="hbg" onclick="toggleMMenu()" aria-label="Menu" aria-expanded="false" aria-controls="mmenu">
+            <span></span><span></span><span></span>
+        </button>
+</nav>
+
+<!-- Mobile menu (shared pattern; see assets/css/main.css and assets/js/nav.js) -->
+<div class="mobile-menu" id="mmenu">
+    <ul>
+        <li><a href="index.html#consulting">Consulting</a></li>
+        <li><a href="index.html#engagement">Engagement</a></li>
+        <li><a href="web_development_portfolio.html">Portfolio</a></li>
+        <li><a href="insights.html">Insights</a></li>
+        <li><a href="secure-ai-programme-outline.html">Secure AI</a></li>
+        <li><a href="webinar.html">Webinars</a></li>
+        <li><a href="case-studies.html">Case Studies</a></li>
+        <li><a href="index.html#faq">FAQ</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+    </ul>
+    <a class="m-cta" href="https://calendar.app.google/H4xRz1CCSKCDZ4b36" target="_blank" rel="noopener">Book a consultation</a>
+</div>
+
 
     <header class="page-hero">
         <span class="kicker">Auralys AI · Insights</span>
@@ -405,7 +425,7 @@
                     .vai-fine { font-size: 12px; color: var(--text-low, #8a8a8a); margin: 16px 0 0; }
                     @media (max-width: 640px) { .vai-grid, .vai-results { grid-template-columns: 1fr; } }
                 </style>
-    <link rel="stylesheet" href="assets/css/main.css?v=2">
+    <link rel="stylesheet" href="assets/css/main.css?v=3">
                 <h4>Voice AI savings estimator</h4>
                 <p class="vai-note">Fill in hypothetical numbers for your business. Results update live.</p>
                 <div class="vai-grid">
@@ -637,5 +657,6 @@
     });
 })();
 </script>
+    <script src="assets/js/nav.js"></script>
 </body>
 </html>

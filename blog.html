@@ -522,27 +522,6 @@
     }
     .btn-cta-lg:hover { opacity: 0.88; transform: translateY(-1px); }
 
-    /* ── FOOTER ── */
-    .footer {
-      border-top: 1px solid var(--border);
-      padding: 2.5rem 2rem;
-      text-align: center;
-      position: relative;
-      z-index: 1;
-    }
-    .footer-inner { max-width: var(--wide); margin: 0 auto; }
-    .footer-logo {
-      font-size: 0.76rem;
-      font-weight: 700;
-      letter-spacing: 0.13em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1rem;
-    }
-    .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
-    .footer-links a { font-size: 0.8rem; color: var(--text-low); text-decoration: none; transition: color 0.15s; }
-    .footer-links a:hover { color: var(--gold); }
-    .footer-copy { font-size: 0.74rem; color: var(--text-low); }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 920px) {
@@ -559,8 +538,42 @@
       .stat-strip .stat-item:last-child { grid-column: span 2; }
       .nav-links .hide-mob { display: none; }
     }
-  </style>
-    <link rel="stylesheet" href="assets/css/main.css?v=2">
+  
+    /* ── FOOTER (standard site footer; same as insights.html) ── */
+    footer {
+      border-top: 1px solid var(--border-gold);
+      padding: clamp(48px, 6vw, 80px) clamp(24px, 6vw, 80px) 32px;
+      max-width: 1200px; margin: 40px auto 0;
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: 40px; margin-bottom: 48px;
+    }
+    .footer-logo { display: flex; align-items: center; gap: 12px; font-family: 'Libre Baskerville', serif; font-size: 20px; font-weight: 700; color: var(--text); text-decoration: none; margin-bottom: 16px; }
+    .footer-logo img { width: 32px; height: 32px; border-radius: 8px; }
+    .footer-brand p { color: var(--text-low); font-size: 14px; max-width: 320px; }
+    .footer-col h4 { font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-mid); margin-bottom: 18px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 12px; }
+    .footer-col a { color: var(--text-low); text-decoration: none; font-size: 14px; transition: color 0.25s; }
+    .footer-col a:hover { color: var(--gold); }
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 28px;
+      display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center;
+      color: var(--text-low); font-size: 13px;
+    }
+    .footer-legal-links { display: flex; gap: 16px; align-items: center; }
+    .footer-legal-links a { color: var(--text-low); text-decoration: none; }
+    .footer-legal-links a:hover { color: var(--gold); }
+    @media (max-width: 900px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 560px) {
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+    </style>
+    <link rel="stylesheet" href="assets/css/main.css?v=3">
 </head>
 <body>
 
@@ -577,7 +590,27 @@
       <a href="secure-ai-programme-outline.html" class="hide-mob">Secure AI</a>
       <a href="https://ppt-creator.streamlit.app" class="nav-cta">Launch Demo</a>
     </div>
-  </nav>
+    <button class="hamburger" id="hbg" onclick="toggleMMenu()" aria-label="Menu" aria-expanded="false" aria-controls="mmenu">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+
+<!-- Mobile menu (shared pattern; see assets/css/main.css and assets/js/nav.js) -->
+<div class="mobile-menu" id="mmenu">
+    <ul>
+        <li><a href="index.html#consulting">Consulting</a></li>
+        <li><a href="index.html#engagement">Engagement</a></li>
+        <li><a href="web_development_portfolio.html">Portfolio</a></li>
+        <li><a href="insights.html">Insights</a></li>
+        <li><a href="secure-ai-programme-outline.html">Secure AI</a></li>
+        <li><a href="webinar.html">Webinars</a></li>
+        <li><a href="case-studies.html">Case Studies</a></li>
+        <li><a href="index.html#faq">FAQ</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+    </ul>
+    <a class="m-cta" href="https://ppt-creator.streamlit.app" target="_blank" rel="noopener">Launch Demo</a>
+</div>
+
 
   <!-- Hero -->
   <header class="hero">
@@ -951,20 +984,57 @@
 
   </div>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-logo">AURALYS AI</div>
-      <div class="footer-links">
-        <a href="https://auralys.ai/#features">Features</a>
-        <a href="https://auralys.ai/#solutions">Solutions</a>
-        <a href="secure-ai-programme-outline.html">Secure AI</a>
-        <a href="https://auralys.ai/contact.html">Contact</a>
-        <a href="https://auralys.ai/blog">Blog</a>
+  <!-- Footer (standard site footer) -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="footer-logo">
+          <img src="assets/auralys_logo.webp" alt="Auralys AI logo">
+          <span>Auralys AI</span>
+        </a>
+        <p>Boutique AI consulting for measurable business outcomes: agentic AI employees, strategic data consulting, and web and e-commerce development. Clients across India, South Africa, the United Kingdom, and the United States.</p>
       </div>
-      <div class="footer-copy">© 2026 Auralys AI. All rights reserved. Built for real business challenges.</div>
+      <div class="footer-col">
+        <h4>Consulting</h4>
+        <ul>
+          <li><a href="index.html#consulting">AI Employees</a></li>
+          <li><a href="secure-ai-programme-outline.html">Secure AI Programme</a></li>
+          <li><a href="index.html#consulting">Data consulting</a></li>
+          <li><a href="index.html#consulting">Web &amp; e-commerce</a></li>
+          <li><a href="index.html#engagement">Engagement models</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Insights</h4>
+        <ul>
+          <li><a href="insights.html#article-june-2026">The 5-minute board deck</a></li>
+          <li><a href="insights.html#article-july-2026">Fix the process first</a></li>
+          <li><a href="insights.html#article-september-2026">Small business AI adoption</a></li>
+          <li><a href="insights.html#article-october-2026">Voice AI is underrated</a></li>
+          <li><a href="insights.html#article-november-2026">Agentic AI through Ember</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="index.html#founder">From the founder</a></li>
+          <li><a href="index.html#faq">FAQ</a></li>
+          <li><a data-wa href="https://calendar.app.google/H4xRz1CCSKCDZ4b36" target="_blank" rel="noopener">Book a consultation</a></li>
+          <li><a data-tel data-phone-display href="tel:+14083066084">+1 408 306 6084</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Auralys AI. Built for real business challenges.</span>
+      <span>India · South Africa · United Kingdom · United States</span>
+      <div class="footer-legal-links">
+        <a href="/privacy-policy.html">Privacy Policy</a>
+        <a href="/terms-of-service.html">Terms &amp; Conditions</a>
+      </div>
     </div>
   </footer>
 
+
+    <script src="assets/js/nav.js"></script>
 </body>
 </html>

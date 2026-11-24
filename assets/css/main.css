@@ -23,6 +23,7 @@
     --dark:        #1c1710;   /* dark band (CTA) */
     --on-dark:     #faf7f1;
     --radius:      12px;
+    --safe-bottom: env(safe-area-inset-bottom, 0px); /* iPhone home-indicator inset */
 }
 
 /* ---------- Base ---------- */
@@ -160,10 +161,106 @@ hr { border-color: var(--border) !important; }
 .bar-name, .chart-label { color: var(--text-mid) !important; }
 .deco-label { color: var(--text-low) !important; }
 
+/* ---------- Anchors under the sticky header ---------- */
+/* Anchor jumps (#consulting, #faq, #source-N...) used to land with the
+   target heading hidden behind the sticky nav. This offsets every
+   in-page target on desktop and mobile alike; it changes no layout. */
+[id] { scroll-margin-top: 96px; }
+
+/* ---------- Mobile navigation (shared, all pages) ---------- */
+/* One menu pattern everywhere: a 44px hamburger in the nav and a
+   full-width panel below it. Switches on at 1340px: the 9-link desktop
+   nav needs about 1324px to fit (measured 2026-11-24), so below that
+   the links would crowd and the Book button would be clipped off the
+   right edge. One breakpoint for every page, so there is no width
+   where a visitor has neither links nor a menu. The panel lists the
+   full standard nav on every page; the Book button mirrors the page's
+   own desktop CTA. */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+.hamburger span {
+    display: block;
+    height: 2px;
+    background: var(--text);
+    border-radius: 2px;
+    transition: all 0.3s;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.mobile-menu {
+    display: none;
+    position: fixed;
+    top: 72px;
+    left: 0; right: 0;
+    background: rgba(250, 247, 241, 0.98);
+    backdrop-filter: blur(24px);
+    border-bottom: 1px solid var(--border);
+    z-index: 899;
+    padding: 16px clamp(24px, 5vw, 64px) calc(24px + var(--safe-bottom, 0px));
+    transform: translateY(-10px);
+    opacity: 0;
+    transition: transform 0.35s cubic-bezier(.4,0,.2,1), opacity 0.3s;
+    pointer-events: none;
+}
+.mobile-menu.open { transform: translateY(0); opacity: 1; pointer-events: all; }
+.mobile-menu ul { list-style: none; display: flex; flex-direction: column; margin: 0; padding: 0; }
+.mobile-menu a {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+    text-decoration: none;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+}
+.mobile-menu a:hover { color: var(--gold); }
+.mobile-menu .m-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--gold);
+    color: var(--text);
+    border: none;
+    padding: 16px 28px;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 700;
+    font-family: 'Figtree', sans-serif;
+    text-decoration: none;
+    width: 100%;
+    margin-top: 16px;
+}
+
 /* ---------- Responsive ---------- */
-@media (max-width: 900px) {
-    .nav-links { display: none; }
+/* Laptop widths: trim the nav's side padding so the 9-link row keeps
+   comfortable gaps at 1366px (the most common laptop width). The
+   per-page nav rules set 64px sides; this override only narrows them. */
+@media (max-width: 1500px) {
+    nav { padding-left: clamp(24px, 4vw, 48px) !important; padding-right: clamp(24px, 4vw, 48px) !important; }
+}
+@media (max-width: 1340px) {
+    .nav-links, .nav-cta { display: none; }
+    .hamburger { display: flex; }
+    .mobile-menu { display: block; }
 }
 @media (max-width: 640px) {
     section { padding: 48px 0; }
+    /* Footer bottom bar: let the copyright, locations and legal
+       links wrap instead of squeezing into one row. */
+    .footer-bottom { flex-wrap: wrap; justify-content: center; gap: 8px 20px; text-align: center; }
 }
