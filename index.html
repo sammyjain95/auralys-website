@@ -720,8 +720,8 @@
             position: absolute;
             bottom: 12%;
             left: 3%;
-            width: 160px;
-            padding: 12px 14px;
+            width: 188px;
+            padding: 14px 16px;
             background: var(--bg-surface);
             border: 1px solid var(--border-gold);
             border-radius: 10px;
@@ -755,13 +755,16 @@
 
         .deco-sub { font-size: 10px; color: var(--text-low); margin-top: 3px; }
 
-        .deco-flags { display: flex; gap: 4px; margin-top: 6px; }
-        .deco-flag {
+        .deco-flags { display: flex; gap: 4px; margin-top: 0; }
+        .country-code {
             padding: 3px 8px;
             background: oklch(72% 0.12 82 / 0.1);
+            border: 1px solid var(--border-gold);
             border-radius: 4px;
             font-size: 10px;
-            color: var(--gold-faint);
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--gold);
         }
 
         /* ── TRUST BAND ── */
@@ -803,7 +806,6 @@
             gap: 8px;
         }
 
-        .trust-item .flag { font-size: 18px; }
 
         /* ── TRUST STRIP (why trust us, facts only) ── */
         .trust-strip {
@@ -833,8 +835,10 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 16px;
+            color: var(--gold);
         }
+
+        .trust-strip-icon svg, .consult-icon svg { width: 20px; height: 20px; display: block; }
 
         .trust-strip-title { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
         .trust-strip-desc { font-size: 12px; color: var(--text-low); line-height: 1.5; }
@@ -1575,7 +1579,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 16px;
+            color: var(--gold);
         }
 
         .consult-row-title { font-size: 14px; font-weight: 600; color: var(--text); }
@@ -1723,21 +1727,21 @@
                 <div class="consult-card-header">Auralys AI · Consulting</div>
                 <div class="consult-rows">
                     <div class="consult-row">
-                        <span class="consult-icon">🤖</span>
+                        <span class="consult-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="9" width="14" height="10" rx="2.5"/><path d="M12 9V5"/><circle cx="12" cy="4" r="1" fill="currentColor" stroke="none"/><circle cx="9.5" cy="13.5" r="1" fill="currentColor" stroke="none"/><circle cx="14.5" cy="13.5" r="1" fill="currentColor" stroke="none"/><path d="M9.5 16.5h5"/></svg></span>
                         <div>
                             <div class="consult-row-title">Agentic AI / AI Employees</div>
                             <div class="consult-row-desc">Voice assistants and automation that handle real work.</div>
                         </div>
                     </div>
                     <div class="consult-row">
-                        <span class="consult-icon">📊</span>
+                        <span class="consult-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg></span>
                         <div>
                             <div class="consult-row-title">Strategic Data Consulting</div>
                             <div class="consult-row-desc">Find your highest-impact AI moves, then execute them.</div>
                         </div>
                     </div>
                     <div class="consult-row">
-                        <span class="consult-icon">🌐</span>
+                        <span class="consult-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/><circle cx="6.5" cy="6.5" r="1" fill="currentColor" stroke="none"/><circle cx="10" cy="6.5" r="1" fill="currentColor" stroke="none"/><path d="M6 13h8"/></svg></span>
                         <div>
                             <div class="consult-row-title">Web &amp; E-commerce</div>
                             <div class="consult-row-desc">Conversion-focused sites and stores built to sell.</div>
@@ -1750,12 +1754,11 @@
             <div class="hero-right-deco2">
                 <div class="deco-label">Clients across</div>
                 <div class="deco-flags">
-                    <span class="deco-flag">🇮🇳</span>
-                    <span class="deco-flag">🇿🇦</span>
-                    <span class="deco-flag">🇬🇧</span>
-                    <span class="deco-flag">🇺🇸</span>
+                    <span class="country-code">IN</span>
+                    <span class="country-code">ZA</span>
+                    <span class="country-code">GB</span>
+                    <span class="country-code">US</span>
                 </div>
-                <div class="deco-sub" style="margin-top:8px;">India · South Africa · UK · US</div>
             </div>
         </div>
     </section>
@@ -1763,10 +1766,10 @@
     <div class="trust-band">
         <span class="trust-label">Trusted across</span>
         <div class="trust-items">
-            <span class="trust-item"><span class="flag">🇮🇳</span> India</span>
-            <span class="trust-item"><span class="flag">🇿🇦</span> South Africa</span>
-            <span class="trust-item"><span class="flag">🇬🇧</span> United Kingdom</span>
-            <span class="trust-item"><span class="flag">🇺🇸</span> United States</span>
+            <span class="trust-item"><span class="country-code">IN</span> India</span>
+            <span class="trust-item"><span class="country-code">ZA</span> South Africa</span>
+            <span class="trust-item"><span class="country-code">GB</span> United Kingdom</span>
+            <span class="trust-item"><span class="country-code">US</span> United States</span>
             <span class="trust-item">Direct founder access</span>
             <span class="trust-item">Fixed-scope engagements</span>
         </div>
@@ -1775,28 +1778,28 @@
     <!-- WHY TRUST US (facts only) -->
     <div class="trust-strip">
         <div class="trust-strip-cell">
-            <span class="trust-strip-icon">🤝</span>
+            <span class="trust-strip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
             <div>
                 <div class="trust-strip-title">Direct founder access</div>
                 <div class="trust-strip-desc">You work with Sumant Jain, the founder, not a sales team or account managers.</div>
             </div>
         </div>
         <div class="trust-strip-cell">
-            <span class="trust-strip-icon">📋</span>
+            <span class="trust-strip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M9 12h6"/><path d="M9 16h4"/></svg></span>
             <div>
                 <div class="trust-strip-title">Fixed-scope engagements</div>
                 <div class="trust-strip-desc">Agreed deliverables and timelines before work starts. No hourly billing surprises.</div>
             </div>
         </div>
         <div class="trust-strip-cell">
-            <span class="trust-strip-icon">📞</span>
+            <span class="trust-strip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
             <div>
                 <div class="trust-strip-title">Human support</div>
                 <div class="trust-strip-desc">Talk to a real person: <a data-tel data-phone-display href="tel:+14083066084" style="color:var(--gold);">+1 408 306 6084</a> or via the contact page.</div>
             </div>
         </div>
         <div class="trust-strip-cell">
-            <span class="trust-strip-icon">🌍</span>
+            <span class="trust-strip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
             <div>
                 <div class="trust-strip-title">Four markets served</div>
                 <div class="trust-strip-desc">Clients across India, South Africa, and the UK, with US engagements now underway.</div>
