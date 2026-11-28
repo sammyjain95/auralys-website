@@ -1,0 +1,2236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>S M Exports — Work Glove Specialist Since 1990</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,400;1,600&family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+/* ─── TOKENS ─────────────────────────────────────────────────── */
+:root {
+  --c-base:        oklch(8%  0.008 250);
+  --c-surface:     oklch(11% 0.010 250);
+  --c-raised:      oklch(97% 0.004 250);
+  --c-rule:        oklch(20% 0.010 250);
+  --c-rule-light:  oklch(82% 0.004 250 / 0.18);
+  --c-text-on-dark:oklch(97% 0.003 250);
+  --c-text-body:   oklch(14% 0.006 250);
+  --c-muted:       oklch(52% 0.006 250);
+  --c-accent:      oklch(58% 0.19  264);
+  --c-accent-dim:  oklch(44% 0.14  264);
+  --c-accent-glow: oklch(58% 0.19  264 / 0.15);
+  --c-amber:       oklch(72% 0.18  82);
+  --c-tag-bg:      oklch(15% 0.015 250);
+  --c-tag-text:    oklch(72% 0.06  250);
+  --r:    4px;
+  --sp1:  5px;   --sp2: 8px;  --sp3: 12.8px;
+  --sp4:  16px;  --sp5: 24px; --sp6: 48px;
+  --dur-instant: 150ms;
+  --dur-fast:    500ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --font-display: 'Barlow Condensed', sans-serif;
+  --font-body:    'Barlow', sans-serif;
+}
+
+/* ─── RESET ──────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--c-base);
+  color: var(--c-text-on-dark);
+  font-family: var(--font-body);
+  font-weight: 300;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+a { color: var(--c-accent); text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+/* ─── UTILITIES ──────────────────────────────────────────────── */
+.kicker {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-accent);
+  margin-bottom: var(--sp2);
+}
+.sr-only {
+  position: absolute; width:1px; height:1px;
+  overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap;
+}
+
+/* ─── NAV ────────────────────────────────────────────────────── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: oklch(8% 0.008 250 / 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 0.5px solid var(--c-rule);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--sp6);
+  height: 56px;
+}
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--c-text-on-dark);
+  text-transform: uppercase;
+}
+.nav-logo span { color: var(--c-accent); }
+.nav-links {
+  display: flex;
+  gap: var(--sp5);
+  list-style: none;
+}
+.nav-links a {
+  font-size: 14px;
+  font-weight: 400;
+  color: oklch(72% 0.006 250);
+  transition: color var(--dur-instant) ease-out;
+}
+.nav-links a:hover { color: var(--c-text-on-dark); }
+.nav-cta {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--c-base) !important;
+  background: var(--c-accent);
+  padding: 8px var(--sp4);
+  border-radius: var(--r);
+  transition: background var(--dur-instant) ease-out !important;
+}
+.nav-cta:hover { background: oklch(64% 0.20 264) !important; color: var(--c-base) !important; }
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--c-text-on-dark);
+  font-size: 24px;
+  cursor: pointer;
+  padding: 8px;
+}
+.nav-toggle:focus {
+  outline: 2px solid var(--c-accent);
+  outline-offset: 2px;
+}
+.nav-menu {
+  position: fixed;
+  top: 56px;
+  left: -100%;
+  width: 100%;
+  height: calc(100vh - 56px);
+  background: var(--c-base);
+  border-bottom: 0.5px solid var(--c-rule);
+  flex-direction: column;
+  padding: var(--sp5);
+  gap: var(--sp4);
+  transition: left var(--dur-fast) ease-out;
+  overflow-y: auto;
+}
+.nav-menu.active {
+  left: 0;
+}
+.nav-menu a {
+  font-size: 16px;
+  font-weight: 400;
+  color: oklch(72% 0.006 250);
+  padding: var(--sp3);
+  border-radius: var(--r);
+  transition: all var(--dur-instant) ease-out;
+}
+.nav-menu a:hover {
+  background: var(--c-surface);
+  color: var(--c-accent);
+}
+
+/* ─── HERO ───────────────────────────────────────────────────── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px var(--sp6) var(--sp6);
+  position: relative;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.hero-carousel {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+.hero-carousel-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 800ms ease-in-out;
+}
+.hero-carousel-slide.active {
+  opacity: 1;
+}
+.hero-carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.5) contrast(1.1);
+}
+.hero-grid-lines {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(oklch(100% 0 0 / 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(100% 0 0 / 0.025) 1px, transparent 1px);
+  background-size: 64px 64px;
+  pointer-events: none;
+  z-index: 1;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 100% 100% at 50% 50%, oklch(0% 0 0 / 0.3), oklch(0% 0 0 / 0.6));
+  pointer-events: none;
+  z-index: 2;
+}
+.hero-left {
+  position: relative;
+  z-index: 3;
+  max-width: 60ch;
+  text-align: center;
+}
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp2);
+  background: var(--c-tag-bg);
+  border: 0.5px solid var(--c-rule);
+  padding: var(--sp2) var(--sp3);
+  border-radius: var(--r);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--c-tag-text);
+  margin-bottom: var(--sp5);
+  transition: all var(--dur-instant) ease-out;
+}
+.hero-eyebrow:hover {
+  border-color: oklch(44% 0.14 264 / 0.5);
+}
+.hero-eyebrow-dot {
+  width: 8px; height: 8px;
+  background: var(--c-accent);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+  box-shadow: 0 0 8px var(--c-accent);
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+.hero-heading {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 8vw, 96px);
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--c-text-on-dark);
+  margin-bottom: var(--sp5);
+}
+.hero-heading em {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--c-accent);
+  display: block;
+}
+.hero-sub {
+  font-size: 17px;
+  font-weight: 300;
+  color: oklch(92% 0.006 250);
+  max-width: 60ch;
+  line-height: 1.7;
+  margin: 0 auto var(--sp6);
+}
+.hero-actions {
+  display: flex;
+  gap: var(--sp4);
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp2);
+  background: var(--c-accent);
+  color: oklch(8% 0.008 250);
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 500;
+  padding: 12px 24px;
+  border-radius: var(--r);
+  border: none;
+  cursor: pointer;
+  transition: all var(--dur-instant) ease-out;
+  box-shadow: 0 4px 12px oklch(58% 0.19 264 / 0.3);
+}
+.btn-primary:hover {
+  background: oklch(64% 0.20 264);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px oklch(58% 0.19 264 / 0.4);
+}
+.btn-primary:active {
+  transform: translateY(0);
+}
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp2);
+  background: oklch(8% 0.008 250 / 0.8);
+  color: var(--c-text-on-dark);
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 400;
+  padding: 12px 24px;
+  border-radius: var(--r);
+  border: 0.5px solid var(--c-rule-light);
+  cursor: pointer;
+  transition: all var(--dur-instant) ease-out;
+  backdrop-filter: blur(4px);
+}
+.btn-ghost:hover {
+  border-color: var(--c-accent);
+  color: var(--c-accent);
+  background: oklch(58% 0.19 264 / 0.15);
+}
+.hero-right {
+  display: none;
+}
+.hero-img-frame {
+  border-radius: var(--r);
+  overflow: hidden;
+  border: 0.5px solid var(--c-rule);
+  aspect-ratio: 4/3;
+  background: var(--c-surface);
+  position: relative;
+  transition: all var(--dur-fast) ease-out;
+}
+.hero-img-frame:hover {
+  box-shadow: 0 16px 48px oklch(0% 0 0 / 0.3);
+  border-color: oklch(44% 0.14 264 / 0.5);
+  transform: translateY(-4px);
+}
+.hero-img-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.75) contrast(1.1);
+  transition: filter var(--dur-fast) ease-out;
+}
+.hero-img-frame:hover img { filter: saturate(0.9) contrast(1.05); }
+.hero-img-overlay {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: linear-gradient(transparent, oklch(8% 0.008 250 / 0.92));
+  padding: var(--sp5);
+  font-size: 13px;
+  font-weight: 400;
+  color: oklch(75% 0.006 250);
+}
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp4);
+}
+.hero-stat {
+  background: var(--c-surface);
+  border: 0.5px solid var(--c-rule);
+  border-radius: var(--r);
+  padding: var(--sp4);
+  transition: all var(--dur-instant) ease-out;
+}
+.hero-stat:hover {
+  border-color: oklch(44% 0.14 264 / 0.5);
+  background: oklch(13% 0.010 250);
+  transform: translateY(-2px);
+}
+.hero-stat-num {
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--c-accent);
+  line-height: 1;
+}
+.hero-stat-label {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--c-muted);
+  margin-top: var(--sp2);
+  line-height: 1.3;
+}
+
+/* ─── TRUST BAND ─────────────────────────────────────────────── */
+.trust-band {
+  border-top: 0.5px solid var(--c-rule);
+  border-bottom: 0.5px solid var(--c-rule);
+  padding: var(--sp4) var(--sp6);
+  display: flex;
+  align-items: center;
+  gap: var(--sp6);
+  overflow: hidden;
+  background: var(--c-surface);
+}
+.trust-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: oklch(42% 0.006 250);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.trust-divider {
+  width: 0.5px;
+  height: 24px;
+  background: var(--c-rule);
+  flex-shrink: 0;
+}
+.trust-items {
+  display: flex;
+  gap: var(--sp6);
+  align-items: center;
+  flex-wrap: wrap;
+}
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: var(--sp2);
+  font-size: 14px;
+  font-weight: 400;
+  color: oklch(72% 0.006 250);
+  white-space: nowrap;
+}
+.trust-item svg { flex-shrink: 0; }
+
+/* ─── SECTION COMMON ─────────────────────────────────────────── */
+.section {
+  padding: var(--sp6) var(--sp6);
+  border-bottom: 0.5px solid var(--c-rule);
+}
+.section-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: var(--sp6);
+  padding-bottom: var(--sp5);
+  border-bottom: 0.5px solid var(--c-rule);
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--c-text-on-dark);
+  line-height: 1.0;
+  letter-spacing: -0.01em;
+}
+.section-title em {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--c-accent);
+}
+
+/* ─── PRODUCTS ───────────────────────────────────────────────── */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp5);
+}
+.product-card {
+  background: var(--c-raised);
+  border-radius: var(--r);
+  overflow: hidden;
+  border: 0.5px solid transparent;
+  transition: transform var(--dur-instant) var(--ease-out),
+              box-shadow var(--dur-instant) var(--ease-out),
+              border-color var(--dur-instant) ease-out,
+              background var(--dur-instant) ease-out;
+  cursor: pointer;
+  position: relative;
+}
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px oklch(0% 0 0 / 0.4);
+  border-color: oklch(44% 0.14 264 / 0.6);
+  background: oklch(100% 0 0 / 0.95);
+}
+.product-card-img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  filter: saturate(0.8) contrast(1.08);
+  transition: filter var(--dur-fast) ease-out;
+}
+.product-card:hover .product-card-img { filter: saturate(1) contrast(1.05); }
+.product-card-body {
+  padding: var(--sp4);
+  border-top: 2px solid var(--c-accent-dim);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp3);
+}
+.product-tag {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--c-tag-text);
+  background: var(--c-tag-bg);
+  padding: 4px var(--sp3);
+  border-radius: var(--r);
+  display: inline-block;
+  align-self: flex-start;
+  transition: all var(--dur-instant) ease-out;
+}
+.product-card:hover .product-tag {
+  background: oklch(58% 0.19 264 / 0.1);
+  color: var(--c-accent);
+}
+.product-name {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--c-text-body);
+  line-height: 1.2;
+  transition: color var(--dur-instant) ease-out;
+}
+.product-card:hover .product-name {
+  color: var(--c-accent);
+}
+.product-desc {
+  font-size: 15px;
+  font-weight: 300;
+  color: oklch(38% 0.006 250);
+  line-height: 1.55;
+}
+.product-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--sp3);
+  border-top: 0.5px solid oklch(82% 0.004 250 / 0.5);
+  margin-top: auto;
+}
+.product-count { font-size: 13px; font-weight: 300; color: oklch(48% 0.006 250); }
+.product-count strong { font-weight: 500; color: var(--c-text-body); }
+.product-link {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--c-accent);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: gap var(--dur-instant) ease-out, transform var(--dur-instant) ease-out;
+}
+.product-card:hover .product-link {
+  gap: 8px;
+  transform: translateX(2px);
+}
+.bestseller-badge {
+  position: absolute;
+  top: var(--sp3); right: var(--sp3);
+  background: oklch(8% 0.008 250 / 0.82);
+  color: var(--c-accent);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 4px var(--sp2);
+  border-radius: var(--r);
+  backdrop-filter: blur(4px);
+}
+
+/* ─── WORLD MAP ──────────────────────────────────────────────── */
+.markets-section {
+  background: var(--c-surface);
+}
+.markets-layout {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: var(--sp6);
+  align-items: start;
+}
+.map-container {
+  position: relative;
+  background: linear-gradient(135deg, var(--c-base) 0%, oklch(12% 0.010 250) 100%);
+  border: 0.5px solid var(--c-rule);
+  border-radius: var(--r);
+  overflow: hidden;
+  padding: var(--sp5);
+  box-shadow: 0 8px 24px oklch(0% 0 0 / 0.3);
+  transition: box-shadow var(--dur-fast) ease-out;
+}
+.map-container:hover {
+  box-shadow: 0 16px 48px oklch(0% 0 0 / 0.4);
+}
+#world-map {
+  width: 100%;
+  height: auto;
+  transition: filter var(--dur-fast) ease-out;
+}
+.map-container:hover #world-map {
+  filter: brightness(1.05);
+}
+.map-dot {
+  cursor: pointer;
+  transition: all var(--dur-instant) ease-out;
+}
+.map-dot circle {
+  transition: r var(--dur-instant) ease-out, opacity var(--dur-instant) ease-out;
+}
+.map-dot:hover circle {
+  r: 7;
+  opacity: 0.9;
+  filter: drop-shadow(0 0 8px oklch(58% 0.19 264 / 0.5));
+}
+.map-dot-label {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 500;
+  fill: var(--c-text-on-dark);
+  pointer-events: none;
+  opacity: 0.85;
+  transition: opacity var(--dur-instant) ease-out;
+}
+.map-dot:hover .map-dot-label {
+  opacity: 1;
+}
+.map-legend {
+  display: flex;
+  gap: var(--sp4);
+  margin-top: var(--sp5);
+  justify-content: center;
+  padding: var(--sp4);
+  background: oklch(100% 0 0 / 0.02);
+  border-radius: var(--r);
+  border: 0.5px solid var(--c-rule-light);
+}
+.map-legend-item {
+  display: flex;
+  align-items: center;
+  gap: var(--sp2);
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--c-muted);
+  transition: color var(--dur-instant) ease-out;
+}
+.map-legend-item:hover {
+  color: var(--c-text-on-dark);
+}
+.map-dot-key {
+  width: 8px; height: 8px; border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 4px currentColor;
+  transition: all var(--dur-instant) ease-out;
+}
+.map-legend-item:hover .map-dot-key {
+  transform: scale(1.2);
+}
+.markets-sidebar { display: flex; flex-direction: column; gap: var(--sp4); }
+.market-card {
+  background: var(--c-base);
+  border: 0.5px solid var(--c-rule);
+  border-radius: var(--r);
+  padding: var(--sp4);
+  transition: all var(--dur-instant) ease-out;
+}
+.market-card:hover {
+  border-color: oklch(44% 0.14 264 / 0.8);
+  background: oklch(13% 0.010 250);
+  box-shadow: 0 8px 20px oklch(0% 0 0 / 0.3);
+  transform: translateY(-2px);
+}
+.market-card-header {
+  display: flex;
+  align-items: center;
+  gap: var(--sp3);
+  margin-bottom: var(--sp3);
+}
+.market-flag {
+  font-size: 24px;
+  line-height: 1;
+  transition: transform var(--dur-instant) ease-out;
+}
+.market-card:hover .market-flag {
+  transform: scale(1.15) rotate(5deg);
+}
+.market-name {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--c-text-on-dark);
+  transition: color var(--dur-instant) ease-out;
+}
+.market-card:hover .market-name {
+  color: var(--c-accent);
+}
+.market-desc {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--c-muted);
+  line-height: 1.6;
+  transition: color var(--dur-instant) ease-out;
+}
+.market-card:hover .market-desc {
+  color: oklch(72% 0.006 250);
+}
+.market-products {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp2);
+  margin-top: var(--sp4);
+}
+.market-product-tag {
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--c-tag-text);
+  background: var(--c-tag-bg);
+  padding: 4px var(--sp3);
+  border-radius: var(--r);
+  border: 0.5px solid oklch(100% 0 0 / 0.05);
+  transition: all var(--dur-instant) ease-out;
+}
+
+/* ─── COMPLIANCE ─────────────────────────────────────────────── */
+.compliance-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp5);
+}
+.compliance-card {
+  background: var(--c-surface);
+  border: 0.5px solid var(--c-rule);
+  border-radius: var(--r);
+  padding: var(--sp4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp3);
+  transition: all var(--dur-instant) ease-out;
+}
+.compliance-card:hover {
+  border-color: oklch(44% 0.14 264 / 0.8);
+  transform: translateY(-4px);
+  background: oklch(13% 0.010 250);
+  box-shadow: 0 12px 28px oklch(0% 0 0 / 0.3);
+}
+.compliance-icon {
+  width: 40px; height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--c-accent-glow);
+  border: 0.5px solid oklch(44% 0.14 264 / 0.5);
+  border-radius: var(--r);
+  flex-shrink: 0;
+  transition: all var(--dur-instant) ease-out;
+}
+.compliance-card:hover .compliance-icon {
+  background: var(--c-accent-glow);
+  border-color: oklch(44% 0.14 264);
+  transform: scale(1.1);
+}
+.compliance-standard {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--c-text-on-dark);
+  letter-spacing: 0.04em;
+  transition: color var(--dur-instant) ease-out;
+}
+.compliance-card:hover .compliance-standard {
+  color: var(--c-accent);
+}
+.compliance-name {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--c-muted);
+  line-height: 1.4;
+}
+.compliance-scope {
+  font-size: 12px;
+  font-weight: 300;
+  color: oklch(42% 0.006 250);
+  line-height: 1.5;
+  padding-top: var(--sp3);
+  border-top: 0.5px solid var(--c-rule);
+}
+.compliance-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 500;
+  color: oklch(62% 0.15 155);
+  background: oklch(62% 0.15 155 / 0.1);
+  border: 0.5px solid oklch(62% 0.15 155 / 0.25);
+  padding: 3px var(--sp2);
+  border-radius: var(--r);
+  align-self: flex-start;
+}
+
+/* ─── FACILITY ───────────────────────────────────────────────── */
+.facility-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp6);
+  align-items: center;
+}
+.facility-copy { display: flex; flex-direction: column; gap: var(--sp5); }
+.facility-body {
+  font-size: 17px;
+  font-weight: 300;
+  color: oklch(62% 0.006 250);
+  line-height: 1.75;
+  max-width: 52ch;
+}
+.facility-specs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp4);
+}
+.spec-item {
+  background: var(--c-surface);
+  border: 0.5px solid var(--c-rule);
+  border-radius: var(--r);
+  padding: var(--sp4);
+  transition: all var(--dur-instant) ease-out;
+}
+.spec-item:hover {
+  border-color: oklch(44% 0.14 264 / 0.6);
+  background: oklch(13% 0.010 250);
+  transform: translateY(-2px);
+}
+.spec-val {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--c-accent);
+  line-height: 1;
+}
+.spec-key {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--c-muted);
+  margin-top: var(--sp2);
+}
+.facility-images {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp4);
+}
+.facility-img {
+  border-radius: var(--r);
+  overflow: hidden;
+  border: 0.5px solid var(--c-rule);
+  aspect-ratio: 4/3;
+  background: var(--c-surface);
+  transition: all var(--dur-instant) ease-out;
+}
+.facility-img:hover {
+  border-color: oklch(44% 0.14 264 / 0.6);
+  transform: scale(1.02);
+  box-shadow: 0 8px 24px oklch(0% 0 0 / 0.2);
+}
+.facility-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: saturate(0.75) contrast(1.08);
+  transition: filter var(--dur-fast) ease-out;
+}
+.facility-img:hover img {
+  filter: saturate(0.9) contrast(1.05);
+}
+.facility-img-wide {
+  grid-column: span 2;
+  aspect-ratio: 16/6;
+}
+
+/* ─── CTA BAND ───────────────────────────────────────────────── */
+.cta-band {
+  background: linear-gradient(135deg, var(--c-accent) 0%, oklch(64% 0.20 264) 100%);
+  padding: var(--sp6) var(--sp6);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp5);
+  box-shadow: 0 -8px 32px oklch(58% 0.19 264 / 0.2);
+  transition: all var(--dur-fast) ease-out;
+}
+.cta-heading {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: oklch(8% 0.008 250);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+.cta-sub {
+  font-size: 16px;
+  font-weight: 300;
+  color: oklch(16% 0.012 250);
+  margin-top: var(--sp2);
+}
+.btn-dark {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp2);
+  background: oklch(8% 0.008 250);
+  color: var(--c-accent);
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 500;
+  padding: 13px 24px;
+  border-radius: var(--r);
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--dur-instant) ease-out;
+  box-shadow: 0 4px 12px oklch(0% 0 0 / 0.2);
+}
+.btn-dark:hover {
+  background: oklch(12% 0.008 250);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px oklch(0% 0 0 / 0.3);
+}
+
+/* ─── FOOTER ─────────────────────────────────────────────────── */
+footer {
+  background: var(--c-surface);
+  border-top: 0.5px solid var(--c-rule);
+  padding: var(--sp6) var(--sp6) var(--sp4);
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: var(--sp6);
+  margin-bottom: var(--sp6);
+  padding-bottom: var(--sp5);
+  border-bottom: 0.5px solid var(--c-rule);
+}
+.footer-brand-name {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--c-text-on-dark);
+  margin-bottom: var(--sp3);
+}
+.footer-brand-name span { color: var(--c-accent); }
+.footer-desc {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--c-muted);
+  line-height: 1.6;
+  max-width: 30ch;
+}
+.footer-col-title {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: oklch(42% 0.006 250);
+  margin-bottom: var(--sp4);
+}
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: var(--sp3); }
+.footer-links a {
+  font-size: 14px;
+  font-weight: 300;
+  color: oklch(62% 0.006 250);
+  transition: color var(--dur-instant) ease-out;
+}
+.footer-links a:hover { color: var(--c-text-on-dark); }
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  font-weight: 300;
+  color: oklch(42% 0.006 250);
+}
+
+/* ─── SCROLL REVEAL ──────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity var(--dur-fast) var(--ease-out),
+              transform var(--dur-fast) var(--ease-out);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── RESPONSIVE DESIGN ──────────────────────────────────────── */
+
+/* Tablet: 768px and below */
+@media (max-width: 768px) {
+  :root {
+    --sp6: 24px;
+    --sp5: 16px;
+  }
+
+  /* Navigation */
+  nav {
+    padding: 0 var(--sp4);
+  }
+  .nav-logo {
+    font-size: 18px;
+  }
+  .nav-links {
+    gap: var(--sp4);
+  }
+  .nav-links a {
+    font-size: 13px;
+  }
+
+  /* Hero Section */
+  .hero {
+    padding: 80px var(--sp4) var(--sp4);
+    min-height: 90vh;
+  }
+  .hero-left {
+    max-width: 100%;
+  }
+  .hero-heading {
+    font-size: clamp(32px, 6vw, 60px);
+    margin-bottom: var(--sp4);
+  }
+  .hero-sub {
+    font-size: 16px;
+    margin-bottom: var(--sp5);
+  }
+  .hero-actions {
+    gap: var(--sp3);
+  }
+  .btn-primary,
+  .btn-ghost {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+
+  /* Trust Band */
+  .trust-band {
+    padding: var(--sp3) var(--sp4);
+    gap: var(--sp4);
+    flex-wrap: wrap;
+  }
+  .trust-items {
+    gap: var(--sp4);
+  }
+  .trust-item {
+    font-size: 13px;
+  }
+
+  /* Section Common */
+  .section {
+    padding: var(--sp5) var(--sp4);
+  }
+  .section-header {
+    margin-bottom: var(--sp4);
+    padding-bottom: var(--sp4);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--sp3);
+  }
+  .section-title {
+    font-size: 28px;
+  }
+
+  /* Products Grid */
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--sp4);
+  }
+  .product-card-img {
+    aspect-ratio: 3/2;
+  }
+  .product-name {
+    font-size: 18px;
+  }
+
+  /* Markets Layout */
+  .markets-layout {
+    grid-template-columns: 1fr;
+    gap: var(--sp5);
+  }
+  .markets-sidebar {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--sp4);
+  }
+
+  /* Compliance Grid */
+  .compliance-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--sp4);
+  }
+  .compliance-standard {
+    font-size: 16px;
+  }
+
+  /* Facility Layout */
+  .facility-layout {
+    grid-template-columns: 1fr;
+    gap: var(--sp5);
+  }
+  .facility-images {
+    grid-template-columns: 1fr;
+  }
+  .facility-img-wide {
+    grid-column: span 1;
+    aspect-ratio: 16/9;
+  }
+  .spec-val {
+    font-size: 24px;
+  }
+
+  /* CTA Band */
+  .cta-band {
+    padding: var(--sp5) var(--sp4);
+    flex-direction: column;
+    text-align: center;
+    gap: var(--sp4);
+  }
+  .cta-heading {
+    font-size: 24px;
+  }
+  .cta-sub {
+    font-size: 14px;
+  }
+  .btn-dark {
+    width: 100%;
+  }
+
+  /* Footer */
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: var(--sp4);
+  }
+  .footer-bottom {
+    flex-direction: column;
+    gap: var(--sp3);
+    align-items: flex-start;
+    text-align: left;
+  }
+}
+
+/* Mobile: 480px and below */
+@media (max-width: 480px) {
+  :root {
+    --sp6: 16px;
+    --sp5: 12px;
+    --sp4: 12px;
+  }
+
+  /* Navigation */
+  nav {
+    padding: 0 var(--sp4);
+    height: 52px;
+  }
+  .nav-logo {
+    font-size: 16px;
+  }
+  .nav-toggle {
+    display: block;
+  }
+  .nav-links {
+    display: none;
+  }
+  .nav-menu {
+    display: flex;
+  }
+  .nav-menu a {
+    display: block;
+  }
+
+  /* Hero Section */
+  .hero {
+    padding: 70px var(--sp4) var(--sp4);
+    min-height: 80vh;
+  }
+  .hero-heading {
+    font-size: clamp(24px, 5vw, 48px);
+    margin-bottom: var(--sp3);
+    line-height: 0.85;
+  }
+  .hero-eyebrow {
+    font-size: 11px;
+    padding: 6px 10px;
+    margin-bottom: var(--sp3);
+  }
+  .hero-sub {
+    font-size: 15px;
+    max-width: 100%;
+    margin-bottom: var(--sp4);
+  }
+  .hero-actions {
+    flex-direction: column;
+    gap: var(--sp3);
+    width: 100%;
+  }
+  .btn-primary,
+  .btn-ghost {
+    width: 100%;
+    justify-content: center;
+    font-size: 14px;
+    padding: 12px 16px;
+  }
+
+  /* Trust Band */
+  .trust-band {
+    padding: var(--sp3) var(--sp4);
+    gap: var(--sp3);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .trust-label {
+    font-size: 10px;
+  }
+  .trust-items {
+    gap: var(--sp3);
+  }
+  .trust-item {
+    font-size: 12px;
+    gap: 4px;
+  }
+  .trust-item svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  /* Section Common */
+  .section {
+    padding: var(--sp4) var(--sp4);
+  }
+  .section-title {
+    font-size: 24px;
+  }
+  .section-header {
+    margin-bottom: var(--sp4);
+    padding-bottom: var(--sp3);
+  }
+
+  /* Products Grid */
+  .products-grid {
+    grid-template-columns: 1fr;
+    gap: var(--sp3);
+  }
+  .product-card-body {
+    padding: var(--sp3);
+    gap: var(--sp2);
+  }
+  .product-name {
+    font-size: 16px;
+  }
+  .product-desc {
+    font-size: 14px;
+  }
+
+  /* Markets Layout */
+  .markets-sidebar {
+    grid-template-columns: 1fr;
+  }
+  .market-card {
+    padding: var(--sp3);
+  }
+  .market-name {
+    font-size: 16px;
+  }
+  .market-desc {
+    font-size: 13px;
+  }
+
+  /* Compliance Grid */
+  .compliance-grid {
+    grid-template-columns: 1fr;
+    gap: var(--sp3);
+  }
+  .compliance-card {
+    padding: var(--sp3);
+    gap: var(--sp2);
+  }
+  .compliance-icon {
+    width: 36px;
+    height: 36px;
+  }
+  .compliance-standard {
+    font-size: 16px;
+  }
+  .compliance-name {
+    font-size: 12px;
+  }
+
+  /* Facility Layout */
+  .facility-body {
+    font-size: 15px;
+    max-width: 100%;
+  }
+  .facility-specs {
+    grid-template-columns: 1fr;
+    gap: var(--sp3);
+  }
+  .spec-item {
+    padding: var(--sp3);
+  }
+  .spec-val {
+    font-size: 22px;
+  }
+  .spec-key {
+    font-size: 12px;
+  }
+
+  /* CTA Band */
+  .cta-band {
+    padding: var(--sp4) var(--sp4);
+  }
+  .cta-heading {
+    font-size: 20px;
+  }
+  .cta-sub {
+    font-size: 13px;
+  }
+  .btn-dark {
+    font-size: 14px;
+    padding: 11px 20px;
+  }
+
+  /* Footer */
+  .footer-grid {
+    gap: var(--sp3);
+    margin-bottom: var(--sp4);
+    padding-bottom: var(--sp3);
+  }
+  .footer-brand-name {
+    font-size: 18px;
+    margin-bottom: var(--sp2);
+  }
+  .footer-desc {
+    font-size: 13px;
+    max-width: 100%;
+  }
+  .footer-col-title {
+    font-size: 10px;
+    margin-bottom: var(--sp3);
+  }
+  .footer-links a {
+    font-size: 13px;
+  }
+  .footer-bottom {
+    font-size: 12px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav aria-label="Main navigation">
+  <div class="nav-logo">S M Exports</div>
+  <ul class="nav-links">
+    <li><a href="#products">Products</a></li>
+    <li><a href="#markets">Markets</a></li>
+    <li><a href="#compliance">Compliance</a></li>
+    <li><a href="#facility">Facility</a></li>
+    <li><a href="#contact" class="nav-cta">Contact Us</a></li>
+  </ul>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+    ☰
+  </button>
+  <div class="nav-menu" id="nav-menu">
+    <a href="#products" class="nav-menu-link">Products</a>
+    <a href="#markets" class="nav-menu-link">Markets</a>
+    <a href="#compliance" class="nav-menu-link">Compliance</a>
+    <a href="#facility" class="nav-menu-link">Facility</a>
+    <a href="#contact" class="nav-menu-link nav-cta">Contact Us</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" aria-label="Hero">
+  <div class="hero-carousel" aria-hidden="true">
+    <div class="hero-carousel-slide active">
+      <img
+        src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80"
+        alt="Industrial leather gloves"
+        srcset="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=75 600w, https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80 1200w"
+      />
+    </div>
+    <div class="hero-carousel-slide">
+      <img
+        src="https://images.unsplash.com/photo-1552306098-77db03baf835?auto=format&fit=crop&w=1200&q=80"
+        alt="Protective gear manufacturing"
+        srcset="https://images.unsplash.com/photo-1552306098-77db03baf835?auto=format&fit=crop&w=600&q=75 600w, https://images.unsplash.com/photo-1552306098-77db03baf835?auto=format&fit=crop&w=1200&q=80 1200w"
+      />
+    </div>
+    <div class="hero-carousel-slide">
+      <img
+        src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=1200&q=80"
+        alt="Industrial safety equipment"
+        srcset="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=600&q=75 600w, https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=1200&q=80 1200w"
+      />
+    </div>
+  </div>
+  <div class="hero-overlay" aria-hidden="true"></div>
+  <div class="hero-grid-lines" aria-hidden="true"></div>
+
+  <div class="hero-left reveal">
+    <div class="hero-eyebrow">
+      <span class="hero-eyebrow-dot" aria-hidden="true"></span>
+      Star Export House · Kolkata, India · Est. 1990
+    </div>
+    <h1 class="hero-heading">
+      Leather<br>Built for<br><em>Hard Work.</em>
+    </h1>
+    <p class="hero-sub">Industrial safety gloves and protective clothing manufactured in Kolkata, exported to Europe and America for over three decades.</p>
+    <div class="hero-actions">
+      <a href="#products" class="btn-primary">
+        View Products
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a href="#contact" class="btn-ghost">Request a Catalogue</a>
+    </div>
+  </div>
+
+  <div class="hero-right reveal" style="transition-delay: 120ms;">
+    <div class="hero-img-frame">
+      <img
+        src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=900&q=80"
+        alt="Industrial leather gloves on a workshop surface"
+      />
+      <div class="hero-img-overlay">EN 388 · EN 407 certified — European market standard</div>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num">34+</div>
+        <div class="hero-stat-label">Years of experience</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">30+</div>
+        <div class="hero-stat-label">Export clients</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">10+</div>
+        <div class="hero-stat-label">20-year partnerships</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAND -->
+<div class="trust-band" role="list" aria-label="Export markets">
+  <span class="trust-label">Exporting to</span>
+  <span class="trust-divider" aria-hidden="true"></span>
+  <div class="trust-items">
+    <div class="trust-item" role="listitem">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><path d="M2 12h20"/></svg>
+      🇩🇪 Germany
+    </div>
+    <div class="trust-item" role="listitem">🇫🇷 France</div>
+    <div class="trust-item" role="listitem">🇬🇧 United Kingdom</div>
+    <div class="trust-item" role="listitem">🇳🇱 Netherlands</div>
+    <div class="trust-item" role="listitem">🇧🇪 Belgium</div>
+    <div class="trust-item" role="listitem">🇺🇸 United States</div>
+    <div class="trust-item" role="listitem">🇨🇦 Canada</div>
+    <div class="trust-item" role="listitem">🇦🇺 Australia</div>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<section class="section" id="products" aria-labelledby="products-heading">
+  <div class="section-header">
+    <div>
+      <p class="kicker">What we make</p>
+      <h2 class="section-title" id="products-heading">Built for the <em>Hardest Work</em></h2>
+    </div>
+    <a href="products/index.html" style="font-size:14px; font-weight:300; color:var(--c-accent); display:flex; align-items:center; gap:4px;">
+      All products
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+
+  <div class="products-grid reveal">
+    <article class="product-card">
+      <span class="bestseller-badge">Bestseller</span>
+      <img class="product-card-img"
+        src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80"
+        alt="Heavy-duty leather work gloves" />
+      <div class="product-card-body">
+        <span class="product-tag">Leather Gloves</span>
+        <h3 class="product-name">Mechanical &amp; Industrial</h3>
+        <p class="product-desc">Cut-resistant grain leather, reinforced palm stitching. EN 388 rated for European markets.</p>
+        <div class="product-footer">
+          <span class="product-count"><strong>9</strong> product lines</span>
+          <a href="products/mechanical-gloves.html" class="product-link">Browse <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+    </article>
+
+    <article class="product-card">
+      <img class="product-card-img"
+        src="https://images.unsplash.com/photo-1581094271901-8022df4466f9?auto=format&fit=crop&w=800&q=80"
+        alt="Welding work with protective gear" />
+      <div class="product-card-body">
+        <span class="product-tag">Welding Clothing</span>
+        <h3 class="product-name">Jackets, Aprons &amp; Bibs</h3>
+        <p class="product-desc">Flame-retardant split leather construction. Full range from cape bibs to sleeves and accessories.</p>
+        <div class="product-footer">
+          <span class="product-count"><strong>5</strong> product lines</span>
+          <a href="products/welding-gloves.html" class="product-link">Browse <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+    </article>
+
+    <article class="product-card">
+      <img class="product-card-img"
+        src="https://images.unsplash.com/photo-1609081219090-a6d81d3085bf?auto=format&fit=crop&w=800&q=80"
+        alt="Cold storage industrial protective clothing" />
+      <div class="product-card-body">
+        <span class="product-tag">Safety Clothing</span>
+        <h3 class="product-name">Freezer &amp; Thermal Wear</h3>
+        <p class="product-desc">Insulated industrial clothing engineered for cold-store and sub-zero working environments.</p>
+        <div class="product-footer">
+          <span class="product-count"><strong>3</strong> product lines</span>
+          <a href="products/freezer-clothing.html" class="product-link">Browse <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- MARKETS / WORLD MAP -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>S M Exports — Global Markets</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,400;1,600&family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --c-base:        oklch(8%  0.008 250);
+  --c-surface:     oklch(11% 0.010 250);
+  --c-rule:        oklch(20% 0.010 250);
+  --c-rule-light:  oklch(82% 0.004 250 / 0.18);
+  --c-text-on-dark:oklch(97% 0.003 250);
+  --c-muted:       oklch(52% 0.006 250);
+  --c-accent:      oklch(58% 0.19  264);
+  --c-accent-dim:  oklch(44% 0.14  264);
+  --c-amber:       oklch(72% 0.18  82);
+  --c-tag-bg:      oklch(15% 0.015 250);
+  --c-tag-text:    oklch(72% 0.06  250);
+  --r: 4px;
+  --sp2: 8px; --sp3: 12.8px; --sp4: 16px; --sp5: 24px; --sp6: 48px;
+  --dur: 150ms;
+  --font-display: 'Barlow Condensed', sans-serif;
+  --font-body: 'Barlow', sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--c-base);
+  color: var(--c-text-on-dark);
+  font-family: var(--font-body);
+  font-weight: 300;
+  line-height: 1.6;
+}
+.kicker {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--c-accent); margin-bottom: var(--sp2);
+}
+.section {
+  padding: var(--sp6);
+  border-bottom: 0.5px solid var(--c-rule);
+  background: var(--c-surface);
+}
+.section-header {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  margin-bottom: var(--sp6); padding-bottom: var(--sp5);
+  border-bottom: 0.5px solid var(--c-rule);
+}
+.section-title {
+  font-family: var(--font-display); font-size: 36px; font-weight: 700;
+  text-transform: uppercase; color: var(--c-text-on-dark);
+  line-height: 1.0; letter-spacing: -0.01em;
+}
+.section-title em { font-style: italic; font-weight: 500; color: var(--c-accent); }
+
+/* Layout */
+.markets-layout {
+  display: grid; grid-template-columns: 1fr 340px; gap: var(--sp6); align-items: start;
+}
+
+/* Map container */
+.map-container {
+  background: oklch(10% 0.010 250);
+  border: 0.5px solid var(--c-rule);
+  border-radius: var(--r);
+  overflow: hidden;
+  position: relative;
+}
+#world-map-d3 { display: block; width: 100%; }
+.map-legend {
+  display: flex; gap: var(--sp4); padding: var(--sp3) var(--sp4);
+  background: oklch(100% 0 0 / 0.02);
+  border-top: 0.5px solid var(--c-rule);
+  justify-content: center;
+}
+.map-legend-item {
+  display: flex; align-items: center; gap: var(--sp2);
+  font-size: 12px; font-weight: 300; color: var(--c-muted);
+}
+.map-dot-key {
+  width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+}
+.loading-msg {
+  color: var(--c-muted); font-size: 13px; padding: 60px; text-align: center;
+  font-family: var(--font-body);
+}
+
+/* Sidebar */
+.markets-sidebar { display: flex; flex-direction: column; gap: var(--sp3); }
+.market-card {
+  background: var(--c-base); border: 0.5px solid var(--c-rule);
+  border-radius: var(--r); padding: var(--sp4);
+  transition: border-color var(--dur) ease, background var(--dur) ease, transform var(--dur) ease;
+  cursor: default;
+}
+.market-card:hover {
+  border-color: oklch(44% 0.14 264 / 0.8);
+  background: oklch(13% 0.010 250);
+  transform: translateY(-2px);
+}
+.market-card-header {
+  display: flex; align-items: center; gap: var(--sp3); margin-bottom: var(--sp3);
+}
+.market-flag { font-size: 22px; line-height: 1; }
+.market-name {
+  font-family: var(--font-display); font-size: 18px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.04em; color: var(--c-text-on-dark);
+  transition: color var(--dur) ease;
+}
+.market-card:hover .market-name { color: var(--c-accent); }
+.market-desc {
+  font-size: 13px; font-weight: 300; color: var(--c-muted); line-height: 1.6;
+  transition: color var(--dur) ease;
+}
+.market-card:hover .market-desc { color: oklch(72% 0.006 250); }
+.market-products { display: flex; flex-wrap: wrap; gap: var(--sp2); margin-top: var(--sp3); }
+.market-product-tag {
+  font-size: 11px; font-weight: 400; color: var(--c-tag-text);
+  background: var(--c-tag-bg); padding: 3px var(--sp3);
+  border-radius: var(--r); border: 0.5px solid oklch(100% 0 0 / 0.05);
+}
+
+/* Tooltip */
+.map-tooltip {
+  position: absolute; pointer-events: none; opacity: 0;
+  background: oklch(15% 0.012 250);
+  border: 0.5px solid oklch(44% 0.14 264 / 0.6);
+  border-radius: var(--r);
+  padding: 6px 10px;
+  font-family: var(--font-body); font-size: 12px; font-weight: 400;
+  color: var(--c-text-on-dark);
+  white-space: nowrap;
+  transition: opacity 120ms ease;
+  z-index: 10;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .markets-layout { grid-template-columns: 1fr; }
+  .markets-sidebar { display: grid; grid-template-columns: repeat(2, 1fr); }
+  .section { padding: var(--sp5) var(--sp4); }
+}
+@media (max-width: 540px) {
+  .markets-sidebar { grid-template-columns: 1fr; }
+  .section-title { font-size: 26px; }
+}
+</style>
+</head>
+<body>
+
+<section class="section" id="markets">
+  <div class="section-header">
+    <div>
+      <p class="kicker">Global reach</p>
+      <h2 class="section-title">Where Our <em>Gloves Work</em></h2>
+    </div>
+  </div>
+
+  <div class="markets-layout">
+    <div class="map-container">
+      <div class="loading-msg" id="map-loading">Loading map…</div>
+      <svg id="world-map-d3" viewBox="0 0 900 460" style="display:none"
+        role="img" aria-label="World map showing S M Exports shipping destinations">
+        <title>S M Exports — Global Markets</title>
+        <rect width="900" height="460" fill="oklch(10% 0.010 250)"/>
+        <g id="graticule" stroke="oklch(100% 0 0 / 0.04)" stroke-width="0.5" fill="none"></g>
+        <g id="countries"></g>
+        <g id="routes"></g>
+        <g id="markers"></g>
+      </svg>
+      <div class="map-tooltip" id="map-tooltip"></div>
+      <div class="map-legend">
+        <div class="map-legend-item">
+          <div class="map-dot-key" style="background:oklch(72% 0.18 82)"></div>
+          Manufacturing Origin
+        </div>
+        <div class="map-legend-item">
+          <div class="map-dot-key" style="background:oklch(58% 0.19 264)"></div>
+          Export Markets
+        </div>
+      </div>
+    </div>
+
+    <div class="markets-sidebar">
+      <div class="market-card">
+        <div class="market-card-header">
+          <span class="market-flag">🇪🇺</span>
+          <span class="market-name">European Union</span>
+        </div>
+        <p class="market-desc">Primary export market. Products meet EN 388, EN 407, EN 420 standards for PPE distribution across the EU.</p>
+        <div class="market-products">
+          <span class="market-product-tag">Germany</span>
+          <span class="market-product-tag">France</span>
+          <span class="market-product-tag">Netherlands</span>
+          <span class="market-product-tag">Belgium</span>
+          <span class="market-product-tag">Italy</span>
+          <span class="market-product-tag">Spain</span>
+          <span class="market-product-tag">Sweden</span>
+        </div>
+      </div>
+
+      <div class="market-card">
+        <div class="market-card-header">
+          <span class="market-flag">🇬🇧</span>
+          <span class="market-name">United Kingdom</span>
+        </div>
+        <p class="market-desc">Long-standing UK supply chain partners. BS EN certified products for industrial and welding applications.</p>
+        <div class="market-products">
+          <span class="market-product-tag">Mechanical Gloves</span>
+          <span class="market-product-tag">Welding Clothing</span>
+        </div>
+      </div>
+
+      <div class="market-card">
+        <div class="market-card-header">
+          <span class="market-flag">🇺🇸</span>
+          <span class="market-name">North America</span>
+        </div>
+        <p class="market-desc">US and Canadian market supply for industrial safety distributors. ANSI/ISEA 105 compliant range.</p>
+        <div class="market-products">
+          <span class="market-product-tag">United States</span>
+          <span class="market-product-tag">Canada</span>
+        </div>
+      </div>
+
+      <div class="market-card">
+        <div class="market-card-header">
+          <span class="market-flag">🌏</span>
+          <span class="market-name">Asia Pacific</span>
+        </div>
+        <p class="market-desc">Growing Australia and regional market presence for industrial safety equipment supply.</p>
+        <div class="market-products">
+          <span class="market-product-tag">Australia</span>
+          <span class="market-product-tag">New Zealand</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
+<script>
+(async function() {
+  const svg = document.getElementById('world-map-d3');
+  const loading = document.getElementById('map-loading');
+  const tooltip = document.getElementById('map-tooltip');
+  const W = 900, H = 460;
+
+  const projection = d3.geoNaturalEarth1()
+    .scale(148)
+    .translate([W / 2, H / 2 + 10])
+    .precision(0.1);
+
+  const path = d3.geoPath().projection(projection);
+
+  let world;
+  try {
+    world = await d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json');
+  } catch(e) {
+    loading.textContent = 'Could not load map data.';
+    return;
+  }
+
+  const countries = topojson.feature(world, world.objects.countries);
+  const borders = topojson.mesh(world, world.objects.countries, (a, b) => a !== b);
+  const graticule = d3.geoGraticule()();
+
+  d3.select('#graticule').append('path').attr('d', path(graticule));
+
+  const countriesG = d3.select('#countries');
+  countriesG.selectAll('path.country')
+    .data(countries.features)
+    .enter().append('path')
+    .attr('class', 'country')
+    .attr('d', path)
+    .attr('fill', 'oklch(22% 0.012 250)')
+    .attr('stroke', 'none');
+
+  countriesG.append('path')
+    .datum(borders)
+    .attr('fill', 'none')
+    .attr('stroke', 'oklch(30% 0.014 250)')
+    .attr('stroke-width', '0.5')
+    .attr('d', path);
+
+  const destinations = [
+    { name: 'Germany',     lon: 10.5,  lat: 51.2,  label: 'DE', route: true },
+    { name: 'France',      lon: 2.3,   lat: 46.2,  label: null, route: false },
+    { name: 'UK',          lon: -1.5,  lat: 52.4,  label: 'UK', route: true },
+    { name: 'Netherlands', lon: 5.3,   lat: 52.1,  label: null, route: false },
+    { name: 'Belgium',     lon: 4.5,   lat: 50.5,  label: null, route: false },
+    { name: 'Italy',       lon: 12.6,  lat: 42.5,  label: null, route: false },
+    { name: 'Spain',       lon: -3.7,  lat: 40.4,  label: null, route: false },
+    { name: 'Sweden',      lon: 18.6,  lat: 59.3,  label: null, route: false },
+    { name: 'USA',         lon: -98,   lat: 39.5,  label: 'US', route: true },
+    { name: 'Canada',      lon: -96,   lat: 56,    label: null, route: false },
+    { name: 'Australia',   lon: 134,   lat: -25.3, label: 'AU', route: true },
+  ];
+
+  const originLon = 88.36, originLat = 22.57;
+  const [ox, oy] = projection([originLon, originLat]);
+  const routesG = d3.select('#routes');
+
+  // Draw animated routes
+  destinations.filter(d => d.route).forEach(dest => {
+    const [dx, dy] = projection([dest.lon, dest.lat]);
+    const mx = (ox + dx) / 2;
+    const my = (oy + dy) / 2 - 55;
+    const lineId = 'route-' + dest.name.replace(/\s/g,'');
+    const pathEl = routesG.append('path')
+      .attr('id', lineId)
+      .attr('d', `M${ox},${oy} Q${mx},${my} ${dx},${dy}`)
+      .attr('fill', 'none')
+      .attr('stroke', 'oklch(58% 0.19 264 / 0.3)')
+      .attr('stroke-width', 1)
+      .attr('stroke-dasharray', '5 4');
+
+    // Animate a travelling dot along the route
+    const dotLen = pathEl.node().getTotalLength();
+    routesG.append('circle')
+      .attr('r', 2)
+      .attr('fill', 'oklch(72% 0.18 82)')
+      .attr('opacity', 0.8)
+      .append('animateMotion')
+        .attr('dur', (2.5 + Math.random() * 2) + 's')
+        .attr('repeatCount', 'indefinite')
+        .attr('begin', (Math.random() * 3) + 's')
+        .append('mpath')
+          .attr('href', '#' + lineId);
+  });
+
+  // Destination markers
+  const markersG = d3.select('#markers');
+  const svgNode = document.getElementById('world-map-d3');
+  const bbox = svgNode.getBoundingClientRect();
+
+  destinations.forEach(dest => {
+    const [x, y] = projection([dest.lon, dest.lat]);
+    const g = markersG.append('g')
+      .attr('cursor', 'pointer')
+      .on('mouseenter', function(event) {
+        tooltip.style.opacity = '1';
+        tooltip.textContent = dest.name;
+      })
+      .on('mousemove', function(event) {
+        const rect = svgNode.getBoundingClientRect();
+        const scaleX = 900 / rect.width;
+        const scaleY = 460 / rect.height;
+        const svgX = (event.clientX - rect.left);
+        const svgY = (event.clientY - rect.top);
+        tooltip.style.left = (svgX + 12) + 'px';
+        tooltip.style.top  = (svgY - 20) + 'px';
+      })
+      .on('mouseleave', function() {
+        tooltip.style.opacity = '0';
+      });
+
+    g.append('circle')
+      .attr('cx', x).attr('cy', y)
+      .attr('r', dest.label ? 5 : 3.5)
+      .attr('fill', 'oklch(58% 0.19 264)')
+      .attr('opacity', 0.9);
+
+    // Hover ring
+    g.append('circle')
+      .attr('cx', x).attr('cy', y)
+      .attr('r', dest.label ? 5 : 3.5)
+      .attr('fill', 'none')
+      .attr('stroke', 'oklch(58% 0.19 264)')
+      .attr('stroke-width', 0)
+      .style('transition', 'r 150ms, stroke-width 150ms');
+
+    if (dest.label) {
+      g.append('text')
+        .attr('x', x + 8).attr('y', y + 3)
+        .attr('font-size', '9')
+        .attr('font-family', "'Barlow', sans-serif")
+        .attr('fill', 'oklch(80% 0.06 264)')
+        .text(dest.label);
+    }
+  });
+
+  // Origin marker
+  const originG = markersG.append('g');
+  originG.append('circle')
+    .attr('cx', ox).attr('cy', oy).attr('r', 9)
+    .attr('fill', 'oklch(72% 0.18 82)').attr('opacity', 0.2);
+  originG.append('circle')
+    .attr('cx', ox).attr('cy', oy).attr('r', 5)
+    .attr('fill', 'oklch(72% 0.18 82)');
+  originG.append('text')
+    .attr('x', ox + 9).attr('y', oy - 5)
+    .attr('font-size', '9').attr('font-family', "'Barlow', sans-serif")
+    .attr('fill', 'oklch(72% 0.18 82)').text('Kolkata');
+
+  // Pulse ring animation
+  function pulse() {
+    originG.append('circle')
+      .attr('cx', ox).attr('cy', oy).attr('r', 5)
+      .attr('fill', 'none')
+      .attr('stroke', 'oklch(72% 0.18 82)')
+      .attr('stroke-width', 1.5)
+      .attr('opacity', 0.8)
+      .transition().duration(2000).ease(d3.easeLinear)
+      .attr('r', 22).attr('opacity', 0)
+      .remove();
+  }
+  pulse();
+  setInterval(pulse, 2200);
+
+  loading.style.display = 'none';
+  svg.style.display = 'block';
+})();
+</script>
+</body>
+</html>
+
+<!-- COMPLIANCE -->
+<section class="section" id="compliance" aria-labelledby="compliance-heading">
+  <div class="section-header">
+    <div>
+      <p class="kicker">Certifications &amp; standards</p>
+      <h2 class="section-title" id="compliance-heading">Built to <em>Comply</em></h2>
+    </div>
+  </div>
+
+  <div class="compliance-grid reveal">
+
+    <div class="compliance-card">
+      <div class="compliance-icon" aria-hidden="true">
+        <svg width="20" height="20" fill="none" stroke="oklch(58% 0.19 264)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div>
+        <div class="compliance-standard">EN 388</div>
+        <div class="compliance-name">Mechanical Risk Protection</div>
+      </div>
+      <div class="compliance-scope">Abrasion, cut, tear and puncture resistance. Mandatory for industrial gloves sold in the EU.</div>
+      <div class="compliance-badge">
+        <svg width="10" height="10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        Active
+      </div>
+    </div>
+
+    <div class="compliance-card">
+      <div class="compliance-icon" aria-hidden="true">
+        <svg width="20" height="20" fill="none" stroke="oklch(58% 0.19 264)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"/><path d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"/></svg>
+      </div>
+      <div>
+        <div class="compliance-standard">EN 407</div>
+        <div class="compliance-name">Thermal Risk Protection</div>
+      </div>
+      <div class="compliance-scope">Flame, contact heat, convective heat, radiant heat, small splashes of molten metal and large quantities of molten metal.</div>
+      <div class="compliance-badge">
+        <svg width="10" height="10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        Active
+      </div>
+    </div>
+
+    <div class="compliance-card">
+      <div class="compliance-icon" aria-hidden="true">
+        <svg width="20" height="20" fill="none" stroke="oklch(58% 0.19 264)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+      </div>
+      <div>
+        <div class="compliance-standard">EN 420</div>
+        <div class="compliance-name">General Glove Requirements</div>
+      </div>
+      <div class="compliance-scope">Design, construction, innocuousness, comfort and efficiency — base standard for all protective gloves in Europe.</div>
+      <div class="compliance-badge">
+        <svg width="10" height="10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        Active
+      </div>
+    </div>
+
+    <div class="compliance-card">
+      <div class="compliance-icon" aria-hidden="true">
+        <svg width="20" height="20" fill="none" stroke="oklch(58% 0.19 264)" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
+      </div>
+      <div>
+        <div class="compliance-standard">ANSI/ISEA 105</div>
+        <div class="compliance-name">Hand Protection Classification</div>
+      </div>
+      <div class="compliance-scope">American National Standard for hand protection. Cut resistance, puncture resistance and chemical permeation resistance levels.</div>
+      <div class="compliance-badge">
+        <svg width="10" height="10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        Active
+      </div>
+    </div>
+
+    <div class="compliance-card">
+      <div class="compliance-icon" aria-hidden="true">
+        <svg width="20" height="20" fill="none" stroke="oklch(58% 0.19 264)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+      </div>
+      <div>
+        <div class="compliance-standard">CE Mark</div>
+        <div class="compliance-name">EU Conformity Assessment</div>
+      </div>
+      <div class="compliance-scope">All PPE products bear the CE mark, confirming compliance with EU Regulation 2016/425 for personal protective equipment.</div>
+      <div class="compliance-badge">
+        <svg width="10" height="10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        Active
+      </div>
+    </div>
+
+    <div class="compliance-card">
+      <div class="compliance-icon" aria-hidden="true">
+        <svg width="20" height="20" fill="none" stroke="oklch(58% 0.19 264)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+      </div>
+      <div>
+        <div class="compliance-standard">ISO 9001</div>
+        <div class="compliance-name">Quality Management System</div>
+      </div>
+      <div class="compliance-scope">Certified quality management process covering raw material sourcing, production, testing, and delivery for consistent product quality.</div>
+      <div class="compliance-badge">
+        <svg width="10" height="10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        Active
+      </div>
+    </div>
+
+    <div class="compliance-card">
+      <div class="compliance-icon" aria-hidden="true">
+        <svg width="20" height="20" fill="none" stroke="oklch(58% 0.19 264)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/></svg>
+      </div>
+      <div>
+        <div class="compliance-standard">DGFT</div>
+        <div class="compliance-name">Star Export House — India</div>
+      </div>
+      <div class="compliance-scope">Recognised as a Star Export House by India's Directorate General of Foreign Trade, certifying consistent export performance.</div>
+      <div class="compliance-badge">
+        <svg width="10" height="10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        Certified
+      </div>
+    </div>
+
+    <div class="compliance-card">
+      <div class="compliance-icon" aria-hidden="true">
+        <svg width="20" height="20" fill="none" stroke="oklch(58% 0.19 264)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
+      </div>
+      <div>
+        <div class="compliance-standard">REACH</div>
+        <div class="compliance-name">EU Chemical Safety Regulation</div>
+      </div>
+      <div class="compliance-scope">Materials and dyes comply with EU REACH regulation, ensuring no restricted substances in the finished product for European market entry.</div>
+      <div class="compliance-badge">
+        <svg width="10" height="10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        Compliant
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FACILITY -->
+<section class="section" id="facility" aria-labelledby="facility-heading">
+  <div class="section-header">
+    <div>
+      <p class="kicker">Manufacturing</p>
+      <h2 class="section-title" id="facility-heading">The <em>Kolkata</em> Facility</h2>
+    </div>
+  </div>
+
+  <div class="facility-layout reveal">
+    <div class="facility-copy">
+      <p class="facility-body">Three decades of refining a single craft — leather safety gloves and protective clothing made for industrial workers in Europe and America. From raw leather selection to the final stitch, every step happens under one roof in Kolkata's garment district.</p>
+      <div class="facility-specs">
+        <div class="spec-item">
+          <div class="spec-val">34+</div>
+          <div class="spec-key">Years in operation</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-val">30+</div>
+          <div class="spec-key">Active export clients</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-val">100%</div>
+          <div class="spec-key">In-house production</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-val">EU/US</div>
+          <div class="spec-key">Primary export markets</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="facility-images">
+      <div class="facility-img facility-img-wide">
+        <img src="https://images.unsplash.com/photo-1615906655593-ad0386982a0f?auto=format&fit=crop&w=1200&q=80"
+          alt="Leather manufacturing floor" />
+      </div>
+      <div class="facility-img">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=600&q=80"
+          alt="Skilled leather craftwork" />
+      </div>
+      <div class="facility-img">
+        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=80"
+          alt="Finished industrial gloves ready for export" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<div class="cta-band" id="contact" role="complementary" aria-label="Contact call to action">
+  <div class="cta-copy">
+    <h2 class="cta-heading">Ready to Source Quality PPE?</h2>
+    <p class="cta-sub">Talk to our export team about volumes, specifications, and lead times.</p>
+  </div>
+  <div style="display:flex; gap:12px; flex-shrink:0; flex-wrap:wrap;">
+    <a href="mailto:info@smexports.com" class="btn-dark">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+      Email Us
+    </a>
+    <a href="tel:+91" class="btn-dark" style="background:oklch(15% 0.010 250);">
+      Request Catalogue
+    </a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand-name">S M Exports</div>
+      <p class="footer-desc">Star Export House. Industrial leather gloves and protective clothing since 1990. Kolkata, India.</p>
+    </div>
+    <div>
+      <p class="footer-col-title">Products</p>
+      <ul class="footer-links">
+        <li><a href="#">Leather Gloves</a></li>
+        <li><a href="#">Welding Clothing</a></li>
+        <li><a href="#">Safety Clothing</a></li>
+        <li><a href="#">Download Brochure</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Company</p>
+      <ul class="footer-links">
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Our Facility</a></li>
+        <li><a href="#">Knowledge Zone</a></li>
+        <li><a href="#">Blog</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Contact</p>
+      <ul class="footer-links">
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Request a Quote</a></li>
+        <li><a href="#">Find Us on Maps</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2024 S M Exports. All rights reserved.</span>
+    <span>Badamtala, Kolkata, West Bengal, India</span>
+  </div>
+</footer>
+
+<script>
+// Mobile menu toggle
+const navToggle = document.getElementById('nav-toggle');
+const navMenu = document.getElementById('nav-menu');
+const navMenuLinks = document.querySelectorAll('.nav-menu-link');
+
+navToggle.addEventListener('click', () => {
+  const isActive = navMenu.classList.toggle('active');
+  navToggle.setAttribute('aria-expanded', isActive);
+});
+
+// Close menu when a link is clicked
+navMenuLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    navMenu.classList.remove('active');
+    navToggle.setAttribute('aria-expanded', false);
+  });
+});
+
+// Close menu when clicking outside
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('nav')) {
+    navMenu.classList.remove('active');
+    navToggle.setAttribute('aria-expanded', false);
+  }
+});
+
+// Carousel rotation
+const slides = document.querySelectorAll('.hero-carousel-slide');
+let currentSlide = 0;
+
+function rotateCarousel() {
+  slides[currentSlide].classList.remove('active');
+  currentSlide = (currentSlide + 1) % slides.length;
+  slides[currentSlide].classList.add('active');
+}
+
+setInterval(rotateCarousel, 5000); // Change image every 5 seconds
+
+// Scroll reveal animation
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
